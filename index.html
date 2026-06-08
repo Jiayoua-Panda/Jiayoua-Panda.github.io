@@ -8,145 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --accent:#059669;--accent-dk:#047857;--accent-lt:#d1fae5;--accent-bg:#ecfdf5;
-  --text:#111827;--text2:#374151;--muted:#6b7280;
-  --border:#e5e7eb;--bg:#fff;--bg2:#f9fafb;--bg3:#f3f4f6;
-  --sh-sm:0 1px 3px rgba(0,0,0,.08);
-  --sh-md:0 4px 12px rgba(0,0,0,.08);
-  --sh-lg:0 12px 28px rgba(0,0,0,.09);
-  --r:12px;--rs:8px;
-}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.6}
-a{color:inherit}
-
-/* NAV */
-nav{position:sticky;top:0;z-index:99;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nw{max-width:1100px;margin:0 auto;padding:0 2rem;height:58px;display:flex;align-items:center;justify-content:space-between}
-.nb{font-weight:700;font-size:1rem;text-decoration:none;color:var(--text)}
-.nb em{color:var(--accent);font-style:normal}
-.nl{display:flex;gap:1.75rem;list-style:none}
-.nl a{text-decoration:none;font-size:.875rem;font-weight:500;color:var(--muted);transition:color .15s}
-.nl a:hover{color:var(--accent)}
-
-/* LAYOUT */
-.wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
-section{padding:80px 0}
-.lbl{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
-h2.sh{font-size:1.875rem;font-weight:800;margin-bottom:.75rem}
-.ssub{font-size:.975rem;color:var(--muted);max-width:560px;margin-bottom:3rem;line-height:1.7}
-
-/* HERO */
-#hero{background:linear-gradient(150deg,#fafafa 55%,#ecfdf5 100%);border-bottom:1px solid var(--border);padding:96px 0 80px}
-.hg{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 150px;gap:3rem;align-items:center}
-.hbadge{display:inline-flex;align-items:center;gap:.45rem;background:var(--accent-lt);color:var(--accent-dk);font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:.3rem .85rem;border-radius:99px;margin-bottom:1.25rem}
-.hdot{width:7px;height:7px;background:var(--accent);border-radius:50%}
-.hname{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:.4rem}
-.htitle{font-size:1.05rem;color:var(--muted);margin-bottom:1.25rem}
-.hdesc{font-size:.95rem;color:var(--text2);max-width:520px;line-height:1.8;margin-bottom:2rem}
-.ctas{display:flex;gap:.875rem;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.7rem 1.4rem;border-radius:var(--rs);font-size:.875rem;font-weight:600;text-decoration:none;border:2px solid transparent;transition:all .2s}
-.btn-p{background:var(--accent);color:#fff}
-.btn-p:hover{background:var(--accent-dk);box-shadow:0 4px 14px rgba(5,150,105,.35);transform:translateY(-1px)}
-.btn-g{border-color:var(--border);color:var(--text2);background:#fff}
-.btn-g:hover{border-color:var(--accent);color:var(--accent)}
-.avatar{width:140px;height:140px;background:linear-gradient(135deg,#059669,#064e3b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:800;color:#fff;box-shadow:0 8px 32px rgba(5,150,105,.28);justify-self:end}
-
-/* ABOUT */
-#about{background:var(--bg)}
-.ag{display:grid;grid-template-columns:3fr 2fr;gap:4rem;align-items:start}
-.at p{color:var(--text2);line-height:1.85;margin-bottom:1rem;font-size:.975rem}
-.sg{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.sc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem}
-.sn{font-size:1.65rem;font-weight:800;color:var(--accent)}
-.sl{font-size:.78rem;color:var(--muted);font-weight:500;margin-top:.1rem}
-.pb{grid-column:1/-1;background:var(--accent-bg);border:1px solid #a7f3d0;border-radius:var(--r);padding:1.25rem}
-.pb .sn{font-size:.95rem;color:var(--accent-dk)}
-.pb .sl{color:var(--accent-dk);opacity:.85}
-
-/* FEATURED */
-#featured{background:var(--bg2)}
-.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.fc{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:1.75rem;box-shadow:var(--sh-sm);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s}
-.fc:hover{transform:translateY(-4px);box-shadow:var(--sh-lg);border-color:var(--accent)}
-.fi{width:46px;height:46px;background:var(--accent-lt);border-radius:var(--rs);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
-.fi svg{width:24px;height:24px;color:var(--accent)}
-.fbadge{display:inline-flex;align-items:center;background:var(--accent-lt);color:var(--accent-dk);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;border-radius:99px;margin-bottom:.875rem;align-self:flex-start}
-.ft{font-size:1rem;font-weight:700;margin-bottom:.5rem}
-.fd{font-size:.855rem;color:var(--muted);line-height:1.7;flex:1;margin-bottom:1.25rem}
-.tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.25rem}
-.tag{background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:.72rem;font-weight:500;padding:.18rem .55rem;border-radius:99px}
-.pls{display:flex;gap:1rem;margin-top:auto}
-.pl{display:inline-flex;align-items:center;gap:.3rem;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none;transition:opacity .15s}
-.pl:hover{opacity:.7}
-.pl svg,.cbtn svg{width:14px;height:14px}
-
-/* ALL PROJECTS */
-#projects{background:var(--bg)}
-.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.125rem}
-.pc{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:1.375rem;transition:border-color .2s,box-shadow .2s}
-.pc:hover{border-color:var(--accent);box-shadow:var(--sh-md)}
-.pi{width:36px;height:36px;background:var(--bg2);border-radius:var(--rs);display:flex;align-items:center;justify-content:center;margin-bottom:.875rem}
-.pi svg{width:18px;height:18px;color:var(--muted)}
-.pt{font-size:.925rem;font-weight:700;margin-bottom:.4rem}
-.pd{font-size:.825rem;color:var(--muted);line-height:1.65;margin-bottom:.875rem}
-
-/* EXPERIENCE */
-#experience{background:var(--bg2)}
-.tl{position:relative;padding-left:1.5rem}
-.tl::before{content:'';position:absolute;left:0;top:10px;bottom:0;width:2px;background:var(--border)}
-.ti{position:relative;padding-left:1.75rem;padding-bottom:2.25rem}
-.ti:last-child{padding-bottom:0}
-.ti::before{content:'';position:absolute;left:-1.5rem;top:6px;width:14px;height:14px;background:var(--accent);border-radius:50%;border:3px solid var(--bg2)}
-.td{font-size:.76rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem}
-.tr{font-size:1.05rem;font-weight:700;margin-bottom:.1rem}
-.tc{font-size:.875rem;color:var(--muted);font-weight:500;margin-bottom:.5rem}
-.tdesc{font-size:.85rem;color:var(--text2);line-height:1.7}
-
-/* SKILLS */
-#skills{background:var(--bg)}
-.skw{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-.skb{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.375rem}
-.skt{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.875rem}
-.chips{display:flex;flex-wrap:wrap;gap:.4rem}
-.chip{background:var(--bg);border:1px solid var(--border);border-radius:99px;padding:.25rem .75rem;font-size:.8rem;font-weight:500;color:var(--text2)}
-
-/* CONTACT */
-#contact{background:#0d1b2a;padding:80px 0}
-#contact .lbl{color:#6ee7b7}
-#contact h2.sh{color:#fff}
-.csub{font-size:.975rem;color:#9ca3af;max-width:480px;line-height:1.75;margin-bottom:2.25rem}
-.cbtns{display:flex;gap:.875rem;flex-wrap:wrap}
-.cbtn{display:inline-flex;align-items:center;gap:.45rem;padding:.75rem 1.375rem;border-radius:var(--rs);font-size:.875rem;font-weight:600;text-decoration:none;transition:all .2s;border:2px solid transparent}
-.cbtn-p{background:var(--accent);color:#fff}
-.cbtn-p:hover{background:var(--accent-dk)}
-.cbtn-o{border-color:#374151;color:#9ca3af}
-.cbtn-o:hover{border-color:var(--accent);color:#fff}
-
-footer{background:#060d15;color:#4b5563;text-align:center;padding:1.25rem;font-size:.8rem}
-footer a{color:#6b7280;text-decoration:none}
-footer a:hover{color:var(--accent)}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .hg{grid-template-columns:1fr}.avatar{display:none}
-  .ag{grid-template-columns:1fr;gap:2rem}
-  .fg{grid-template-columns:1fr}
-  .pg{grid-template-columns:1fr 1fr}
-  .skw{grid-template-columns:1fr 1fr}
-}
-@media(max-width:580px){
-  .nl{gap:1rem}
-  section{padding:60px 0}
-  #hero{padding:60px 0 50px}
-  .pg{grid-template-columns:1fr}
-  .skw{grid-template-columns:1fr}
-  .sg{grid-template-columns:1fr 1fr}
-}
-</style>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -157,6 +19,7 @@ footer a:hover{color:var(--accent)}
   <ul class="nl">
     <li><a href="#about">About</a></li>
     <li><a href="#featured">Projects</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -191,7 +54,11 @@ footer a:hover{color:var(--accent)}
       </a>
     </div>
   </div>
-  <div class="avatar">SG</div>
+  <!-- Profile photo: replace assets/images/profile.jpg with your actual photo -->
+  <div class="avatar-wrap">
+    <img class="avatar-photo" src="assets/images/profile.jpg" alt="Shuwen Gong" loading="lazy">
+    <div class="avatar">SG</div>
+  </div>
 </div>
 </section>
 
@@ -231,6 +98,13 @@ footer a:hover{color:var(--accent)}
   <div class="fg">
 
     <div class="fc">
+      <!-- Thumbnail: replace src with assets/images/projects/truck-reversing.jpg -->
+      <div class="fc-thumb">
+        <img src="assets/images/projects/truck-reversing.jpg" alt="Reversing Aid simulation screenshot" loading="lazy" onerror="this.style.display='none'">
+        <div class="fc-thumb-ph">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="1" y="11" width="22" height="7" rx="2"/><path d="M5 11V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+        </div>
+      </div>
       <div class="fi">
         <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="11" width="22" height="7" rx="2"/><path d="M5 11V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
       </div>
@@ -241,12 +115,18 @@ footer a:hover{color:var(--accent)}
         <span class="tag">Simulink</span><span class="tag">MATLAB</span><span class="tag">Vehicle Dynamics</span><span class="tag">Control Systems</span><span class="tag">ADAS</span>
       </div>
       <div class="pls">
-        <!-- TODO: replace with actual link when report is uploaded -->
         <span class="pl" style="color:var(--muted);cursor:default">Report available on request</span>
       </div>
     </div>
 
     <div class="fc">
+      <!-- Thumbnail: replace src with assets/images/projects/ride-comfort.jpg -->
+      <div class="fc-thumb">
+        <img src="assets/images/projects/ride-comfort.jpg" alt="Ride comfort analysis graphs" loading="lazy" onerror="this.style.display='none'">
+        <div class="fc-thumb-ph">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+      </div>
       <div class="fi">
         <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       </div>
@@ -262,6 +142,13 @@ footer a:hover{color:var(--accent)}
     </div>
 
     <div class="fc">
+      <!-- Thumbnail: replace src with assets/images/projects/sfm.jpg -->
+      <div class="fc-thumb">
+        <img src="assets/images/projects/sfm.jpg" alt="Structure-from-Motion 3D reconstruction result" loading="lazy" onerror="this.style.display='none'">
+        <div class="fc-thumb-ph">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+      </div>
       <div class="fi">
         <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
       </div>
@@ -272,7 +159,6 @@ footer a:hover{color:var(--accent)}
         <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Computer Vision</span><span class="tag">3D Reconstruction</span><span class="tag">Homography</span>
       </div>
       <div class="pls">
-        <!-- TODO: link to specific repo -->
         <a class="pl" href="https://github.com/Jiayoua-Panda" target="_blank" rel="noopener">
           <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           GitHub
@@ -332,6 +218,77 @@ footer a:hover{color:var(--accent)}
       <div class="pt">Air-bearing Platform Attitude Control (BSc Thesis)</div>
       <p class="pd">Attitude control algorithms for an air-bearing spacecraft simulator at NUAA, enabling hardware-in-the-loop testing of satellite attitude control strategies in a friction-free environment.</p>
       <div class="tags"><span class="tag">MATLAB</span><span class="tag">Control Systems</span><span class="tag">Aerospace</span></div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- GALLERY
+     How to add images:
+     1. Put image files in assets/images/gallery/
+     2. Copy one of the <figure> blocks below and update src, alt, and data-caption
+     3. All images with data-group="gallery" support Lightbox (click to zoom)
+-->
+<section id="gallery">
+<div class="wrap">
+  <div class="lbl">Media</div>
+  <h2 class="sh">Gallery</h2>
+  <p class="ssub">Project visuals, simulation screenshots, and engineering work. Click any image to view full-size.</p>
+  <div class="gl-grid">
+
+    <!-- Example image (uncomment and fill in once you have a file):
+    <figure class="gl-item lb-trigger" data-group="gallery"
+            data-src="assets/images/gallery/simulink-model.jpg"
+            data-caption="Simulink model — Articulated truck reversing aid">
+      <img src="assets/images/gallery/simulink-model.jpg" alt="Simulink reversing aid model" loading="lazy">
+      <div class="gl-overlay"><span class="gl-caption">Simulink — Reversing Aid</span></div>
+    </figure>
+    -->
+
+    <!-- Placeholders — replace with real images -->
+    <div class="gl-add">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Add screenshots to<br>assets/images/gallery/
+    </div>
+    <div class="gl-add">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      MATLAB / Simulink results<br>&amp; technical diagrams
+    </div>
+    <div class="gl-add">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Python plots, OpenCV<br>output, 3D reconstructions
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- VIDEOS
+     How to add a video:
+     - YouTube: replace the src in <iframe> with your YouTube embed URL
+     - Self-hosted: use <video controls src="assets/videos/demo.mp4"></video> instead
+-->
+<section id="videos">
+<div class="wrap">
+  <div class="lbl">Demo Videos</div>
+  <h2 class="sh">In Action</h2>
+  <p class="ssub">Simulation demos and project walkthroughs. Videos will appear here once uploaded.</p>
+  <div class="vg">
+
+    <!-- YouTube embed example (uncomment and replace VIDEO_ID):
+    <div class="vid-embed">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen loading="lazy" title="Project demo"></iframe>
+    </div>
+    -->
+
+    <div class="vid-placeholder">
+      <svg fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      <p>Simulink reversing aid<br>demo — coming soon</p>
+    </div>
+    <div class="vid-placeholder">
+      <svg fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      <p>Structure-from-Motion<br>reconstruction — coming soon</p>
     </div>
 
   </div>
@@ -452,5 +409,17 @@ footer a:hover{color:var(--accent)}
   <p>Shuwen Gong (Shawn) &nbsp;·&nbsp; Vehicle Engineer &nbsp;·&nbsp; <a href="mailto:gswzds@gmail.com">gswzds@gmail.com</a></p>
 </footer>
 
+<!-- LIGHTBOX MODAL -->
+<div id="lightbox">
+  <button class="lb-close" aria-label="Close">&#x2715;</button>
+  <button class="lb-prev" aria-label="Previous">&#8249;</button>
+  <button class="lb-next" aria-label="Next">&#8250;</button>
+  <div class="lb-content">
+    <img class="lb-img" alt="">
+    <p class="lb-caption"></p>
+  </div>
+</div>
+
+<script src="js/main.js" defer></script>
 </body>
 </html>
