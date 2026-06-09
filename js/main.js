@@ -263,6 +263,16 @@ if (avatarPhoto) {
       open(btn.dataset.project);
     });
   });
+
+  // Click anywhere on card to open modal (not just the trigger button)
+  document.querySelectorAll('.fc, .pc').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', e => {
+      if (e.target.closest('a[href]')) return; // let real links navigate normally
+      const trigger = card.querySelector('.pm-trigger');
+      if (trigger) open(trigger.dataset.project);
+    });
+  });
 })();
 
 // ── Scroll fade-in ──────────────────────────────────────────
@@ -276,13 +286,18 @@ if (avatarPhoto) {
   }, { threshold: 0.1 });
 
   const groups = [
-    { sel: '.fc',                        delays: [.05, .12, .19] },
-    { sel: '.pc',                        delays: [.05, .08, .11, .14, .17, .20] },
-    { sel: '.ti',                        delays: [0, .08, .16, .24] },
-    { sel: '.skb',                       delays: [.05, .10, .15, .20, .25, .30] },
-    { sel: '.sc',                        delays: [.05, .10, .15, .20] },
-    { sel: '.pb',                        delays: [.22] },
-    { sel: '.vid-placeholder,.vid-embed',delays: [.05, .12] },
+    { sel: '.lbl',        delays: [0] },
+    { sel: 'h2.sh',       delays: [.06] },
+    { sel: '.ssub',       delays: [.12] },
+    { sel: '.ink-rule',   delays: [.18] },
+    { sel: '.wc',         delays: [.05, .10, .15, .20] },
+    { sel: '.fc',         delays: [.05, .12, .19, .26] },
+    { sel: '.pc',         delays: [.05, .10, .15] },
+    { sel: '.ind-card',   delays: [.08] },
+    { sel: '.patent-box', delays: [.12] },
+    { sel: '.ds-cap',     delays: [.05, .10, .15, .20] },
+    { sel: '.ti',         delays: [0, .08, .16, .24] },
+    { sel: '.skb',        delays: [.05, .10, .15, .20, .25, .30] },
   ];
 
   groups.forEach(({ sel, delays }) => {
@@ -318,4 +333,181 @@ if (avatarPhoto) {
   }, { threshold: 0.5 });
 
   document.querySelectorAll('[data-target]').forEach(el => io.observe(el));
+})();
+
+// ── Full-page particle canvas (fixed, unified background) ──────────────────
+(function () {
+  const cvs = document.createElement('canvas');
+  cvs.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0';
+  document.body.insertBefore(cvs, document.body.firstChild);
+
+  const ctx = cvs.getContext('2d');
+  let W = 0, H = 0, mx = -9999, my = -9999;
+
+  function resize() {
+    W = cvs.width  = window.innerWidth;
+    H = cvs.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  document.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
+
+  // Scale count to viewport; fewer on mobile
+  const N   = Math.min(65, Math.ceil(W * H / 14000));
+  const pts = Array.from({ length: N }, () => ({
+    x:  Math.random() * W,
+    y:  Math.random() * H,
+    vx: (Math.random() - .5) * .25,   // ≈ 2/3 of previous .38
+    vy: (Math.random() - .5) * .087,  // ≈ 2/3 of previous .13
+    r:  Math.random() * 1.3 + .45,
+  }));
+
+  // Cursor trail (full page) — 24 frames for a longer-lasting trail
+  const TRAIL_LEN = 24;
+  const trail = [];
+  document.addEventListener('mousemove', e => {
+    trail.push({ x: e.clientX, y: e.clientY, age: 0 });
+    if (trail.length > TRAIL_LEN) trail.shift();
+  });
+
+  let t = 0;
+  (function tick() {
+    ctx.clearRect(0, 0, W, H);
+
+    pts.forEach(p => {
+      // Cross-term flow field: mixing x+y in both sin/cos breaks line-attractor convergence
+      const ang = Math.sin(p.x * .0055 + p.y * .0035 + t * .00050) * Math.PI
+                + Math.cos(p.x * .0040 - p.y * .0060 + t * .00040) * Math.PI * .55;
+      p.vx += Math.cos(ang) * .0040;
+      p.vy += Math.sin(ang) * .0018;
+
+      // Diffusion: random micro-kick stops attractor lock-in
+      p.vx += (Math.random() - .5) * .022;
+      p.vy += (Math.random() - .5) * .009;
+
+      // Velocity damping (friction) — combined with diffusion keeps distribution spread
+      p.vx *= .97;
+      p.vy *= .97;
+
+      // Mouse repulsion
+      const dx = p.x - mx, dy = p.y - my;
+      const d2 = dx * dx + dy * dy;
+      if (d2 < 75 * 75) {
+        const d = Math.sqrt(d2) || .001;
+        p.vx += (dx / d) * .12;
+        p.vy += (dy / d) * .06;
+      }
+
+      // Speed cap
+      const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+      if (spd > .4) { p.vx = p.vx / spd * .4; p.vy = p.vy / spd * .4; }
+
+      p.x = (p.x + p.vx + W) % W;
+      p.y = (p.y + p.vy + H) % H;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(45,45,45,.16)';
+      ctx.fill();
+    });
+
+    // Connection lines
+    const LINK = 105;
+    for (let i = 0; i < pts.length - 1; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        const d  = Math.sqrt(dx * dx + dy * dy);
+        if (d < LINK) {
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.strokeStyle = `rgba(45,45,45,${(1 - d / LINK) * .045})`;
+          ctx.lineWidth   = .6;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Cursor trail — red micro-dots (newest = largest + most opaque)
+    for (let i = trail.length - 1; i >= 0; i--) {
+      const tp = trail[i];
+      tp.age++;
+      const alpha = Math.max(0, .42 - tp.age * (.42 / TRAIL_LEN));
+      const r     = Math.max(0, 3.0 * (1 - tp.age / TRAIL_LEN));
+      if (alpha > 0) {
+        ctx.beginPath();
+        ctx.arc(tp.x, tp.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(168,37,31,${alpha.toFixed(3)})`;
+        ctx.fill();
+      }
+    }
+    while (trail.length && trail[0].age > TRAIL_LEN) trail.shift();
+
+    // Live cursor dot — always exactly at mouse position, zero frame lag
+    if (mx > -100 && my > -100) {
+      ctx.beginPath();
+      ctx.arc(mx, my, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(168,37,31,.58)';
+      ctx.fill();
+    }
+
+    t++;
+    requestAnimationFrame(tick);
+  }());
+})();
+
+// ── Card hover: cursor glow + card background blend ───────────────────────
+(function () {
+  document.querySelectorAll('.fc, .pc').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      card.style.background =
+        `radial-gradient(circle 220px at ${x}px ${y}px, rgba(168,37,31,.065), transparent 65%),
+         rgba(249,249,249,${card.classList.contains('fc') ? '.88' : '.82'})`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.background = ''; });
+  });
+})();
+
+// ── Featured card: 3D tilt on hover ───────────────────────────────────────
+(function () {
+  if (window.matchMedia('(hover:none)').matches) return; // skip touch devices
+
+  document.querySelectorAll('.fc').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.willChange = 'transform';
+      card.style.transition = 'box-shadow .25s, border-color .2s'; // suppress transform transition
+    });
+
+    card.addEventListener('mousemove', e => {
+      const r  = card.getBoundingClientRect();
+      const rx = ((e.clientY - r.top  - r.height / 2) / r.height) * -6; // ±3°
+      const ry = ((e.clientX - r.left - r.width  / 2) / r.width )  *  6;
+      card.style.transform  = `translateY(-5px) perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      card.style.boxShadow  = '0 20px 48px rgba(0,0,0,.13)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform .5s cubic-bezier(.25,.46,.45,.94), box-shadow .4s, border-color .2s';
+      card.style.transform  = '';
+      card.style.boxShadow  = '';
+      setTimeout(() => {
+        card.style.transition  = '';
+        card.style.willChange  = '';
+      }, 520);
+    });
+  });
+})();
+
+// ── Timeline: draw-in the vertical line ────────────────────────────────────
+(function () {
+  const tl = document.querySelector('.tl');
+  if (!tl) return;
+  const io = new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) { tl.classList.add('in-view'); io.disconnect(); }
+  }, { threshold: 0.05 });
+  io.observe(tl);
 })();
