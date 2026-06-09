@@ -19,7 +19,6 @@
   <ul class="nl">
     <li><a href="#about">About</a></li>
     <li><a href="#featured">Projects</a></li>
-    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -34,7 +33,7 @@
     <div class="hbadge"><div class="hdot"></div>Open to opportunities · Autonomous &amp; Electric Vehicles</div>
     <h1 class="hname">Shuwen Gong<br><span style="font-size:.65em;font-weight:500;color:var(--muted)">(Shawn)</span></h1>
     <p class="htitle">Vehicle Engineer &nbsp;·&nbsp; Safety Systems &nbsp;·&nbsp; Chalmers University of Technology</p>
-    <p class="hdesc">From aerospace manufacturing to real-time software engineering, now focused on vehicle safety and autonomous systems. I build things that move — safely and precisely.</p>
+    <p class="hdesc">From aerospace manufacturing to real-time software engineering, now focused on vehicle safety and autonomous systems. I build things that operate under hard constraints — safely, precisely, and on time.</p>
     <div class="ctas">
       <a class="btn btn-p" href="#featured">
         <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
@@ -67,6 +66,7 @@
 <div class="wrap">
   <div class="lbl">About</div>
   <h2 class="sh">Background</h2>
+  <span class="ink-rule"><svg viewBox="0 0 220 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4,8 C50,3 110,10 165,5 C188,2 208,8 216,6"/></svg></span>
   <div class="ag">
     <div class="at">
       <p>I'm a vehicle engineer with a multidisciplinary background spanning aerospace manufacturing, software engineering, and automotive safety research. My undergraduate training at Nanjing University of Aeronautics and Astronautics grounded me in control systems and precision engineering, before I moved into production engineering at AVIC Chengdu Aircraft — where I contributed to manufacturing process systems and earned my first patent as lead inventor.</p>
@@ -77,7 +77,7 @@
       <div class="sg">
         <div class="sc"><div class="sn">MSc</div><div class="sl">Vehicle Engineering — Chalmers University of Technology</div></div>
         <div class="sc"><div class="sn">BSc</div><div class="sl">Aerospace Engineering — NUAA, Nanjing</div></div>
-        <div class="sc"><div class="sn">3+</div><div class="sl">Years shipping real-time software in the games industry</div></div>
+        <div class="sc"><div class="sn" data-target="3" data-suffix="+">3+</div><div class="sl">Years shipping real-time software in the games industry</div></div>
         <div class="sc"><div class="sn">CN/SE/EN</div><div class="sl">Chinese (native) · English (fluent) · Swedish (working)</div></div>
         <div class="pb">
           <div class="sn">Patent CN 210090631 U</div>
@@ -94,7 +94,8 @@
 <div class="wrap">
   <div class="lbl">Featured Work</div>
   <h2 class="sh">Highlighted Projects</h2>
-  <p class="ssub">Three projects that best reflect my focus on vehicle safety, autonomous systems, and data-driven engineering.</p>
+  <span class="ink-rule"><svg viewBox="0 0 220 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4,8 C50,3 110,10 165,5 C188,2 208,8 216,6"/></svg></span>
+  <p class="ssub">Three projects that best reflect my engineering depth: articulated vehicle control, real-time software performance, and autonomous vehicle perception.</p>
   <div class="fg">
 
     <div class="fc">
@@ -110,34 +111,36 @@
       </div>
       <span class="fbadge">Vehicle Dynamics · ADAS</span>
       <h3 class="ft">Reversing Aid for Articulated Trucks</h3>
-      <p class="fd">Model-based reversing assistance system for semi-trailer trucks in MATLAB/Simulink. Addresses the geometric complexity of articulated vehicles during reverse maneuvers and provides real-time steering guidance. Validated across multiple trailer configurations via simulation.</p>
+      <p class="fd">Model-based reversing assistance system for semi-trailer trucks, built in MATLAB/Simulink. Kinematically models the articulated joint geometry to compute real-time steering guidance for precise low-speed manoeuvring in constrained environments such as loading docks and terminals — directly relevant to autonomous freight operations. Validated across multiple trailer configurations via simulation.</p>
       <div class="tags">
         <span class="tag">Simulink</span><span class="tag">MATLAB</span><span class="tag">Vehicle Dynamics</span><span class="tag">Control Systems</span><span class="tag">ADAS</span>
       </div>
       <div class="pls">
-        <span class="pl" style="color:var(--muted);cursor:default">Report available on request</span>
+        <button class="pl pm-trigger" data-project="truck-reversing">View Details &#8594;</button>
+        <span class="pl" style="color:var(--muted);cursor:default">Report on request</span>
       </div>
     </div>
 
     <div class="fc">
-      <!-- Thumbnail: replace src with assets/images/projects/ride-comfort.jpg -->
+      <!-- Thumbnail: add assets/images/projects/shard-engine.jpg (profiler screenshot or game screenshot) -->
       <div class="fc-thumb">
-        <img src="assets/images/projects/ride-comfort.jpg" alt="Ride comfort analysis graphs" loading="lazy" onerror="this.style.display='none'">
+        <img src="assets/images/projects/shard-engine.jpg" alt="Shard engine profiling output" loading="lazy" onerror="this.style.display='none'">
         <div class="fc-thumb-ph">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
       </div>
       <div class="fi">
-        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
-      <span class="fbadge">Data-Driven · NVH</span>
-      <h3 class="ft">Ride Comfort Analysis — Volvo 7900 Electric Bus</h3>
-      <p class="fd">Data-driven study of ride comfort in Volvo 7900 Electric City Buses. Applied signal processing and statistical analysis to measured vibration and acceleration data, benchmarked against ISO 2631. Examined how the electric powertrain's torque delivery profile affects passenger experience versus combustion counterparts.</p>
+      <span class="fbadge">C++ · Real-time Systems</span>
+      <h3 class="ft">Real-time Systems Engineering — Shard Game Engine</h3>
+      <p class="fd">Led performance engineering on the Shard C++ engine across multiple shipped live-service titles. Profiled and resolved frame-time bottlenecks in render and physics subsystems, redesigned data layouts for cache efficiency, and enforced strict latency budgets under production constraints. The same determinism discipline — eliminating jitter, maximising throughput under hard deadlines — applies directly to AV embedded stacks and safety-critical ADAS pipelines.</p>
       <div class="tags">
-        <span class="tag">Python</span><span class="tag">Signal Processing</span><span class="tag">NVH</span><span class="tag">ISO 2631</span><span class="tag">Volvo</span>
+        <span class="tag">C++</span><span class="tag">Performance Profiling</span><span class="tag">Real-time Systems</span><span class="tag">Cache Optimization</span><span class="tag">Latency Engineering</span>
       </div>
       <div class="pls">
-        <span class="pl" style="color:var(--muted);cursor:default">Report available on request</span>
+        <button class="pl pm-trigger" data-project="shard-engine">View Details &#8594;</button>
+        <span class="pl" style="color:var(--muted);cursor:default">Titles on request</span>
       </div>
     </div>
 
@@ -159,6 +162,7 @@
         <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Computer Vision</span><span class="tag">3D Reconstruction</span><span class="tag">Homography</span>
       </div>
       <div class="pls">
+        <button class="pl pm-trigger" data-project="sfm">View Details &#8594;</button>
         <a class="pl" href="https://github.com/Jiayoua-Panda" target="_blank" rel="noopener">
           <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           GitHub
@@ -175,14 +179,24 @@
 <div class="wrap">
   <div class="lbl">Archive</div>
   <h2 class="sh">All Projects</h2>
+  <span class="ink-rule"><svg viewBox="0 0 220 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4,8 C50,3 110,10 165,5 C188,2 208,8 216,6"/></svg></span>
   <p class="ssub">Full collection of academic, professional, and personal engineering work.</p>
   <div class="pg">
 
     <div class="pc">
+      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="pt">Ride Comfort Analysis — Volvo 7900 Electric Bus</div>
+      <p class="pd">Signal processing and statistical analysis on vibration data from Volvo 7900 Electric City Buses, benchmarked against ISO 2631. Quantified how the electric powertrain's torque delivery profile alters cabin vibration versus combustion counterparts.</p>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Signal Processing</span><span class="tag">NVH</span><span class="tag">ISO 2631</span><span class="tag">Volvo</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="ride-comfort">View Details &#8594;</button></div>
+    </div>
+
+    <div class="pc">
       <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <div class="pt">Bicycle Overtaking — Active Safety</div>
-      <p class="pd">Driver behaviour and vehicle dynamics during bicycle overtaking. Established lateral clearance requirements and collision risk thresholds under varying speed and road conditions.</p>
-      <div class="tags"><span class="tag">Active Safety</span><span class="tag">Vehicle Dynamics</span><span class="tag">Risk Analysis</span></div>
+      <p class="pd">Studied driver behaviour and vehicle dynamics during bicycle overtaking to establish safe lateral clearance requirements and collision risk thresholds across varying speeds and road conditions. Findings directly inform ADAS intervention trigger logic for urban mixed-traffic scenarios.</p>
+      <div class="tags"><span class="tag">Active Safety</span><span class="tag">ADAS</span><span class="tag">Vehicle Dynamics</span><span class="tag">Risk Analysis</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="bicycle-safety">View Details &#8594;</button></div>
     </div>
 
     <div class="pc">
@@ -190,13 +204,15 @@
       <div class="pt">Crash Pulse &amp; Restraint Systems — Passive Safety</div>
       <p class="pd">Relationship between vehicle crash pulse characteristics and occupant injury risk. Analysed how seatbelt force limiters, airbag timing, and crash severity interact to determine injury outcomes.</p>
       <div class="tags"><span class="tag">Passive Safety</span><span class="tag">Biomechanics</span><span class="tag">Restraint Systems</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="crash-pulse">View Details &#8594;</button></div>
     </div>
 
     <div class="pc">
       <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
       <div class="pt">Series / Parallel Hybrid Powertrain Model</div>
-      <p class="pd">Modelled and compared series and parallel hybrid architectures in Simulink. Evaluated energy flow efficiency and component sizing trade-offs across standard driving cycles (WLTP, NEDC).</p>
+      <p class="pd">Modelled and compared series and parallel hybrid architectures in Simulink, evaluating energy flow efficiency and component sizing trade-offs across WLTP and NEDC drive cycles. Provides grounding in the electrification fundamentals underpinning modern electric freight trucks.</p>
       <div class="tags"><span class="tag">Simulink</span><span class="tag">Hybrid Powertrain</span><span class="tag">Energy Management</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="hybrid-model">View Details &#8594;</button></div>
     </div>
 
     <div class="pc">
@@ -204,65 +220,22 @@
       <div class="pt">Shortest Path Navigation System</div>
       <p class="pd">Python application with a GUI for computing and visualising shortest paths on map graphs. Implements Dijkstra's algorithm with interactive route display — demonstrates practical route optimisation.</p>
       <div class="tags"><span class="tag">Python</span><span class="tag">tkinter</span><span class="tag">Graph Algorithms</span><span class="tag">UI</span></div>
-    </div>
-
-    <div class="pc">
-      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-      <div class="pt">Shard Game Engine — Performance Optimisation</div>
-      <p class="pd">Profiled and optimised rendering and physics subsystems in the Shard C++ game engine. Applied cache-efficient data structures and algorithmic improvements — techniques directly transferable to real-time ADAS and embedded systems.</p>
-      <div class="tags"><span class="tag">C++</span><span class="tag">Performance</span><span class="tag">Real-time Systems</span><span class="tag">Profiling</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="shortest-path">View Details &#8594;</button></div>
     </div>
 
     <div class="pc">
       <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
       <div class="pt">Air-bearing Platform Attitude Control (BSc Thesis)</div>
-      <p class="pd">Attitude control algorithms for an air-bearing spacecraft simulator at NUAA, enabling hardware-in-the-loop testing of satellite attitude control strategies in a friction-free environment.</p>
+      <p class="pd">Designed attitude control algorithms for a friction-free air-bearing spacecraft simulator at NUAA, enabling hardware-in-the-loop validation of control strategies. Foundation in closed-loop control theory carried forward through all subsequent engineering work.</p>
       <div class="tags"><span class="tag">MATLAB</span><span class="tag">Control Systems</span><span class="tag">Aerospace</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="bsc-thesis">View Details &#8594;</button></div>
     </div>
 
   </div>
 </div>
 </section>
 
-<!-- GALLERY
-     How to add images:
-     1. Put image files in assets/images/gallery/
-     2. Copy one of the <figure> blocks below and update src, alt, and data-caption
-     3. All images with data-group="gallery" support Lightbox (click to zoom)
--->
-<section id="gallery">
-<div class="wrap">
-  <div class="lbl">Media</div>
-  <h2 class="sh">Gallery</h2>
-  <p class="ssub">Project visuals, simulation screenshots, and engineering work. Click any image to view full-size.</p>
-  <div class="gl-grid">
 
-    <!-- Example image (uncomment and fill in once you have a file):
-    <figure class="gl-item lb-trigger" data-group="gallery"
-            data-src="assets/images/gallery/simulink-model.jpg"
-            data-caption="Simulink model — Articulated truck reversing aid">
-      <img src="assets/images/gallery/simulink-model.jpg" alt="Simulink reversing aid model" loading="lazy">
-      <div class="gl-overlay"><span class="gl-caption">Simulink — Reversing Aid</span></div>
-    </figure>
-    -->
-
-    <!-- Placeholders — replace with real images -->
-    <div class="gl-add">
-      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      Add screenshots to<br>assets/images/gallery/
-    </div>
-    <div class="gl-add">
-      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      MATLAB / Simulink results<br>&amp; technical diagrams
-    </div>
-    <div class="gl-add">
-      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      Python plots, OpenCV<br>output, 3D reconstructions
-    </div>
-
-  </div>
-</div>
-</section>
 
 <!-- VIDEOS
      How to add a video:
@@ -273,6 +246,7 @@
 <div class="wrap">
   <div class="lbl">Demo Videos</div>
   <h2 class="sh">In Action</h2>
+  <span class="ink-rule"><svg viewBox="0 0 220 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4,8 C50,3 110,10 165,5 C188,2 208,8 216,6"/></svg></span>
   <p class="ssub">Simulation demos and project walkthroughs. Videos will appear here once uploaded.</p>
   <div class="vg">
 
@@ -300,6 +274,7 @@
 <div class="wrap">
   <div class="lbl">Experience</div>
   <h2 class="sh">Timeline</h2>
+  <span class="ink-rule"><svg viewBox="0 0 220 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4,8 C50,3 110,10 165,5 C188,2 208,8 216,6"/></svg></span>
   <p class="ssub">A cross-industry journey from aerospace manufacturing to game software, now converging on vehicle safety and autonomous systems.</p>
   <div class="tl">
 
@@ -312,9 +287,9 @@
 
     <div class="ti">
       <div class="td">20XX – 20XX <!-- TODO: update years --></div>
-      <div class="tr">Software Engineer / Game Developer</div>
+      <div class="tr">Software Engineer — Real-time Systems</div>
       <div class="tc">多益网络 · 幻唐志：逍遥外传 &nbsp;/&nbsp; 紫龙游戏 · 龙之国物语 &nbsp;/&nbsp; 傲世堂 · 攻城掠地</div>
-      <div class="tdesc">Shipped multiple live-service mobile titles across three studios. Owned feature development in C++, drove game engine optimisation on the Shard engine, and contributed to gameplay systems design. Operated under strict performance budgets and rapid release cycles — skills directly applicable to real-time embedded and autonomous driving software.</div>
+      <div class="tdesc">Delivered real-time C++ systems under strict latency and memory budgets across multiple shipped live-service titles. Led performance engineering on the Shard engine — profiling render and physics subsystems, redesigning data layouts for cache efficiency, and eliminating frame-time spikes under production constraints. The same determinism discipline that safety-critical ADAS and autonomous driving software demands.</div>
     </div>
 
     <div class="ti">
@@ -340,6 +315,7 @@
 <div class="wrap">
   <div class="lbl">Capabilities</div>
   <h2 class="sh">Skills</h2>
+  <span class="ink-rule"><svg viewBox="0 0 220 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4,8 C50,3 110,10 165,5 C188,2 208,8 216,6"/></svg></span>
   <p class="ssub">Technical toolkit built across vehicle safety research, manufacturing systems, and real-time software development.</p>
   <div class="skw">
     <div class="skb">
@@ -387,6 +363,7 @@
 <div class="wrap">
   <div class="lbl">Get in touch</div>
   <h2 class="sh">Let's connect.</h2>
+  <span class="ink-rule"><svg viewBox="0 0 220 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4,8 C50,3 110,10 165,5 C188,2 208,8 216,6"/></svg></span>
   <p class="csub">I'm actively looking for roles in autonomous freight, electric vehicles, and vehicle safety systems — particularly at companies like Einride and Volvo Trucks shaping the future of mobility.</p>
   <div class="cbtns">
     <a class="cbtn cbtn-p" href="mailto:gswzds@gmail.com">
@@ -408,6 +385,30 @@
 <footer>
   <p>Shuwen Gong (Shawn) &nbsp;·&nbsp; Vehicle Engineer &nbsp;·&nbsp; <a href="mailto:gswzds@gmail.com">gswzds@gmail.com</a></p>
 </footer>
+
+<!-- PROJECT DETAIL MODAL -->
+<div id="project-modal" class="pm-overlay" role="dialog" aria-modal="true">
+  <div class="pm-card">
+    <div class="pm-header">
+      <span class="pm-badge"></span>
+      <button class="pm-close" aria-label="Close">&#x2715;</button>
+    </div>
+    <div class="pm-main">
+      <!-- images injected by JS -->
+      <div class="pm-ph">
+        <svg fill="none" stroke="currentColor" stroke-width="1.3" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Add images to assets/images/projects/</span>
+      </div>
+    </div>
+    <div class="pm-thumbs"></div>
+    <div class="pm-body">
+      <h2 class="pm-title"></h2>
+      <p class="pm-desc"></p>
+      <div class="pm-tags"></div>
+      <div class="pm-links"></div>
+    </div>
+  </div>
+</div>
 
 <!-- LIGHTBOX MODAL -->
 <div id="lightbox">
