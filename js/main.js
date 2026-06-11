@@ -295,9 +295,7 @@ if (avatarPhoto) {
     { sel: '.pc',         delays: [.05, .10, .15] },
     { sel: '.ind-card',   delays: [.08] },
     { sel: '.patent-box', delays: [.12] },
-    { sel: '.ds-cap',     delays: [.05, .10, .15, .20] },
     { sel: '.ti',         delays: [0, .08, .16, .24] },
-    { sel: '.skb',        delays: [.05, .10, .15, .20, .25, .30] },
   ];
 
   groups.forEach(({ sel, delays }) => {
@@ -344,9 +342,23 @@ if (avatarPhoto) {
   const ctx = cvs.getContext('2d');
   let W = 0, H = 0, mx = -9999, my = -9999;
 
+  function makeParticle() {
+    return { x: Math.random() * W, y: Math.random() * H,
+             vx: (Math.random() - .5) * .375, vy: (Math.random() - .5) * .130,
+             r: Math.random() * 1.3 + .45 };
+  }
+  function targetN() { return Math.min(130, Math.ceil(W * H / 7000)); }
+
+  let resizeTimer;
   function resize() {
     W = cvs.width  = window.innerWidth;
     H = cvs.height = window.innerHeight;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const n = targetN();
+      while (pts.length > n) pts.pop();
+      while (pts.length < n) pts.push(makeParticle());
+    }, 150);
   }
   resize();
   window.addEventListener('resize', resize, { passive: true });
@@ -354,15 +366,7 @@ if (avatarPhoto) {
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
   document.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
 
-  // Scale count to viewport; fewer on mobile
-  const N   = Math.min(65, Math.ceil(W * H / 14000));
-  const pts = Array.from({ length: N }, () => ({
-    x:  Math.random() * W,
-    y:  Math.random() * H,
-    vx: (Math.random() - .5) * .25,   // ≈ 2/3 of previous .38
-    vy: (Math.random() - .5) * .087,  // ≈ 2/3 of previous .13
-    r:  Math.random() * 1.3 + .45,
-  }));
+  let pts = Array.from({ length: targetN() }, makeParticle);
 
   // Cursor trail (full page) — 24 frames for a longer-lasting trail
   const TRAIL_LEN = 24;
@@ -377,39 +381,37 @@ if (avatarPhoto) {
     ctx.clearRect(0, 0, W, H);
 
     pts.forEach(p => {
-      // Cross-term flow field: mixing x+y in both sin/cos breaks line-attractor convergence
-      const ang = Math.sin(p.x * .0055 + p.y * .0035 + t * .00050) * Math.PI
-                + Math.cos(p.x * .0040 - p.y * .0060 + t * .00040) * Math.PI * .55;
-      p.vx += Math.cos(ang) * .0040;
-      p.vy += Math.sin(ang) * .0018;
+      // Upward-biased flow field — base ≈ 86° upward; variation terms keep angle
+      // within (-π, 0) so sin(ang) is always negative = always drifts upward
+      const ang = -Math.PI * 0.48
+                + Math.sin(p.x * .0055 + p.y * .0030 + t * .0030) * Math.PI * 0.30
+                + Math.cos(p.x * .0040 - p.y * .0050 + t * .0022) * Math.PI * 0.10;
+      p.vx += Math.cos(ang) * .0032;
+      p.vy += Math.sin(ang) * .0055;
 
-      // Diffusion: random micro-kick stops attractor lock-in
-      p.vx += (Math.random() - .5) * .022;
-      p.vy += (Math.random() - .5) * .009;
-
-      // Velocity damping (friction) — combined with diffusion keeps distribution spread
-      p.vx *= .97;
-      p.vy *= .97;
+      // Gentle damping only — no random diffusion, keeps motion smooth
+      p.vx *= .965;
+      p.vy *= .965;
 
       // Mouse repulsion
       const dx = p.x - mx, dy = p.y - my;
       const d2 = dx * dx + dy * dy;
       if (d2 < 75 * 75) {
         const d = Math.sqrt(d2) || .001;
-        p.vx += (dx / d) * .12;
-        p.vy += (dy / d) * .06;
+        p.vx += (dx / d) * .18;
+        p.vy += (dy / d) * .09;
       }
 
       // Speed cap
       const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-      if (spd > .4) { p.vx = p.vx / spd * .4; p.vy = p.vy / spd * .4; }
+      if (spd > .6) { p.vx = p.vx / spd * .6; p.vy = p.vy / spd * .6; }
 
       p.x = (p.x + p.vx + W) % W;
       p.y = (p.y + p.vy + H) % H;
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(45,45,45,.16)';
+      ctx.fillStyle = 'rgba(45,45,45,.48)';
       ctx.fill();
     });
 
@@ -423,7 +425,7 @@ if (avatarPhoto) {
           ctx.beginPath();
           ctx.moveTo(pts[i].x, pts[i].y);
           ctx.lineTo(pts[j].x, pts[j].y);
-          ctx.strokeStyle = `rgba(45,45,45,${(1 - d / LINK) * .045})`;
+          ctx.strokeStyle = `rgba(45,45,45,${(1 - d / LINK) * .13})`;
           ctx.lineWidth   = .6;
           ctx.stroke();
         }
@@ -500,6 +502,14 @@ if (avatarPhoto) {
       }, 520);
     });
   });
+})();
+
+// ── Nav: collapse "Shuwen Gong" → "SG" on scroll ──────────────────────────
+(function () {
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  }, { passive: true });
 })();
 
 // ── Timeline: draw-in the vertical line ────────────────────────────────────

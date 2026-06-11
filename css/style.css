@@ -16,8 +16,11 @@ a{color:inherit}
 /* NAV */
 nav{position:sticky;top:0;z-index:99;background:rgba(249,249,249,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .nw{max-width:1100px;margin:0 auto;padding:0 2rem;height:58px;display:flex;align-items:center;justify-content:space-between}
-.nb{font-weight:700;font-size:1rem;text-decoration:none;color:var(--text)}
+.nb{font-weight:700;font-size:1rem;text-decoration:none;color:var(--text);line-height:1}
 .nb em{color:var(--accent);font-style:normal}
+.nb-c{display:inline-grid;grid-template-columns:1fr;vertical-align:baseline;opacity:1;transition:grid-template-columns .55s cubic-bezier(.4,0,.2,1),opacity .3s ease}
+.nb-c>span{white-space:nowrap;min-width:0;clip-path:inset(0 0 -0.4em 0)}
+nav.scrolled .nb-c{grid-template-columns:0fr;opacity:0}
 .nl{display:flex;gap:1.75rem;list-style:none}
 .nl a{text-decoration:none;font-size:.875rem;font-weight:500;color:var(--muted);transition:color .15s;position:relative}
 .nl a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--text);transition:width .25s ease}
@@ -25,22 +28,23 @@ nav{position:sticky;top:0;z-index:99;background:rgba(249,249,249,.94);backdrop-f
 .nl a:hover::after{width:100%}
 
 /* ── ALL SECTIONS share a transparent background; body #F9F9F9 shows through ── */
-section{position:relative;z-index:1;padding:80px 0}
+section{position:relative;z-index:1;padding:228px 0}
 
 /* LAYOUT */
 .wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
 .lbl{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text);opacity:.45;margin-bottom:.5rem;font-family:var(--mono)}
-h2.sh{font-size:1.875rem;font-weight:800;margin-bottom:.75rem}
+h2.sh{font-size:4.8rem;font-weight:800;margin-bottom:.75rem}
 .ssub{font-size:.975rem;color:var(--muted);max-width:560px;margin-bottom:3rem;line-height:1.7}
 
 /* HERO */
-#hero{border-bottom:1px solid var(--border);padding:96px 0 80px;overflow:hidden}
+#hero{border-bottom:1px solid var(--border);min-height:calc(100vh - 58px);display:flex;flex-direction:column;justify-content:center;padding:80px 0;overflow:hidden}
 #hero .hg{position:relative;z-index:1}
 .hg{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 150px;gap:3rem;align-items:center}
 .hbadge{display:inline-flex;align-items:center;gap:.45rem;background:var(--bg3);color:var(--text2);font-size:.72rem;font-weight:600;letter-spacing:.06em;padding:.3rem .85rem;border-radius:99px;margin-bottom:1.25rem;font-family:var(--mono)}
 .hdot{width:7px;height:7px;background:var(--accent);border-radius:50%;flex-shrink:0}
-.hname{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:.4rem}
-.htitle{font-size:1.05rem;color:var(--muted);margin-bottom:1.25rem}
+.hname{font-size:clamp(7rem,14vw,10.5rem);font-weight:800;line-height:1.05;margin-bottom:.5rem}
+.hname-nick{font-size:.48em;font-weight:400;color:var(--muted);font-style:normal;vertical-align:middle;letter-spacing:normal;font-family:'Inter',sans-serif}
+.htitle{font-size:1.85rem;color:var(--muted);margin-bottom:1.5rem}
 .htitle::after{content:'_';color:var(--accent);animation:blink .9s step-end infinite;margin-left:1px}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .hdesc{font-size:.95rem;color:var(--text2);max-width:520px;line-height:1.8;margin-bottom:2rem}
@@ -140,9 +144,9 @@ h2.sh{font-size:1.875rem;font-weight:800;margin-bottom:.75rem}
 .skw{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
 .skb{background:rgba(249,249,249,.82);border:1px solid var(--border);border-radius:var(--r);padding:1.375rem;backdrop-filter:blur(4px)}
 .skt{font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.875rem;font-family:var(--mono)}
-.chips{display:flex;flex-wrap:wrap;gap:.4rem}
-.chip{background:rgba(249,249,249,.9);border:1px solid var(--border);border-radius:4px;padding:.25rem .75rem;font-size:.78rem;font-weight:400;color:var(--text2);font-family:var(--mono);letter-spacing:.02em;transition:border-color .15s,color .15s}
-.chip:hover{border-color:#2A2A2A;color:var(--text)}
+.chips{display:flex;flex-direction:column;gap:5px;margin-top:2px}
+.chip{font-size:.82rem;font-weight:400;color:var(--text2);font-family:var(--mono);letter-spacing:.02em;padding:2px 0 2px 16px;position:relative;background:none;border:none}
+.chip::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:.78rem}
 
 /* CONTACT — solid dark section, sits above canvas */
 #contact{background:#111111;z-index:2}
@@ -236,10 +240,10 @@ footer a:hover{color:#AAAAAA}
 .d1{transition-delay:.05s}.d2{transition-delay:.12s}.d3{transition-delay:.19s}
 .d4{transition-delay:.26s}.d5{transition-delay:.33s}.d6{transition-delay:.40s}
 
-/* ── INK-RULE — precision engineering line ───────────── */
-.ink-rule{display:block;height:2px;width:0;background:var(--accent);margin:.3rem 0 1.5rem;transition:width .65s cubic-bezier(.4,0,.2,1)}
-.ink-rule.in-view{width:44px}
-#contact .ink-rule{background:#664040}
+/* ── INK-RULE — brush stroke: round left cap → tapers to point on right ── */
+.ink-rule{display:block;height:5px;width:0;background:var(--accent);clip-path:polygon(0% 50%,0.5% 25%,2% 7%,5% 0%,82% 0%,100% 50%,82% 100%,5% 100%,2% 93%,0.5% 75%);margin:.4rem 0 1.75rem;transition:width .85s cubic-bezier(.25,.46,.45,.94)}
+.ink-rule.in-view{width:110px}
+#contact .ink-rule{background:#8a4848}
 
 /* ── HERO: DISCIPLINE TAGS & IDENTITY ─────────────────── */
 .disc-tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 13px;animation:slide-up .6s .28s ease both}
@@ -295,8 +299,11 @@ footer a:hover{color:#AAAAAA}
 }
 @media(max-width:580px){
   .nl{gap:1rem}
-  section{padding:60px 0}
-  #hero{padding:60px 0 50px}
+  section{padding:100px 0}
+  h2.sh{font-size:3rem}
+  .hname{font-size:clamp(3.5rem,12vw,7rem)}
+  .htitle{font-size:1.35rem}
+  #hero{min-height:100svh;padding:60px 0}
   .pg{grid-template-columns:1fr}
   .skw{grid-template-columns:1fr}
   .what-grid{grid-template-columns:1fr 1fr}
