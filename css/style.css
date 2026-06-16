@@ -28,7 +28,7 @@ nav.scrolled .nb-c{grid-template-columns:0fr;opacity:0}
 .nl a:hover::after{width:100%}
 
 /* ── ALL SECTIONS share a transparent background; body #F9F9F9 shows through ── */
-section{position:relative;z-index:1;padding:228px 0}
+section{position:relative;z-index:1;padding:130px 0}
 
 /* LAYOUT */
 .wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
@@ -39,10 +39,10 @@ h2.sh{font-size:4.8rem;font-weight:800;margin-bottom:.75rem}
 /* HERO */
 #hero{border-bottom:1px solid var(--border);min-height:calc(100vh - 58px);display:flex;flex-direction:column;justify-content:center;padding:80px 0;overflow:hidden}
 #hero .hg{position:relative;z-index:1}
-.hg{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 150px;gap:3rem;align-items:center}
+.hg{max-width:1100px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1fr 188px;gap:3rem;align-items:center}
 .hbadge{display:inline-flex;align-items:center;gap:.45rem;background:var(--bg3);color:var(--text2);font-size:.72rem;font-weight:600;letter-spacing:.06em;padding:.3rem .85rem;border-radius:99px;margin-bottom:1.25rem;font-family:var(--mono)}
 .hdot{width:7px;height:7px;background:var(--accent);border-radius:50%;flex-shrink:0}
-.hname{font-size:clamp(7rem,14vw,10.5rem);font-weight:800;line-height:1.05;margin-bottom:.5rem}
+.hname{font-size:clamp(3.4rem,6vw,5rem);font-weight:800;line-height:1.05;margin-bottom:.5rem}
 .hname-nick{font-size:.48em;font-weight:400;color:var(--muted);font-style:normal;vertical-align:middle;letter-spacing:normal;font-family:'Inter',sans-serif}
 .htitle{font-size:1.85rem;color:var(--muted);margin-bottom:1.5rem}
 .htitle::after{content:'_';color:var(--accent);animation:blink .9s step-end infinite;margin-left:1px}
@@ -56,11 +56,11 @@ h2.sh{font-size:4.8rem;font-weight:800;margin-bottom:.75rem}
 .btn-g:hover{border-color:#2A2A2A;color:var(--text)}
 
 /* PROFILE PHOTO */
-.avatar-wrap{width:140px;height:140px;justify-self:end;position:relative}
-.avatar-photo{width:140px;height:140px;border-radius:50%;object-fit:cover;display:none;position:absolute;inset:0;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+.avatar-wrap{width:180px;height:180px;justify-self:end;position:relative}
+.avatar-photo{width:180px;height:180px;border-radius:50%;object-fit:cover;display:none;position:absolute;inset:0;box-shadow:0 8px 32px rgba(0,0,0,.15)}
 .avatar-photo.loaded{display:block}
 .avatar-photo.loaded~.avatar{display:none}
-.avatar{width:140px;height:140px;background:linear-gradient(135deg,#2a2a2a,#111111);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:800;color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.14)}
+.avatar{width:180px;height:180px;background:linear-gradient(135deg,#2a2a2a,#111111);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3.3rem;font-weight:800;color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.14)}
 
 /* ABOUT */
 .ag{display:grid;grid-template-columns:3fr 2fr;gap:4rem;align-items:start}
@@ -74,13 +74,13 @@ h2.sh{font-size:4.8rem;font-weight:800;margin-bottom:.75rem}
 .pb .sl{color:var(--text2);opacity:1}
 
 /* FEATURED PROJECTS */
-.fg{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
-.fc{background:rgba(249,249,249,.88);border:1px solid var(--border);border-radius:var(--r);padding:1.75rem;box-shadow:var(--sh-sm);display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s;overflow:hidden;position:relative;backdrop-filter:blur(6px)}
+.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.fc{background:rgba(249,249,249,.88);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;box-shadow:var(--sh-sm);display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s;overflow:hidden;position:relative;backdrop-filter:blur(6px)}
 .fc:hover{box-shadow:var(--sh-lg);border-color:var(--accent)}
 .fc.anim{transform:translateY(22px) scale(.97)}
 
 /* PROJECT CARD THUMBNAIL */
-.fc-thumb{width:calc(100% + 3.5rem);margin:-1.75rem -1.75rem 1.25rem;height:160px;overflow:hidden;border-radius:var(--r) var(--r) 0 0;position:relative;background:var(--bg3)}
+.fc-thumb{width:calc(100% + 3rem);margin:-1.5rem -1.5rem 1.25rem;height:150px;overflow:hidden;border-radius:var(--r) var(--r) 0 0;position:relative;background:var(--bg3)}
 .fc-thumb img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1;filter:grayscale(100%) contrast(1.05);transition:filter .45s,transform .35s}
 .fc:hover .fc-thumb img{transform:scale(1.05);filter:grayscale(25%) contrast(1)}
 .fc-thumb-ph{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;background:var(--bg3)}
@@ -127,18 +127,8 @@ h2.sh{font-size:4.8rem;font-weight:800;margin-bottom:.75rem}
 .vid-placeholder svg{width:44px;height:44px;opacity:.25}
 .vid-placeholder p{font-size:.825rem;text-align:center;line-height:1.5;font-family:var(--mono)}
 
-/* EXPERIENCE */
-.tl{position:relative;padding-left:1.5rem}
-.tl::before{content:'';position:absolute;left:0;top:10px;bottom:0;width:1px;background:var(--border);transform-origin:top center;transform:scaleY(0);transition:transform 1.8s cubic-bezier(.4,0,.2,1)}
-.tl.in-view::before{transform:scaleY(1)}
-.ti{position:relative;padding-left:1.75rem;padding-bottom:2.25rem}
-.ti:last-child{padding-bottom:0}
-.ti::before{content:'';position:absolute;left:-1.5rem;top:6px;width:12px;height:12px;background:#2D2D2D;border-radius:50%;border:2px solid transparent;transform:scale(0);transition:transform .45s cubic-bezier(.34,1.56,.64,1) .3s}
-.ti.in-view::before{transform:scale(1)}
-.td{font-size:.72rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem;font-family:var(--mono)}
-.tr{font-size:1.05rem;font-weight:700;margin-bottom:.1rem}
-.tc{font-size:.875rem;color:var(--muted);font-weight:500;margin-bottom:.5rem;font-family:var(--mono)}
-.tdesc{font-size:.85rem;color:var(--text2);line-height:1.7}
+/* EDUCATION (inside Engineering Experience) */
+.eng-edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 
 /* SKILLS */
 .skw{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
@@ -148,17 +138,14 @@ h2.sh{font-size:4.8rem;font-weight:800;margin-bottom:.75rem}
 .chip{font-size:.82rem;font-weight:400;color:var(--text2);font-family:var(--mono);letter-spacing:.02em;padding:2px 0 2px 16px;position:relative;background:none;border:none}
 .chip::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:.78rem}
 
-/* CONTACT — solid dark section, sits above canvas */
-#contact{background:#111111;z-index:2}
-#contact .lbl{color:#888888;opacity:1}
-#contact h2.sh{color:#F9F9F9}
-.csub{font-size:.975rem;color:#AAAAAA;max-width:480px;line-height:1.75;margin-bottom:2.25rem}
+/* CONTACT — light section */
+.csub{font-size:.975rem;color:var(--muted);max-width:480px;line-height:1.75;margin-bottom:2.25rem}
 .cbtns{display:flex;gap:.875rem;flex-wrap:wrap}
 .cbtn{display:inline-flex;align-items:center;gap:.45rem;padding:.75rem 1.375rem;border-radius:var(--rs);font-size:.875rem;font-weight:600;text-decoration:none;transition:all .2s;border:2px solid transparent}
 .cbtn-p{background:var(--accent);color:#fff;border-color:var(--accent)}
 .cbtn-p:hover{background:var(--accent-dk);border-color:var(--accent-dk)}
-.cbtn-o{border-color:#333;color:#AAAAAA}
-.cbtn-o:hover{border-color:#666;color:#F9F9F9}
+.cbtn-o{border-color:var(--border);color:var(--text2);background:rgba(249,249,249,.7)}
+.cbtn-o:hover{border-color:#2A2A2A;color:var(--text)}
 
 footer{background:#0A0A0A;color:#555555;text-align:center;padding:1.25rem;font-size:.8rem;font-family:var(--mono);position:relative;z-index:2}
 footer a{color:#666;text-decoration:none}
@@ -173,7 +160,7 @@ footer a:hover{color:#AAAAAA}
 .pm-close{background:var(--bg3);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.25rem;line-height:1;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:background .15s;font-family:inherit}
 .pm-close:hover{background:var(--border);color:var(--text)}
 .pm-main{aspect-ratio:16/9;position:relative;background:var(--bg3);overflow:hidden;display:flex;align-items:center;justify-content:center}
-.pm-main-img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0;transition:opacity .25s;pointer-events:none;filter:grayscale(80%) contrast(1.05)}
+.pm-main-img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0;transition:opacity .25s;pointer-events:none}
 .pm-main-img.active{opacity:1;pointer-events:auto}
 .pm-ph{display:flex;flex-direction:column;align-items:center;gap:.625rem;color:var(--muted);position:relative;z-index:0}
 .pm-ph svg{width:48px;height:48px;opacity:.2}
@@ -243,7 +230,6 @@ footer a:hover{color:#AAAAAA}
 /* ── INK-RULE — brush stroke: round left cap → tapers to point on right ── */
 .ink-rule{display:block;height:5px;width:0;background:var(--accent);clip-path:polygon(0% 50%,0.5% 25%,2% 7%,5% 0%,82% 0%,100% 50%,82% 100%,5% 100%,2% 93%,0.5% 75%);margin:.4rem 0 1.75rem;transition:width .85s cubic-bezier(.25,.46,.45,.94)}
 .ink-rule.in-view{width:110px}
-#contact .ink-rule{background:#8a4848}
 
 /* ── HERO: DISCIPLINE TAGS & IDENTITY ─────────────────── */
 .disc-tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 13px;animation:slide-up .6s .28s ease both}
@@ -259,25 +245,66 @@ footer a:hover{color:#AAAAAA}
 .wc-icon svg{width:100%;height:100%}
 .wc-title{font-size:.875rem;font-weight:700;margin-bottom:7px}
 .wc-desc{font-size:.8rem;color:var(--muted);line-height:1.6;margin:0}
+.wc-tools{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:12px}
+.wc-tools .tag{font-size:.68rem;padding:.14rem .45rem}
 
-/* ── INDUSTRIAL ENGINEERING ─────────────────────────────── */
-.ind-card{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--r) var(--r) 0;background:rgba(249,249,249,.88);backdrop-filter:blur(6px);padding:28px 32px;margin:2.5rem 0 1.5rem}
-.ind-head{margin-bottom:22px}
-.ind-head h3{font-size:1rem;font-weight:700;margin:4px 0 0}
-.ind-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.ind-col-title{font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
-.ind-col p{font-size:.83rem;color:var(--text2);line-height:1.6;margin:0}
+/* ── ENGINEERING EXPERIENCE · COMPANY BLOCKS ────────────── */
 .ind-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px}
 .ind-list li{font-size:.83rem;color:var(--text2);padding-left:13px;position:relative}
 .ind-list li::before{content:'·';position:absolute;left:0;color:var(--accent);font-weight:700}
 
-/* ── PATENT BOX ─────────────────────────────────────────── */
-.patent-box{border:1px solid var(--border);border-radius:var(--r);background:rgba(168,37,31,.025);backdrop-filter:blur(4px);padding:28px 32px;margin-bottom:4px}
-.patent-id{margin-bottom:18px}
-.patent-id strong{font-family:var(--mono);font-size:1.2rem;font-weight:500;letter-spacing:.03em}
-.patent-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.patent-label{font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
-.patent-cols p{font-size:.83rem;color:var(--text2);line-height:1.6;margin:0}
+.eng-co{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--r) var(--r) 0;background:rgba(249,249,249,.88);backdrop-filter:blur(6px);padding:30px 34px;margin-top:2.25rem}
+.eng-co-head{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.eng-co-logo{width:52px;height:52px;object-fit:contain;border-radius:10px;background:#fff;border:1px solid var(--border);padding:6px;flex-shrink:0}
+.eng-co-name{font-size:1rem;font-weight:700;margin:2px 0 0}
+.eng-co-sub{font-size:.875rem;color:var(--muted);line-height:1.7;margin:-6px 0 26px;max-width:680px}
+
+.eng-avic-grid{display:grid;grid-template-columns:3fr 2fr;gap:24px}
+.eng-pane{border:1px solid var(--border);border-radius:var(--r);background:rgba(255,255,255,.5);padding:20px 22px;display:flex;flex-direction:column}
+.eng-pane-label{font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.eng-pane-desc{font-size:.83rem;color:var(--text2);line-height:1.65;margin:0 0 12px}
+.eng-photos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.eng-photo{margin:0}
+.eng-photo img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:var(--rs);display:block;border:1px solid var(--border);filter:grayscale(100%) contrast(1.05);transition:filter .4s;cursor:zoom-in}
+.eng-photo img:hover{filter:grayscale(0%) contrast(1)}
+.eng-photo figcaption{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-top:6px}
+.eng-photo-patent{margin-bottom:14px}
+.eng-photo-patent img{aspect-ratio:auto;max-height:225px;object-fit:contain;background:#fff;padding:8px;filter:none}
+.eng-patent-no{font-family:var(--mono);font-size:1.05rem;font-weight:500;letter-spacing:.03em;display:block;margin-bottom:6px}
+.eng-pane .pls{margin-top:auto;padding-top:10px}
+
+/* ── GAME CAREER TIMELINE ───────────────────────────────── */
+/* one panel per company — company, year node, and games grouped visually */
+.gtl{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:14px}
+.gtl-stop{display:flex;flex-direction:column;min-width:0;background:rgba(243,243,243,.55);border:1px solid var(--border);border-radius:var(--r);padding:18px 14px 16px}
+.gtl-co{min-height:84px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:9px;text-align:center;padding:0 4px 14px}
+.gtl-co img{height:42px;max-width:150px;object-fit:contain;border-radius:6px}
+.gtl-co span{font-size:.8rem;font-weight:600;color:var(--text2)}
+.gtl-node{position:relative;height:36px}
+.gtl-node::before{content:'';position:absolute;left:-14px;right:-14px;top:50%;height:1.5px;background:var(--border)}
+/* line bridges the gap between panels; accent arrowheads give left-to-right direction */
+.gtl-stop:not(:last-child) .gtl-node::before{right:-29px}
+.gtl-node::after{content:'';position:absolute;top:50%;transform:translateY(-50%);width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid var(--accent)}
+.gtl-stop:not(:last-child) .gtl-node::after{right:-18px}
+.gtl-stop:last-child .gtl-node::after{right:-13px}
+.gtl-year{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--accent);background:var(--bg);border:1.5px solid var(--accent);border-radius:99px;padding:3px 14px;line-height:1.2;white-space:nowrap}
+.gtl-games{padding:16px 4px 0;display:flex;flex-direction:column;gap:12px;align-items:center;flex:1}
+.gtl-game{width:100%;max-width:300px;border:1px solid var(--border);border-radius:var(--r);background:rgba(255,255,255,.7);padding:12px;flex:1;display:flex;flex-direction:column}
+.gtl-game-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.gtl-game-logo{width:44px;height:44px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:zoom-in;display:block;flex-shrink:0}
+.gtl-game-name{font-size:.875rem;font-weight:700;line-height:1.3}
+.gtl-game-name em{display:block;font-style:normal;font-weight:400;font-size:.7rem;color:var(--muted);font-family:var(--mono);margin-top:2px}
+.gtl-shots{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}
+.gtl-shots img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;border:1px solid var(--border);filter:grayscale(100%);transition:filter .35s;cursor:zoom-in;display:block}
+.gtl-shots img:hover{filter:grayscale(0%)}
+.gtl-shots img:only-child{grid-column:1/-1}
+/* side-by-side game cards (multi-title stop) */
+.gtl-games-row{flex-direction:row;justify-content:center;align-items:stretch}
+.gtl-games-row .gtl-game{min-width:0;max-width:220px;padding:11px}
+.gtl-games-row .gtl-game-top{gap:8px;margin-bottom:8px}
+.gtl-games-row .gtl-game-logo{width:36px;height:36px;border-radius:8px}
+.gtl-games-row .gtl-game-name{font-size:.8rem}
+.gtl-games-row .gtl-game-name em{font-size:.62rem}
 
 /* ── DIGITAL SYSTEMS ─────────────────────────────────────── */
 .dg{display:grid;gap:28px}
@@ -286,6 +313,41 @@ footer a:hover{color:#AAAAAA}
 .ds-cap-title{font-size:.875rem;font-weight:700;margin-bottom:7px}
 .ds-cap p{font-size:.8rem;color:var(--muted);line-height:1.6;margin:0}
 
+/* ── DARK SECTIONS (interspersed for contrast) ──────────── */
+/* dark bg lives on ::before so it can expand from an inset rounded block
+   to full-bleed as you scroll — --expand (0→1) driven by JS scroll handler */
+.section-dark{position:relative;z-index:2;color:#E6E6E6;--expand:0}
+/* collapsed: dark block hugs the 1100px content column; expands to full-bleed */
+.section-dark::before{content:'';position:absolute;top:0;bottom:0;z-index:-1;
+  left:calc(max(0px,(100% - 1100px) / 2) * (1 - var(--expand)));
+  right:calc(max(0px,(100% - 1100px) / 2) * (1 - var(--expand)));
+  background:#141414;
+  border-radius:calc((1 - var(--expand)) * 22px);
+  box-shadow:0 18px 50px rgba(0,0,0,calc(.2 * (1 - var(--expand))))}
+.section-dark .lbl{color:#fff;opacity:.5}
+.section-dark h2.sh{color:#FAFAFA}
+.section-dark .ssub{color:#9A9A9A}
+
+/* featured cards on dark */
+.section-dark .fc{background:#1D1D1D;border-color:rgba(255,255,255,.09);box-shadow:0 2px 10px rgba(0,0,0,.4);color:#EAEAEA}
+.section-dark .fc:hover{border-color:var(--accent);box-shadow:0 16px 36px rgba(0,0,0,.55)}
+.section-dark .fc-thumb,.section-dark .fc-thumb-ph{background:#262626}
+.section-dark .fi{background:rgba(255,255,255,.07)}
+.section-dark .fbadge{background:rgba(255,255,255,.08);color:#C8C8C8}
+.section-dark .fd{color:#9C9C9C}
+.section-dark .tag{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.13);color:#BDBDBD}
+
+/* engineering blocks on dark */
+.section-dark .eng-co{background:#1D1D1D;border-color:rgba(255,255,255,.09);border-left-color:var(--accent)}
+.section-dark .eng-co-sub,.section-dark .eng-photo figcaption,.section-dark .gtl-game-name em{color:#9A9A9A}
+.section-dark .eng-pane{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)}
+.section-dark .eng-pane-desc,.section-dark .ind-list li,.section-dark .gtl-co span{color:#B6B6B6}
+.section-dark .eng-photo img,.section-dark .gtl-game-logo,.section-dark .gtl-shots img{border-color:rgba(255,255,255,.12)}
+.section-dark .gtl-stop,.section-dark .gtl-game{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)}
+.section-dark .gtl-node::before{background:rgba(255,255,255,.18)}
+.section-dark .gtl-year{background:var(--accent);color:#fff;border-color:var(--accent)}
+.section-dark .pl[style*="muted"]{color:#7E7E7E !important}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   .hg{grid-template-columns:1fr}.avatar-wrap{display:none}
@@ -293,21 +355,24 @@ footer a:hover{color:#AAAAAA}
   .pg{grid-template-columns:1fr 1fr}
   .skw{grid-template-columns:1fr 1fr}
   .what-grid{grid-template-columns:repeat(2,1fr)}
-  .ind-cols{grid-template-columns:repeat(2,1fr)}
-  .patent-cols{grid-template-columns:1fr 1fr}
+  .eng-avic-grid{grid-template-columns:1fr}
+  .eng-edu-grid{grid-template-columns:1fr}
+  .gtl{grid-template-columns:1fr;gap:1rem}
+  .gtl-co{min-height:0;padding-bottom:12px}
+  .gtl-stop:not(:last-child) .gtl-node::before{right:-14px}
+  .gtl-node::after{display:none}
   .ds-caps{grid-template-columns:1fr 1fr}
 }
 @media(max-width:580px){
   .nl{gap:1rem}
   section{padding:100px 0}
   h2.sh{font-size:3rem}
-  .hname{font-size:clamp(3.5rem,12vw,7rem)}
+  .hname{font-size:clamp(2.8rem,10vw,4.5rem)}
   .htitle{font-size:1.35rem}
   #hero{min-height:100svh;padding:60px 0}
   .pg{grid-template-columns:1fr}
   .skw{grid-template-columns:1fr}
   .what-grid{grid-template-columns:1fr 1fr}
-  .ind-cols{grid-template-columns:1fr 1fr}
-  .patent-cols{grid-template-columns:1fr}
+  .eng-co{padding:22px 20px}
   .ds-caps{grid-template-columns:1fr}
 }
