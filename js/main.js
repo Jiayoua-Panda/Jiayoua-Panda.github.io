@@ -157,6 +157,66 @@ if (avatarPhoto) {
   }
 }
 
+// ── Hero typewriter intro ───────────────────────────────────
+// Types "Shuwen Gong" then the tagline, letter by letter; once done, the rest
+// of the hero (badge, tags, identity, buttons, avatar) fades in together.
+(function () {
+  const hero = document.getElementById('hero');
+  if (!hero || !document.documentElement.classList.contains('hero-js')) return;
+  const nameEl = hero.querySelector('.hname');
+  const titleEl = hero.querySelector('.htitle');
+  if (!nameEl || !titleEl) return;
+
+  const reveal = () => hero.classList.add('hero-go');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // name preserves the <em> on "Gong"
+  const nameSegs = [{ t: 'Shuwen ', em: false }, { t: 'Gong', em: true }];
+  const titleText = titleEl.textContent.trim();
+  const nameChars = [];
+  nameSegs.forEach(s => [...s.t].forEach(ch => nameChars.push({ ch, em: s.em })));
+
+  function renderName(n) {
+    let html = '', i = 0;
+    while (i < n) {
+      const em = nameChars[i].em; let run = '';
+      while (i < n && nameChars[i].em === em) { run += nameChars[i].ch; i++; }
+      run = run.replace(/ /g, '&nbsp;');
+      html += em ? `<em>${run}</em>` : run;
+    }
+    return html;
+  }
+
+  // reduced motion: skip the animation, show everything at once
+  if (reduce) {
+    nameEl.style.visibility = titleEl.style.visibility = 'visible';
+    titleEl.classList.add('caret');
+    reveal();
+    return;
+  }
+
+  nameEl.innerHTML = ''; titleEl.textContent = '';
+  nameEl.style.visibility = 'visible';
+
+  let i = 0;
+  (function typeName() {
+    i++;
+    nameEl.innerHTML = renderName(i);
+    nameEl.classList.add('caret');
+    if (i < nameChars.length) setTimeout(typeName, 72);
+    else { nameEl.classList.remove('caret'); titleEl.style.visibility = 'visible'; setTimeout(typeTitle, 260); }
+  })();
+
+  let j = 0;
+  function typeTitle() {
+    j++;
+    titleEl.textContent = titleText.slice(0, j);
+    titleEl.classList.add('caret');
+    if (j < titleText.length) setTimeout(typeTitle, 34);
+    else setTimeout(reveal, 220);   // caret keeps blinking at the end of the tagline
+  }
+})();
+
 // ── Lightbox (for standalone image zoom, kept for future use) ──
 (function () {
   const lb = document.getElementById('lightbox');
@@ -469,7 +529,7 @@ if (avatarPhoto) {
   function scene(cvs, opts) {
     const ctx = cvs.getContext('2d');
     const lc = `${opts.line.r},${opts.line.g},${opts.line.b}`;
-    let W = 0, H = 0, t = 0, bandTop = 0, lanes = [], peds = [], air = [], buildings = [], mountains = [], trees = [], clouds = [];
+    let W = 0, H = 0, t = 0, bandTop = 0, lanes = [], peds = [], farPeds = [], air = [], buildings = [], mountains = [], trees = [], clouds = [];
     const rnd = (a, b) => a + Math.random() * (b - a);
 
     // ground vehicle pool (pedestrians handled separately) — ~2× the old sizes
@@ -506,9 +566,13 @@ if (avatarPhoto) {
         lanes.push(lane);
       }
 
-      peds = [];
+      peds = [];   // near sidewalk (bottom, large)
       for (let i = 0; i < 2; i++)
         peds.push({ x: rnd(0, W), y: sidewalkY, h: 26, v: 0.3 * rnd(0.8, 1.3), dir: Math.random() < .5 ? 1 : -1, wa: rnd(0, 6.28) });
+      farPeds = [];   // far sidewalk (by the horizon, smaller for depth)
+      const farY = bandTop - 4;
+      for (let i = 0; i < 3; i++)
+        farPeds.push({ x: rnd(0, W), y: farY, h: 16, v: 0.28 * rnd(0.8, 1.3), dir: Math.random() < .5 ? 1 : -1, wa: rnd(0, 6.28) });
 
       air = [];
       const an = Math.max(2, Math.round(W / 900));
@@ -577,6 +641,16 @@ if (avatarPhoto) {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
       });
       ctx.setLineDash([]);
+
+      // far-side pedestrians (by the horizon) — drawn before traffic so cars pass in front
+      ctx.strokeStyle = `rgba(${lc},${opts.veh})`;
+      farPeds.forEach(p => {
+        p.x += p.dir * p.v * SPD;
+        if (p.dir > 0 && p.x > W + 30) p.x = -30;
+        if (p.dir < 0 && p.x < -30) p.x = W + 30;
+        p.wa += 0.06;
+        ctx.save(); ctx.translate(p.x, p.y); if (p.dir < 0) ctx.scale(-1, 1); GROUND.ped(ctx, p.h, p.wa); ctx.restore();
+      });
 
       // traffic, drawn far → near so nearer vehicles overlap farther ones
       // each vehicle: rolling wheels (tied to distance) + a gentle suspension bob
@@ -716,14 +790,14 @@ if (avatarPhoto) {
   const bg = document.createElement('canvas');
   bg.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0';
   document.body.insertBefore(bg, document.body.firstChild);
-  scene(bg, { viewport: true, line: { r: 45, g: 45, b: 45 }, veh: 0.42, road: 0.12, faint: 0.08, speed: 0.281 });
+  scene(bg, { viewport: true, line: { r: 45, g: 45, b: 45 }, veh: 0.26, road: 0.08, faint: 0.05, speed: 0.281 });
 
   // Per dark section — light line-art, above the dark fill and below the content
   document.querySelectorAll('.section-dark').forEach(sec => {
     const c = document.createElement('canvas');
     c.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1';
     sec.insertBefore(c, sec.firstChild);
-    scene(c, { viewport: false, line: { r: 230, g: 230, b: 230 }, veh: 0.44, road: 0.16, faint: 0.12, speed: 0.281 });
+    scene(c, { viewport: false, line: { r: 230, g: 230, b: 230 }, veh: 0.3, road: 0.11, faint: 0.08, speed: 0.281 });
   });
 
   // Cursor paper planes + trail (red) on a top layer, visible over any section
@@ -737,10 +811,10 @@ if (avatarPhoto) {
 
 // ── Card hover: cursor glow + card background blend ───────────────────────
 (function () {
-  document.querySelectorAll('.fc, .pc').forEach(card => {
+  document.querySelectorAll('.fc, .pc, .wc').forEach(card => {
     const dark = !!card.closest('.section-dark');
     const base = dark ? 'rgba(29,29,29,1)'
-                      : `rgba(249,249,249,${card.classList.contains('fc') ? '.88' : '.82'})`;
+                      : `rgba(249,249,249,${card.classList.contains('pc') ? '.82' : '.88'})`;
     const glow = dark ? 'rgba(168,37,31,.16)' : 'rgba(168,37,31,.07)';
     card.addEventListener('mousemove', e => {
       const r = card.getBoundingClientRect();
