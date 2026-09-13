@@ -3,7 +3,7 @@
 // Use descriptive filenames, e.g. truck-reversing-1.jpg
 const PROJECTS = {
   'truck-reversing': {
-    badge: 'Vehicle Dynamics · Control Systems',
+    badge: 'Vehicle Dynamics, Control Systems',
     title: 'Reversing Aid for a Tractor-Semitrailer Truck',
     desc: 'Automatic control system that assists in reversing a tractor-semitrailer combination along a predefined path, designed and validated in MATLAB/Simulink. Reversing an articulated vehicle is inherently unstable (jack-knifing risk), so the design prioritises stability and precision: overshoot ≤ 5%, settling time ≤ 20 s, and a deliberately slow rise time to enforce smooth steering inputs.\n\nThe tractor-trailer kinematics were modelled from the literature, linearised, and stabilised with a state-feedback controller designed via pole placement. A discretized state observer estimates unmeasured states, and the closed loop was validated against the full nonlinear Simulink model — including robustness checks across trailer lengths (L2 = 4 m vs 15 m) and reversing speeds (−0.5 vs −2 m/s).',
     tags: ['Simulink', 'MATLAB', 'Vehicle Dynamics', 'State Feedback', 'Pole Placement', 'Observer Design', 'Articulated Vehicles'],
@@ -18,7 +18,7 @@ const PROJECTS = {
     links: [{ label: 'Full report available on request' }],
   },
   'game-systems': {
-    badge: 'Systems Design · Live-Service Games',
+    badge: 'Systems Design, Live-Service Games',
     title: 'Game Systems Design — Live-Service Titles',
     desc: 'Four and a half years designing complex rule systems for live-service games across three studios: Fantasy Tang Chronicles (幻唐志) at Duoyi Network from 2020, Dragon Kingdom Story (龙之国物语) at Zlong Games from 2021, then Conquer the Castle (攻城掠地) and Calabash Brothers (葫芦娃) at Aoshitang from 2023.\n\nOwned end-to-end system design: economy and progression rule systems with hundreds of interacting parameters, overall feature roadmaps, and recurring live-ops event planning. Work was data-driven by design — defining KPIs, reading player behaviour data after each release, and iterating system tuning accordingly. This is large-scale systems thinking under real production constraints: every change ships to millions of players and must balance engagement, economy stability, and revenue.',
     tags: ['Systems Design', 'Game Economy', 'Live Ops', 'Data-Driven Iteration', 'Feature Planning', 'Cross-functional Delivery'],
@@ -35,7 +35,7 @@ const PROJECTS = {
     links: [{ label: 'Design documents available on request' }],
   },
   'sfm': {
-    badge: 'Computer Vision · Perception',
+    badge: 'Computer Vision, Perception',
     title: '2D Structure-from-Motion with Planar Homographies',
     desc: 'A 2D Structure-from-Motion pipeline that reconstructs planar scenes from multiple images, built from scratch in Python and evaluated on four standard datasets (graf, wall, bark, boat).\n\nPipeline stages: SIFT feature extraction and brute-force matching with Lowe\'s ratio test, homography estimation with normalized DLT inside a RANSAC loop, and incremental registration of images into a global frame starting from the pair with most inliers. An advanced stage builds multi-image feature tracks and refines the reconstruction with Gauss-Newton bundle adjustment. The basic pipeline achieved 2.13 px reprojection error on the wall dataset — these estimation techniques (robust fitting, incremental mapping, BA) are foundational to visual SLAM and AV perception.',
     tags: ['Python', 'OpenCV', 'SIFT', 'RANSAC', 'Homography', 'Bundle Adjustment', 'Computer Vision'],
@@ -48,7 +48,7 @@ const PROJECTS = {
     links: [{ label: 'GitHub', href: 'https://github.com/Jiayoua-Panda/SSY098-Image-analysis/tree/main/Project', icon: 'github' }],
   },
   'ride-comfort': {
-    badge: 'Data-Driven · Vehicle Dynamics',
+    badge: 'Data-Driven, Vehicle Dynamics',
     title: 'Ride Comfort Analysis — Volvo 7900 Electric Bus',
     desc: 'Data-driven suspension analysis of the Volvo 7900 Electric city bus (MMS210, Connected Fleets in Data-Driven Engineering). Real vertical-acceleration data was collected with an IMU mounted inside a bus on its regular route in Gothenburg during normal daily operation.\n\nThe pipeline: signal filtering of the raw IMU data, estimation of the road excitation power spectral density (PSD), then feeding the extracted road profile into a quarter-car suspension model. Suspension stiffness and damping were optimized to reduce body-acceleration RMS while keeping suspension deflection and dynamic tire force within acceptable bounds — a direct link from real fleet measurement to chassis parameter tuning.',
     tags: ['Python', 'Signal Processing', 'PSD Estimation', 'Quarter-Car Model', 'Suspension Optimization', 'IMU', 'Volvo'],
@@ -61,7 +61,7 @@ const PROJECTS = {
     links: [{ label: 'Full report available on request' }],
   },
   'bicycle-safety': {
-    badge: 'Active Safety · Field Experiment',
+    badge: 'Active Safety, Field Experiment',
     title: 'Cars Overtaking Cyclists — Active Safety Field Study',
     desc: 'Field study of driver behaviour when overtaking cyclists (TME202 Active Safety). A pilot experiment used an instrumented bicycle equipped with LIDAR sensors (tested in side and rear mounting configurations), IMU, GPS, and front/rear cameras to measure the minimum lateral clearance drivers leave when passing.\n\nThe analysis decomposed the overtaking manoeuvre into approach, steer-away, pass, and return phases, and quantified how the presence of oncoming traffic compresses lateral safety margins — the driver comfort-zone boundaries that active safety systems must respect. Findings inform ADAS intervention logic for protecting cyclists, a primary vulnerable road user group in urban traffic.',
     tags: ['Active Safety', 'LIDAR', 'Field Experiment', 'Driver Behaviour', 'ADAS', 'Vulnerable Road Users'],
@@ -73,7 +73,7 @@ const PROJECTS = {
     links: [{ label: 'Full report available on request' }],
   },
   'crash-pulse': {
-    badge: 'Passive Safety · Crash Analysis',
+    badge: 'Passive Safety, Crash Analysis',
     title: 'Crash Pulse & Restraint Systems — Occupant Injury Risk',
     desc: 'Simulation study of how the vehicle crash pulse and restraint systems determine occupant injury risk (TME202 Passive Safety). Parameter studies varied front-structure stiffness, impact speed, and vehicle mass, and traced their effect on the deceleration pulse, structural deformation, and energy conversion — including why a vehicle rebounds rather than stopping dead, and how doubling kinetic energy drives deformation into the passenger compartment.\n\nThe restraint-system analysis examined how seatbelt properties and airbag interaction shape occupant kinematics within the envelope set by the crash pulse, connecting structural crashworthiness design to biomechanical injury criteria.',
     tags: ['Passive Safety', 'Crash Pulse', 'Restraint Systems', 'Energy Analysis', 'Biomechanics', 'Injury Risk'],
@@ -85,7 +85,7 @@ const PROJECTS = {
     links: [{ label: 'Full report available on request' }],
   },
   'hybrid-model': {
-    badge: 'Powertrain · Electrification',
+    badge: 'Powertrain, Electrification',
     title: 'Series & Parallel HEV Powertrain Design',
     desc: 'Designed and simulated complete series and parallel hybrid powertrains in MATLAB/QSS for a Class M reference vehicle (Ford S-MAX 2.0L, 240 PS) across four lab projects (TME095 Electric & Hybrid Vehicles).\n\nWork covered component sizing from first principles (180 kW motor/generator sized against top-speed and 0-100 km/h requirements), battery SoC management, engine operating-point placement on the efficiency map, and energy-flow analysis over both the NEDC cycle and a custom-designed driving cycle. The series architecture decouples the engine from the wheels for sweet-spot operation; the parallel architecture trades that for direct mechanical drive — the comparison quantifies fuel-consumption and sizing trade-offs between the two.',
     tags: ['MATLAB', 'QSS', 'Hybrid Powertrain', 'Component Sizing', 'Energy Management', 'NEDC', 'Driving Cycles'],
@@ -100,7 +100,7 @@ const PROJECTS = {
     links: [{ label: 'Lab reports available on request' }],
   },
   'shortest-path': {
-    badge: 'Python · Algorithms',
+    badge: 'Python, Algorithms',
     title: 'Shortest-Path Navigation System with GUI',
     desc: 'Python application with a graphical interface for computing and visualising shortest paths on a map graph, built for the Chalmers object-oriented programming in Python course.\n\nImplements Dijkstra\'s algorithm over a custom graph data structure with an interactive UI: users pick source and destination nodes and the computed route is highlighted on the map in real time. A compact exercise in object-oriented design, algorithm implementation, and UI integration — the same route-optimisation problem at the core of logistics and fleet routing.',
     tags: ['Python', 'OOP', 'Graph Algorithms', 'Dijkstra', 'GUI', 'Jupyter'],
@@ -110,7 +110,7 @@ const PROJECTS = {
     links: [{ label: 'Notebook available on request' }],
   },
   'bsc-thesis': {
-    badge: 'Mechanical Design · Aerospace',
+    badge: 'Mechanical Design, Aerospace',
     title: 'Air-Bearing Platform — Design & Implementation (BSc Thesis)',
     desc: 'BSc thesis at NUAA (Aircraft Manufacturing Engineering): structural design and physical implementation of an aerostatic air-bearing platform using ring-orifice (annular throttling) air bearings — the friction-free platform type used for spacecraft ground simulation.\n\nThe work spans the full design chain: working principle of the annular-orifice aerostatic bearing, theoretical analysis and numerical calculation of load capacity and stiffness, structural design of the platform body in CAD, and fabrication of a physical model with experimental verification. A complete mechanical engineering exercise from theory to working hardware.',
     tags: ['Mechanical Design', 'Aerostatic Bearings', 'CAD', 'Numerical Analysis', 'NUAA', 'Prototype'],
@@ -122,7 +122,7 @@ const PROJECTS = {
     links: [{ label: 'Thesis & defence slides available on request' }],
   },
   'cpp-grades': {
-    badge: 'C++ · Course Project',
+    badge: 'C++, Course Project',
     title: 'Student Grade Management System (C++)',
     desc: 'Console-based student grade management system written in C++ as an undergraduate course design project at NUAA. Supports student record creation, grade entry, queries, sorting, and statistics, with records persisted to file.\n\nAn early exercise in structured program design: data structures for student records, file I/O for persistence, and a menu-driven interface — the starting point of a programming foundation later extended through Python, MATLAB, and data-analysis work.',
     tags: ['C++', 'Data Structures', 'File I/O', 'Course Design', 'NUAA'],
@@ -133,7 +133,7 @@ const PROJECTS = {
     links: [{ label: 'Source & report available on request' }],
   },
   'avic-patent': {
-    badge: 'Patent · Aircraft Final Assembly',
+    badge: 'Patent, Aircraft Final Assembly',
     title: 'Portable Weight-on-Wheels Switch Inspection Device',
     desc: 'Granted utility model patent CN 210090631 U (first inventor), with a parallel invention patent application CN 201910201148.4 — developed while working as a final assembly engineer at AVIC Chengdu Aircraft.\n\nThe weight-on-wheels (WOW) switch on the landing gear tells the aircraft whether it is on the ground — many flight-critical systems gate on its signal, so verifying it during final assembly is mandatory. The patented device makes that check portable and repeatable on the assembly line, replacing an awkward manual procedure: a practical piece of test equipment born from identifying a real bottleneck on the shop floor and engineering it away. Patent holder: AVIC Chengdu Aircraft Industrial (Group) Co., Ltd.',
     tags: ['Patent', 'Test Equipment', 'Aircraft Assembly', 'Landing Gear Systems', 'Process Engineering'],
@@ -495,7 +495,7 @@ if (avatarPhoto) {
   };
 
   function scene(cvs, opts) {
-    const ctx = cvs.getContext('2d');
+    const ctx = cvs.getContext('2d'); cvs.setAttribute('aria-hidden', 'true');
     const lc = `${opts.line.r},${opts.line.g},${opts.line.b}`;
     let W = 0, H = 0, t = 0, bandTop = 0, lanes = [], peds = [], farPeds = [], air = [], buildings = [], mountains = [], trees = [], clouds = [];
     const rnd = (a, b) => a + Math.random() * (b - a);
@@ -667,7 +667,7 @@ if (avatarPhoto) {
   // Cursor effects on a dedicated top layer — drawn in brand red so they stay
   // visible over BOTH light and dark sections (sits above content, below nav).
   function cursorFX(cvs) {
-    const ctx = cvs.getContext('2d');
+    const ctx = cvs.getContext('2d'); cvs.setAttribute('aria-hidden', 'true');
     const AC = '168,37,31';
     let W = 0, H = 0, mx = -9999, my = -9999;
     let idleAt = 0, forming = false, pHead = 0, pSize = 34;   // idle "forming" state
@@ -809,7 +809,6 @@ if (avatarPhoto) {
       const rx = ((e.clientY - r.top  - r.height / 2) / r.height) * -6; // ±3°
       const ry = ((e.clientX - r.left - r.width  / 2) / r.width )  *  6;
       card.style.transform  = `translateY(-5px) perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-      card.style.boxShadow  = '0 20px 48px rgba(0,0,0,.13)';
     });
 
     card.addEventListener('mouseleave', () => {
