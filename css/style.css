@@ -121,8 +121,8 @@ footer a{color:var(--footer-link);text-decoration:none}
 footer a:hover{color:var(--footer-link-hover)}
 
 /* ── PROJECT MODAL ───────────────────────────────────── */
-.pm-overlay{position:fixed;inset:0;z-index:var(--z-modal);background:var(--overlay);display:flex;align-items:center;justify-content:center;padding:1.25rem;opacity:0;pointer-events:none;transition:opacity .2s}
-.pm-overlay.active{opacity:1;pointer-events:all}
+.pm-overlay{position:fixed;inset:0;z-index:var(--z-modal);background:var(--overlay);display:flex;align-items:center;justify-content:center;padding:1.25rem;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility .2s}
+.pm-overlay.active{opacity:1;visibility:visible;pointer-events:all}
 .pm-card{background:var(--bg);border-radius:var(--r);max-width:740px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:var(--sh-modal);display:flex;flex-direction:column}
 .pm-header{position:sticky;top:0;z-index:1;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.25rem;border-bottom:1px solid var(--border)}
 .pm-badge{display:inline-flex;background:var(--bg3);color:var(--text2);font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:99px;font-family:var(--mono)}
@@ -153,8 +153,8 @@ footer a:hover{color:var(--footer-link-hover)}
 .pm-trigger:hover{opacity:.65}
 
 /* ── LIGHTBOX ─────────────────────────────────────────── */
-#lightbox{position:fixed;inset:0;z-index:var(--z-lightbox);background:var(--overlay-deep);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
-#lightbox.active{opacity:1;pointer-events:all}
+#lightbox{position:fixed;inset:0;z-index:var(--z-lightbox);background:var(--overlay-deep);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility .2s}
+#lightbox.active{opacity:1;visibility:visible;pointer-events:all}
 .lb-content{position:relative;max-width:90vw;max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:.75rem}
 .lb-img{max-width:100%;max-height:80vh;object-fit:contain;border-radius:var(--rs);display:block}
 .lb-caption{color:var(--on-night-mid);font-size:.875rem;text-align:center;max-width:60ch}
