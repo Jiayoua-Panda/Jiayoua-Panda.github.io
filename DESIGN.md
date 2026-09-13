@@ -35,12 +35,12 @@ typography:
     lineHeight: 1.3
   title-md:
     fontFamily: IBM Plex Sans
-    fontSize: 16px
+    fontSize: 16.8px
     fontWeight: 700
     lineHeight: 1.35
   lede:
     fontFamily: IBM Plex Sans
-    fontSize: 15.6px
+    fontSize: 16.8px
     fontWeight: 400
     lineHeight: 1.7
   body-md:
@@ -50,7 +50,7 @@ typography:
     lineHeight: 1.6
   body-sm:
     fontFamily: IBM Plex Sans
-    fontSize: 13.5px
+    fontSize: 14.4px
     fontWeight: 400
     lineHeight: 1.7
   button:
@@ -60,12 +60,12 @@ typography:
     lineHeight: 1.2
   label-md:
     fontFamily: Fira Code
-    fontSize: 12px
+    fontSize: 12.5px
     fontWeight: 500
     lineHeight: 1.4
   label-sm:
     fontFamily: Fira Code
-    fontSize: 11.5px
+    fontSize: 12.2px
     fontWeight: 400
     lineHeight: 1.4
     letterSpacing: 0.02em
@@ -82,7 +82,7 @@ spacing:
   xl: 32px
   2xl: 64px
   section: 130px
-  container: 1100px
+  container: 1280px
   gutter: 20px
 components:
   button-primary:
@@ -158,7 +158,7 @@ Two faces, clearly different in job. **IBM Plex Sans** carries every word a pers
 
 ## Layout
 
-A fixed-max-width sheet: content sits in a **1100px** container with 32px side padding, always left-aligned — the drawing sheet is read from the top-left, so nothing is centred except the avatar column in the hero and the company/game stacks on the career timeline.
+A fixed-max-width sheet: content sits in a **1280px** container with 32px side padding, always left-aligned — the drawing sheet is read from the top-left, so nothing is centred except the avatar column in the hero and the company/game stacks on the career timeline.
 
 Sections are separated by generous but uneven vertical space (around {spacing.section}; About and Additional sit tighter, Contact breathes more; ~100px on phones) and by *tone*: paper → night → paper → night → paper. Within a section, layout is done with grid and gap, never per-element margins.
 
@@ -173,7 +173,7 @@ Sections are separated by generous but uneven vertical space (around {spacing.se
 
 Depth is mostly *tonal*. On paper, cards are a slightly opaque paper tone over the animated background with a hairline {colors.outline} border and a barely-there shadow (`0 1px 3px rgba(0,0,0,.06)`); hover lifts the card 4px and tints the border to the stamp colour; the shadow stays put. On night, depth is lightness: section {colors.night}, card {colors.night-surface}, inner panel a 4% white wash — shadows on night stay tight and dark, never a coloured halo.
 
-The two night sections carry the page's one dramatic depth cue: they start as an inset block hugging the 1100px column and expand to full bleed as they scroll into view.
+The two night sections carry the page's one dramatic depth cue: they start as an inset block hugging the 1280px column and expand to full bleed as they scroll into view.
 
 ## Shapes
 
