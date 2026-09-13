@@ -127,7 +127,7 @@ components:
 
 ## Overview
 
-The site is the portfolio of Shuwen Gong — aerospace final-assembly engineer turned mobility engineer (Chalmers), aimed at engineering recruiters at Volvo Group and Einride. Its reference object is **an engineering drawing sheet**: pale paper, one weight of graphite ink, hairline construction lines, monospaced annotations in the margin — and a single red approval stamp. Everything on the page belongs to that world.
+The site is the portfolio of Shuwen Gong — aerospace final-assembly engineer turned mobility engineer (Chalmers), aimed at engineering recruiters at Volvo Group and Einride. The positioning is ADAS, active safety, and system modelling and control; electrification is a supporting track, never the headline. Its reference object is **an engineering drawing sheet**: pale paper, one weight of graphite ink, hairline construction lines, monospaced annotations in the margin — and a single red approval stamp. Everything on the page belongs to that world.
 
 The page should feel precise, quiet and confident, not sold. The reader is a working engineer who will judge the craft; the design's job is to present the evidence (projects, patent, timeline) cleanly and let one red mark carry all the emphasis. Two sections — Featured Work and Engineering Experience — are printed on night paper to give the sheet a rhythm; they expand from an inset block to full width as the reader scrolls, like a sheet unrolling.
 
@@ -189,7 +189,7 @@ Rounded, but with a hierarchy. Outer containers (project cards, company panels, 
 - **Year chip** — Fira Code pill on the timeline line: on paper, stamp-red text and border on paper fill; on night, solid stamp fill with white text.
 - **Ink-rule** — the 110px red brush stroke under each section heading; static.
 - **Entry marker** — a 10px stamp-red square before each experience and education heading; it replaces the older accent side-rail.
-- **Status badge** — pill with a red dot: "Open to autonomous & electric vehicle roles".
+- **Status badge** — pill with a red dot: "Open to ADAS & active safety roles".
 
 ## Motion
 
@@ -213,3 +213,4 @@ One orchestrated entrance, then everything is just there.
 - **Don't** introduce gradients, glows, coloured shadows, glass panels as decoration, or a second typeface family.
 - **Do** give outer and inner containers different radii; **don't** nest a bordered card inside a bordered card without a reason a reader can see.
 - **Do** ship every interactive element with a visible `:focus-visible` ring in the stamp colour.
+- **Don't** give hover lift, glow or a zoom cursor to anything that is not clickable — About cards, hero tags, the avatar and the game/company logos stay still; only project cards, buttons, links and lightbox images respond.

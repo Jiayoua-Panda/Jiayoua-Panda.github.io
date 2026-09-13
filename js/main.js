@@ -19,8 +19,8 @@ const PROJECTS = {
   },
   'game-systems': {
     badge: 'Systems Design, Live-Service Games',
-    title: 'Game Systems Design — Live-Service Titles',
-    desc: 'Four and a half years designing complex rule systems for live-service games across three studios: Fantasy Tang Chronicles (幻唐志) at Duoyi Network from 2020, Dragon Kingdom Story (龙之国物语) at Zlong Games from 2021, then Conquer the Castle (攻城掠地) and Calabash Brothers (葫芦娃) at Aoshitang from 2023.\n\nOwned end-to-end system design: economy and progression rule systems with hundreds of interacting parameters, overall feature roadmaps, and recurring live-ops event planning. Work was data-driven by design — defining KPIs, reading player behaviour data after each release, and iterating system tuning accordingly. This is large-scale systems thinking under real production constraints: every change ships to millions of players and must balance engagement, economy stability, and revenue.',
+    title: 'Game Systems Design — Live-Service Games',
+    desc: 'Four and a half years designing complex rule systems for live-service games across three studios: Fantasy Tang Chronicles (幻唐志) at Duoyi Network from 2020, Dragon Kingdom Story (龙之国物语) at Zlong Games from 2021, then Conquer the Castle (攻城掠地) and Calabash Brothers (葫芦娃) at Aoshitang from 2023.\n\nOwned end-to-end system design: economy and progression rule systems, overall feature roadmaps, and recurring live-ops event planning. Work was data-driven by design — defining KPIs, reading player behaviour data after each release, and iterating system tuning accordingly. This is large-scale systems thinking under real production constraints: every change ships to hundreds of thousands of players and must balance engagement, economy stability, and revenue.',
     tags: ['Systems Design', 'Game Economy', 'Live Ops', 'Data-Driven Iteration', 'Feature Planning', 'Cross-functional Delivery'],
     images: [
       { src: 'assets/images/projects/game-htz-1.jpg', caption: '幻唐志 (Fantasy Tang Chronicles) — Duoyi Network, 2020' },
@@ -62,7 +62,7 @@ const PROJECTS = {
   },
   'bicycle-safety': {
     badge: 'Active Safety, Field Experiment',
-    title: 'Cars Overtaking Cyclists — Active Safety Field Study',
+    title: 'Cyclist Overtaking — Active Safety Field Study',
     desc: 'Field study of driver behaviour when overtaking cyclists (TME202 Active Safety). A pilot experiment used an instrumented bicycle equipped with LIDAR sensors (tested in side and rear mounting configurations), IMU, GPS, and front/rear cameras to measure the minimum lateral clearance drivers leave when passing.\n\nThe analysis decomposed the overtaking manoeuvre into approach, steer-away, pass, and return phases, and quantified how the presence of oncoming traffic compresses lateral safety margins — the driver comfort-zone boundaries that active safety systems must respect. Findings inform ADAS intervention logic for protecting cyclists, a primary vulnerable road user group in urban traffic.',
     tags: ['Active Safety', 'LIDAR', 'Field Experiment', 'Driver Behaviour', 'ADAS', 'Vulnerable Road Users'],
     images: [
@@ -770,7 +770,7 @@ if (avatarPhoto) {
 
 // ── Card hover: cursor glow + card background blend ───────────────────────
 (function () {
-  document.querySelectorAll('.fc, .pc, .wc').forEach(card => {
+  document.querySelectorAll('.fc, .pc').forEach(card => {
     const dark = !!card.closest('.section-dark');
     const base = dark ? 'rgba(29,29,29,1)'
                       : `rgba(249,249,249,${card.classList.contains('pc') ? '.82' : '.88'})`;
