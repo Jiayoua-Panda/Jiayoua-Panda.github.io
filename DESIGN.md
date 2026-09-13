@@ -140,7 +140,7 @@ A one-ink-plus-one-stamp system. There is exactly one accent hue; nothing else i
 - **Ink — Primary ({colors.primary}):** headlines and core text. Near-black, never pure black.
 - **Ink soft — Secondary ({colors.secondary}):** running copy inside cards and panels.
 - **Ink muted ({colors.secondary-soft}):** secondary copy, ledes, captions. Deliberately darker than a typical #888 so it stays legible over the line-art background (4.5:1 on paper).
-- **Stamp — Tertiary ({colors.tertiary}):** the single red approval stamp. It appears only as: the primary button, small accent links, the ink-rule under section headings, the year chips on the career timeline, the cursor trail and launched paper planes. Hover deepens it to {colors.tertiary-deep}. It is a brick red on purpose; the brighter vermilion #E8382F was tried and rejected as too loud.
+- **Stamp — Tertiary ({colors.tertiary}):** the single red approval stamp. It appears only as: the primary button, small accent links, the ink-rule under section headings, the year chips on the career timeline, the small entry marker before each experience heading, the surname in the hero (and the G in the nav wordmark), and launched paper planes. Hover deepens it to {colors.tertiary-deep}. It is a brick red on purpose; the brighter vermilion #E8382F was tried and rejected as too loud.
 - **Stamp on night ({colors.tertiary-on-night}):** the stamp lightened for use as *text* on night surfaces. Brick red on night paper is only ~2.5:1, so small accent text on dark sections must use this token (5.1:1 on {colors.night-surface}).
 - **Paper — Neutral ({colors.neutral}):** the page. {colors.neutral-2} and {colors.neutral-3} are the two deeper paper tones for chips, icon wells and inner panels. {colors.outline} is the hairline rule.
 - **Night ({colors.night}) / Night surface ({colors.night-surface}):** the two dark sections and the cards printed on them. Elevation on night is expressed by *lightness*, not glow: a card is a lighter surface than its section. Text on night is {colors.on-night}; soft text is {colors.on-night-soft}.
@@ -188,6 +188,7 @@ Rounded, but with a hierarchy. Outer containers (project cards, company panels, 
 - **Tag / chip** — {colors.neutral-3} fill, hairline border, Fira Code label-sm. Sentence case.
 - **Year chip** — Fira Code pill on the timeline line: on paper, stamp-red text and border on paper fill; on night, solid stamp fill with white text.
 - **Ink-rule** — the 110px red brush stroke under each section heading; static.
+- **Entry marker** — a 10px stamp-red square before each experience and education heading; it replaces the older accent side-rail.
 - **Status badge** — pill with a red dot: "Open to autonomous & electric vehicle roles".
 
 ## Motion
@@ -197,7 +198,7 @@ One orchestrated entrance, then everything is just there.
 - **Load:** the hero types the name (72ms/character) then the tagline (34ms/character); the caret keeps blinking at the end of the tagline; then badge, tags, identity list, buttons and avatar fade in together over 600ms with 40–320ms stagger. No other section animates on entry.
 - **Scroll:** the two night sections expand from inset to full bleed, driven by scroll position (no easing curve — it tracks the finger).
 - **Hover:** 200–300ms ease-out; a lift and a border tint at most, plus the cursor glow on cards — never a shadow escalation or a scale stacked on top.
-- **Ambient:** the street scene moves at a deliberately slow rate (speed factor 0.281); the cursor leaves a short red trail; a paper plane forms at an idle cursor over 3s and flies off, or launches on click.
+- **Ambient:** the street scene moves at a deliberately slow rate (speed factor 0.281); a paper plane forms at an idle cursor over 3s and flies off, or launches on click.
 - **Reduced motion:** the background renders a single static frame, the typewriter is skipped and the hero shows complete, and all CSS transitions and the caret blink are disabled.
 
 ## Do's and Don'ts

@@ -671,7 +671,7 @@ if (avatarPhoto) {
     const AC = '168,37,31';
     let W = 0, H = 0, mx = -9999, my = -9999;
     let idleAt = 0, forming = false, pHead = 0, pSize = 34;   // idle "forming" state
-    const tr = [], TRAIL = 22, flyers = [];
+    const flyers = [];
     const rnd = (a, b) => a + Math.random() * (b - a);
     const clamp = v => v < 0 ? 0 : v > 1 ? 1 : v;
     const now = () => performance.now();
@@ -732,14 +732,6 @@ if (avatarPhoto) {
         } else if (idle < START) { forming = false; }
       }
 
-      // cursor trail
-      for (let i = tr.length - 1; i >= 0; i--) {
-        const tp = tr[i]; tp.age++;
-        const a = Math.max(0, .4 - tp.age * (.4 / TRAIL)), r = Math.max(0, 2.8 * (1 - tp.age / TRAIL));
-        if (a > 0) { ctx.beginPath(); ctx.arc(tp.x, tp.y, r, 0, 6.2832); ctx.fillStyle = `rgba(${AC},${a.toFixed(3)})`; ctx.fill(); }
-      }
-      while (tr.length && tr[0].age > TRAIL) tr.shift();
-      if (mx > -100) { ctx.beginPath(); ctx.arc(mx, my, 3.2, 0, 6.2832); ctx.fillStyle = `rgba(${AC},.55)`; ctx.fill(); }
 
       requestAnimationFrame(frame);
     }
@@ -747,7 +739,6 @@ if (avatarPhoto) {
     size(); idleAt = now(); window.addEventListener('resize', size, { passive: true });
     document.addEventListener('mousemove', e => {
       mx = e.clientX; my = e.clientY; idleAt = now(); forming = false;   // moving cancels any forming plane
-      tr.push({ x: e.clientX, y: e.clientY, age: 0 }); if (tr.length > TRAIL) tr.shift();
     });
     document.addEventListener('click', e => { launch(e.clientX, e.clientY, chooseHead(), rnd(28, 42)); idleAt = now(); forming = false; });
     document.addEventListener('mouseleave', () => { mx = my = -9999; forming = false; });

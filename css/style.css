@@ -51,6 +51,7 @@ h2.sh{font-size:4.8rem;font-weight:700;margin-bottom:.75rem}
 .hbadge{display:inline-flex;align-items:center;gap:.45rem;background:var(--bg3);color:var(--text2);font-size:.72rem;font-weight:600;letter-spacing:.06em;padding:.3rem .85rem;border-radius:99px;margin-bottom:1.25rem;font-family:var(--mono)}
 .hdot{width:7px;height:7px;background:var(--accent);border-radius:50%;flex-shrink:0}
 .hname{font-size:clamp(3.4rem,6vw,5rem);font-weight:700;line-height:1.05;margin-bottom:.5rem}
+.hname em{font-style:normal;color:var(--accent)}
 .htitle{font-size:1.85rem;color:var(--muted);margin-bottom:1.5rem}
 .caret::after{content:'_';color:var(--accent);animation:blink .9s step-end infinite;margin-left:2px}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
@@ -232,10 +233,11 @@ footer a:hover{color:var(--footer-link-hover)}
 .ind-list li{font-size:.83rem;color:var(--text2);padding-left:13px;position:relative}
 .ind-list li::before{content:'·';position:absolute;left:0;color:var(--accent);font-weight:700}
 
-.eng-co{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--r) var(--r) 0;background:var(--paper-a88);backdrop-filter:blur(6px);padding:30px 34px;margin-top:2.25rem}
+.eng-co{border:1px solid var(--border);border-radius:var(--r);background:var(--paper-a88);backdrop-filter:blur(6px);padding:30px 34px;margin-top:2.25rem}
 .eng-co-head{display:flex;align-items:center;gap:16px;margin-bottom:22px}
 .eng-co-logo{width:52px;height:52px;object-fit:contain;border-radius:10px;background:var(--white);border:1px solid var(--border);padding:6px;flex-shrink:0}
 .eng-co-name{font-size:1rem;font-weight:700;margin:2px 0 0}
+.eng-co-name::before{content:"";display:inline-block;width:10px;height:10px;background:var(--accent);margin-right:10px;vertical-align:middle;border-radius:1px}
 .eng-co-sub{font-size:.875rem;color:var(--muted);line-height:1.7;margin:-6px 0 26px;max-width:680px}
 
 .eng-avic-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:24px}
@@ -310,7 +312,7 @@ footer a:hover{color:var(--footer-link-hover)}
 .section-dark .tag{background:var(--night-wash);border-color:var(--night-line);color:var(--on-night-mid)}
 
 /* engineering blocks on dark */
-.section-dark .eng-co{background:var(--night-surface);border-color:var(--night-line);border-left-color:var(--accent)}
+.section-dark .eng-co{background:var(--night-surface);border-color:var(--night-line)}
 .section-dark .eng-co-sub,.section-dark .eng-photo figcaption,.section-dark .gtl-game-name em{color:var(--on-night-soft)}
 .section-dark .eng-pane{background:var(--night-wash);border-color:var(--night-line)}
 .section-dark .eng-pane-desc,.section-dark .ind-list li,.section-dark .gtl-co span{color:var(--on-night-mid)}
