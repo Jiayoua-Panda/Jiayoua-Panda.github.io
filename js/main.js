@@ -58,7 +58,7 @@ const PROJECTS = {
       { src: 'assets/images/projects/ride-comfort-3.png', caption: 'Quarter-car suspension model' },
       { src: 'assets/images/projects/ride-comfort-4.png', caption: 'Suspension performance comparison after optimization' },
     ],
-    links: [{ label: 'Full report available on request' }],
+    links: [{ label: 'GitHub', href: 'https://github.com/Jiayoua-Panda/Data-Driven-Ride-Comfort-Analysis-of-Volvo-7900-Electric-City-Buses', icon: 'github' }, { label: 'Full report available on request' }],
   },
   'bicycle-safety': {
     badge: 'Active Safety, Field Experiment',
@@ -130,7 +130,7 @@ const PROJECTS = {
       { src: 'assets/images/projects/cpp-grades-1.png', caption: 'Menu-driven console interface' },
       { src: 'assets/images/projects/cpp-grades-2.png', caption: 'Grade query and statistics output' },
     ],
-    links: [{ label: 'Source & report available on request' }],
+    links: [{ label: 'GitHub', href: 'https://github.com/Jiayoua-Panda/Cpp_Course_DesignStudent_Grade_Management', icon: 'github' }],
   },
   'avic-patent': {
     badge: 'Patent, Aircraft Final Assembly',
