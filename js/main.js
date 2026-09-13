@@ -380,38 +380,6 @@ if (avatarPhoto) {
   });
 })();
 
-// ── Scroll fade-in ──────────────────────────────────────────
-(function () {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('in-view');
-      io.unobserve(e.target);
-    });
-  }, { threshold: 0.1 });
-
-  const groups = [
-    { sel: '.lbl',        delays: [0] },
-    { sel: 'h2.sh',       delays: [.06] },
-    { sel: '.ssub',       delays: [.12] },
-    { sel: '.ink-rule',   delays: [.18] },
-    { sel: '.wc',         delays: [.05, .10, .15, .20] },
-    { sel: '.fc',         delays: [.05, .12, .19, .26] },
-    { sel: '.pc',         delays: [.05, .10, .15] },
-    { sel: '.eng-co',     delays: [.08, .16, .24] },
-    { sel: '.gtl-stop',   delays: [.05, .15, .25] },
-  ];
-
-  groups.forEach(({ sel, delays }) => {
-    document.querySelectorAll(sel).forEach((el, i) => {
-      el.classList.add('anim');
-      el.style.transitionDelay = (delays[Math.min(i, delays.length - 1)]) + 's';
-      io.observe(el);
-    });
-  });
-
-  document.querySelectorAll('.ink-rule').forEach(el => io.observe(el));
-})();
 
 // ── Count-up animation ──────────────────────────────────────
 (function () {
