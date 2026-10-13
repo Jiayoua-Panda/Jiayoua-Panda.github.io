@@ -2,6 +2,22 @@
 // images[]: put your screenshots in assets/images/projects/
 // Use descriptive filenames, e.g. truck-reversing-1.jpg
 const PROJECTS = {
+  'hackathon': {
+    badge: 'Robotics Simulation, Award',
+    title: 'Humanoid Skill Factory — Winner, Gothenburg Tech Week × Chalmers Hackathon 2026',
+    desc: 'Gothenburg Tech Week × Chalmers Hackathon 2026, 25–26 September, team Go Pikachu — overall winner, entered through SKF\u2019s challenge \u201cAnalyze and compare learning methods suitable for industrial humanoids\u201d.\n\nTeam approach, the Humanoid Skill Factory: instead of training one giant policy per task and site, compose pretrained skills, let a height scan and a factory map decide which skill runs where, wrap everything in a rule-based safety layer (ISO/TS 15066 speed and separation monitoring), and pass every skill through the same test gates so that training effort goes only to the failures the gates find. All results are MuJoCo simulation of a Unitree G1 (29 DoF): 99 % on a 220-run terrain matrix and 88 % on a 19.9 m factory route with stairs up and down, without training a new model. The stair policy itself is a third-party pretrained model (G1-DWAQ); the team\u2019s work is the switching, safety, test and fine-tuning pipeline around it.\n\nMy part: (1) the V0 baseline \u2014 replaying Unitree\u2019s pretrained G1 velocity policy in MuJoCo with the exact deployment interface (480-dim observation with 5-frame history, 50 Hz policy / 200 Hz PD loop) and measuring step length against commanded speed; (2) the parametric test-course generator (slopes, steps, stairs, cross slopes, rough floor) and the per-segment evaluation with randomised starts, co-developed with a teammate; (3) the four-stage comparison with fault injection \u2014 an unmapped pallet and a reflective plate blinding the height scan \u2014 showing why neither on-board perception nor an external map alone is enough; (4) the camera-plus-odometry localisation error model used to specify how accurate factory cameras need to be.',
+    tags: ['MuJoCo', 'Python', 'Humanoid Locomotion', 'Policy Replay', 'Test Matrix', 'Fault Injection', 'Safety Layer'],
+    images: [
+      { src: 'assets/images/projects/hackathon-1.png', caption: 'Height scan ahead of the feet picks the stair skill \u2014 MuJoCo, Unitree G1' },
+      { src: 'assets/images/projects/hackathon-2.png', caption: 'Four-stage comparison with fault injection: pass rate per course segment' },
+      { src: 'assets/images/projects/hackathon-3.png', caption: 'Safety layer: ISO/TS 15066 protective distance and position hold on the test course' },
+      { src: 'assets/images/projects/hackathon-4.png', caption: 'Parametric demo course profile with unmapped pallet and glare step, plus the height-scan view' },
+    ],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/Jiayoua-Panda/Gothenburg_Tech_Week_Chalmers_Hackathon_Go_Pikachu', icon: 'github' },
+      { label: 'Gothenburg Tech Week', href: 'https://gbgtechweek-com.confetti.events/tech-blueprint/' },
+    ],
+  },
   'truck-reversing': {
     badge: 'Vehicle Dynamics, Control Systems',
     title: 'Reversing Aid for a Tractor-Semitrailer Truck',
