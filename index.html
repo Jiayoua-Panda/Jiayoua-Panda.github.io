@@ -33,7 +33,8 @@
   <a class="nb" href="#hero">S<span class="nb-c"><span>huwen </span></span><em>G<span class="nb-c"><span>ong</span></span></em></a>
   <ul class="nl">
     <li><a href="#about">About</a></li>
-    <li><a href="#featured">Work</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#engineering">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -130,74 +131,39 @@
 </div>
 </section>
 
-<!-- FEATURED PROJECTS -->
-<section id="featured" class="section-dark">
+<!-- AWARDS -->
+<section id="awards" class="section-dark">
 <div class="wrap">
-  <h2 class="sh">Featured Work</h2>
+  <h2 class="sh">Awards</h2>
   <span class="ink-rule" aria-hidden="true"></span>
-  <p class="ssub">Three projects across vehicle control, hybrid powertrain modelling, and data-driven vehicle dynamics.</p>
-  <div class="fg">
+  <p class="ssub">First place in two engineering competitions in autumn 2026.</p>
+  <div class="fg fg-2">
 
     <div class="fc">
       <div class="fc-thumb">
-        <img src="assets/images/projects/truck-reversing-1.png" alt="Truck-semitrailer kinematic model" loading="lazy" onerror="this.style.display='none'">
-        <div class="fc-thumb-ph">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="1" y="11" width="22" height="7" rx="2"/><path d="M5 11V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
-        </div>
+        <img src="assets/images/projects/award-autonomous-truck.png" alt="Planned path of the mini-truck around obstacles to a dock" loading="lazy" onerror="this.style.display='none'">
       </div>
-      <div class="fi">
-        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="11" width="22" height="7" rx="2"/><path d="M5 11V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
-      </div>
-      <h3 class="ft">Reversing Aid for a Tractor-Semitrailer Truck</h3>
-      <p class="fd">Automatic path-following control for reversing an articulated truck, built in MATLAB/Simulink. State-feedback controller designed via pole placement with a discretized observer, validated on the full nonlinear model across trailer lengths and reversing speeds — the low-speed manoeuvre automation at the heart of ADAS for heavy vehicles.</p>
-      <div class="tags">
-        <span class="tag">Control Systems</span><span class="tag">Vehicle Dynamics</span><span class="tag">Simulink</span><span class="tag">Observer Design</span>
-      </div>
+      <div class="lbl">First place, November 2026</div>
+      <h3 class="ft">The AI-Powered Autonomous Challenge 2026</h3>
+      <p class="fd">Einride Autonomous × Chalmers AI Society. Twelve days to make a mini-truck deliver between docks in an arena revealed on the day, with four robots driving at once. I designed and implemented the team’s autonomy stack in ROS 2 — wheel-and-gyro odometry, lidar SLAM, a dock registry learned from AprilTags, Nav2 planning and a docking controller — and took it from Gazebo to the real robot. Most completed routes in the finals.</p>
+      <div class="tags"><span class="tag">ROS 2</span><span class="tag">Nav2</span><span class="tag">SLAM</span><span class="tag">Sensor Fusion</span><span class="tag">Sim-to-Real</span></div>
       <div class="pls">
-        <button class="pl pm-trigger" data-project="truck-reversing">View details</button>
-        <span class="pl" style="color:var(--muted);cursor:default">Report on request</span>
+        <button class="pl pm-trigger" data-project="autonomous-truck">View details</button>
+        <a class="pl" href="assets/pitch/autonomous-challenge.html" target="_blank" rel="noopener">Pitch deck</a>
       </div>
     </div>
 
     <div class="fc">
       <div class="fc-thumb">
-        <img src="assets/images/projects/hybrid-1.png" alt="Series HEV power flow" loading="lazy" onerror="this.style.display='none'">
-        <div class="fc-thumb-ph">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        </div>
+        <img src="assets/images/projects/award-hackathon.png" alt="Unitree G1 approaching stairs in MuJoCo with its height scan" loading="lazy" onerror="this.style.display='none'">
       </div>
-      <div class="fi">
-        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      </div>
-      <h3 class="ft">Series &amp; Parallel HEV Powertrain Design</h3>
-      <p class="fd">Complete series and parallel hybrid powertrains modelled in MATLAB/QSS for a Class M reference vehicle: component sizing from top-speed and 0–100 km/h requirements, battery state-of-charge management, and engine operating-point placement over NEDC and a custom driving cycle — system modelling from first principles to energy flow.</p>
-      <div class="tags">
-        <span class="tag">System Modelling</span><span class="tag">MATLAB/QSS</span><span class="tag">Hybrid Powertrain</span><span class="tag">Energy Management</span>
-      </div>
+      <div class="lbl">First place, September 2026</div>
+      <h3 class="ft">Gothenburg Tech Week × Chalmers Hackathon 2026</h3>
+      <p class="fd">SKF challenge on training industrial humanoids, team Go Pikachu. We built a skill-composition pipeline for a Unitree G1 in MuJoCo: perception-based skill switching, an ISO/TS 15066 safety layer, and shared test gates — 99 % on a 220-run terrain matrix, 88 % on a 19.9 m factory route with stairs. My part: the pretrained-policy baseline, the parametric test courses with per-segment evaluation, and the four-stage fault-injection comparison.</p>
+      <div class="tags"><span class="tag">MuJoCo</span><span class="tag">Python</span><span class="tag">Humanoid Locomotion</span><span class="tag">Test Matrix</span><span class="tag">Fault Injection</span></div>
       <div class="pls">
-        <button class="pl pm-trigger" data-project="hybrid-model">View details</button>
-        <span class="pl" style="color:var(--muted);cursor:default">Lab reports on request</span>
-      </div>
-    </div>
-
-    <div class="fc">
-      <div class="fc-thumb">
-        <img src="assets/images/projects/ride-comfort-3.png" alt="Quarter-car suspension model" loading="lazy" onerror="this.style.display='none'">
-        <div class="fc-thumb-ph">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-      </div>
-      <div class="fi">
-        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      </div>
-      <h3 class="ft">Data-Driven Ride Comfort Analysis</h3>
-      <p class="fd">Real IMU data collected on a Volvo 7900 Electric bus in Gothenburg, filtered and converted to a road-excitation PSD, then fed into a quarter-car model. Suspension stiffness and damping optimized to cut body-acceleration RMS while keeping deflection and tire force in bounds — fleet data to chassis tuning, end to end.</p>
-      <div class="tags">
-        <span class="tag">System Modelling</span><span class="tag">Signal Processing</span><span class="tag">Quarter-Car Model</span><span class="tag">Suspension Optimization</span>
-      </div>
-      <div class="pls">
-        <button class="pl pm-trigger" data-project="ride-comfort">View details</button>
-        <a class="pl" href="https://github.com/Jiayoua-Panda/Data-Driven-Ride-Comfort-Analysis-of-Volvo-7900-Electric-City-Buses" target="_blank" rel="noopener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+        <button class="pl pm-trigger" data-project="hackathon">View details</button>
+        <a class="pl" href="https://github.com/Jiayoua-Panda/Gothenburg_Tech_Week_Chalmers_Hackathon_Go_Pikachu" target="_blank" rel="noopener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
       </div>
     </div>
 
@@ -205,27 +171,36 @@
 </div>
 </section>
 
-<!-- ADDITIONAL PROJECTS -->
-<section id="more">
+<!-- PROJECTS -->
+<section id="projects">
 <div class="wrap">
-  <h2 class="sh">Additional Projects</h2>
+  <h2 class="sh">Projects</h2>
   <span class="ink-rule" aria-hidden="true"></span>
+  <p class="ssub">Course and personal work in vehicle control, powertrain modelling, data-driven vehicle dynamics, safety, and software.</p>
   <div class="pg">
 
     <div class="pc">
-      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div>
-      <div class="pt">Autonomous Mini-Truck — Einride Challenge Winner</div>
-      <p class="pd">Winner of The AI-Powered Autonomous Challenge 2026 by Einride Autonomous and Chalmers AI Society: twelve days to make a mini-truck deliver between docks in an arena revealed on the day, with four robots driving at once. I designed and implemented the team’s autonomy stack in ROS 2 — wheel-and-gyro odometry, lidar SLAM, a dock registry learned from AprilTags, Nav2 planning and a docking controller — and took it from Gazebo to the real robot. Most completed routes in the finals.</p>
-      <div class="tags"><span class="tag">ROS 2</span><span class="tag">Nav2</span><span class="tag">SLAM</span><span class="tag">Sensor Fusion</span><span class="tag">Sim-to-Real</span></div>
-      <div class="pc-foot"><button class="pm-trigger" data-project="autonomous-truck">View details</button><a class="pl" href="assets/pitch/autonomous-challenge.html" target="_blank" rel="noopener">Pitch deck</a></div>
+      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="11" width="22" height="7" rx="2"/><path d="M5 11V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
+      <div class="pt">Reversing Aid for a Tractor-Semitrailer Truck</div>
+      <p class="pd">Automatic path-following control for reversing an articulated truck, built in MATLAB/Simulink. State-feedback controller designed via pole placement with a discretized observer, validated on the full nonlinear model across trailer lengths and reversing speeds — the low-speed manoeuvre automation at the heart of ADAS for heavy vehicles.</p>
+      <div class="tags"><span class="tag">Control Systems</span><span class="tag">Vehicle Dynamics</span><span class="tag">Simulink</span><span class="tag">Observer Design</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="truck-reversing">View details</button><span class="pl" style="color:var(--muted);cursor:default">Report on request</span></div>
     </div>
 
     <div class="pc">
-      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.89"/></svg></div>
-      <div class="pt">Humanoid Skill Factory — Hackathon Winner</div>
-      <p class="pd">Winner of the Gothenburg Tech Week × Chalmers Hackathon 2026, SKF challenge on training industrial humanoids. Our team built a skill-composition pipeline for a Unitree G1 in MuJoCo: perception-based skill switching, an ISO/TS 15066 safety layer, and shared test gates — 99 % on a 220-run terrain matrix, 88 % on a 19.9 m factory route with stairs. My part: the pretrained-policy baseline, the parametric test courses with per-segment evaluation, and the four-stage fault-injection comparison.</p>
-      <div class="tags"><span class="tag">MuJoCo</span><span class="tag">Python</span><span class="tag">Humanoid Locomotion</span><span class="tag">Test Matrix</span><span class="tag">Fault Injection</span></div>
-      <div class="pc-foot"><button class="pm-trigger" data-project="hackathon">View details</button><a class="pl" href="https://github.com/Jiayoua-Panda/Gothenburg_Tech_Week_Chalmers_Hackathon_Go_Pikachu" target="_blank" rel="noopener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a></div>
+      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <div class="pt">Series &amp; Parallel HEV Powertrain Design</div>
+      <p class="pd">Complete series and parallel hybrid powertrains modelled in MATLAB/QSS for a Class M reference vehicle: component sizing from top-speed and 0–100 km/h requirements, battery state-of-charge management, and engine operating-point placement over NEDC and a custom driving cycle — system modelling from first principles to energy flow.</p>
+      <div class="tags"><span class="tag">System Modelling</span><span class="tag">MATLAB/QSS</span><span class="tag">Hybrid Powertrain</span><span class="tag">Energy Management</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="hybrid-model">View details</button><span class="pl" style="color:var(--muted);cursor:default">Lab reports on request</span></div>
+    </div>
+
+    <div class="pc">
+      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="pt">Data-Driven Ride Comfort Analysis</div>
+      <p class="pd">Real IMU data collected on a Volvo 7900 Electric bus in Gothenburg, filtered and converted to a road-excitation PSD, then fed into a quarter-car model. Suspension stiffness and damping optimized to cut body-acceleration RMS while keeping deflection and tire force in bounds — fleet data to chassis tuning, end to end.</p>
+      <div class="tags"><span class="tag">System Modelling</span><span class="tag">Signal Processing</span><span class="tag">Quarter-Car Model</span><span class="tag">Suspension Optimization</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="ride-comfort">View details</button><a class="pl" href="https://github.com/Jiayoua-Panda/Data-Driven-Ride-Comfort-Analysis-of-Volvo-7900-Electric-City-Buses" target="_blank" rel="noopener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a></div>
     </div>
 
     <div class="pc">
@@ -431,7 +406,7 @@
       <div class="eng-edu-item">
         <div class="lbl" style="margin:0 0 4px">MEng, Sep 2025 – Jun 2027</div>
         <h3 class="eng-co-name">Mobility Engineering, Chalmers University of Technology</h3>
-        <p class="eng-pane-desc" style="margin:6px 0 0">Active safety and ADAS, vehicle dynamics, and system modelling and control — Gothenburg, Sweden. Project work shown in Featured Work and Additional Projects above.</p>
+        <p class="eng-pane-desc" style="margin:6px 0 0">Active safety and ADAS, vehicle dynamics, and system modelling and control — Gothenburg, Sweden. Project work shown in Projects above.</p>
       </div>
     </div>
   </div>

@@ -164,8 +164,8 @@ Sections are separated by generous but uneven vertical space (around {spacing.se
 
 - **Hero:** two columns, text left (1fr) and a 188px avatar column right; height is set by its content, not the viewport. Padding is bottom-heavy (80px above, 108px below) so the hero settles into the page instead of floating.
 - **About:** four capability cards in one row (two per row under 900px, one per row under 580px).
-- **Featured Work:** three equal project cards, thumbnail bleeding to the card's top edge.
-- **Additional Projects:** six cards, three per row.
+- **Awards** (night section): two equal award cards, thumbnail bleeding to the card's top edge, a mono "First place, month year" line above the title. Only competition wins go here.
+- **Projects:** every project in one grid, nine cards, three per row, no thumbnails. There is no "featured" tier — awards carry the emphasis.
 - **Engineering Experience:** three stacked company panels; the games panel holds a left-to-right career timeline with company above, dated year chip on the line, titles below; the far-right stop is 1.5× wide to hold two titles side by side.
 - **Spacing scale:** {spacing.xs} {spacing.sm} {spacing.md} {spacing.lg} {spacing.xl} {spacing.2xl}; grid gutter {spacing.gutter}; card padding 24px.
 
