@@ -2,6 +2,23 @@
 // images[]: put your screenshots in assets/images/projects/
 // Use descriptive filenames, e.g. truck-reversing-1.jpg
 const PROJECTS = {
+  'autonomous-truck': {
+    badge: 'Autonomous Driving, Award',
+    title: 'Autonomous Mini-Truck — Winner, The AI-Powered Autonomous Challenge 2026',
+    desc: 'The AI-Powered Autonomous Challenge 2026, run by Einride Autonomous and Chalmers AI Society, 9\u201320 November in Gothenburg: selected student teams get twelve days to build a complete autonomous driving stack on Einride\u2019s mini-truck (six-wheel skid-steer, NVIDIA Jetson Orin Nano, 360\u00b0 lidar, stereo camera, two IMUs). On the final day the truck must deliver between eight docks in an arena nobody has seen before, with four robots driving at the same time and five minutes to learn the layout. Routes come from Einride\u2019s Saga AI platform; a finished route scores, a collision costs. Chalmers Team 1 won, completing the most routes of any team.\n\nI designed and implemented the team\u2019s autonomy stack in ROS 2 (Python). Localisation: front-wheel encoders give distance, the gyro gives turning (a skid-steer cannot measure its own turns), fused in an EKF; slam_toolbox builds the lidar map and then localises against it. Docks: the camera reads each dock\u2019s AprilTag and a registry learns where docks A\u2013H sit in the map, so no position is written in the code. Driving: Nav2 plans to a staging pose in front of the dock with a collision monitor as last guard; my own controller then drives in on the tag and stops on the lidar-measured back wall. Every key step has a second check \u2014 no tag seen at the door means it does not drive in; no wall where one is expected means it backs out.\n\nIn Gazebo: all eight docks learned within 3 cm, localisation within 4 mm of ground truth, docking with under 1 cm lateral and under 3\u00b0 heading error. Then the real robot, where simulation stopped being kind: the lidar saw the truck\u2019s own antenna and braked for it, the wheel odometer reported centimetres instead of metres, the camera clock ran 17 minutes behind, the gyro drifted, and pivots turned at a third of the commanded rate. Each became a filter, a check or an adaptive gain, with unit tests \u2014 and one trip to a dock went from 221 seconds to 17.',
+    tags: ['ROS 2', 'Python', 'Nav2', 'slam_toolbox', 'EKF Sensor Fusion', 'AprilTag', 'Gazebo', 'Jetson', 'Sim-to-Real'],
+    images: [
+      { src: 'assets/images/projects/autonomous-truck-1.png', caption: 'Dock registry: all eight docks learned from their AprilTags in simulation, each within 3 cm' },
+      { src: 'assets/images/projects/autonomous-truck-2.png', caption: 'Every key step is checked twice \u2014 what the truck relies on, and what it does if that is wrong' },
+      { src: 'assets/images/projects/autonomous-truck-3.png', caption: 'First lesson from the real robot: the lidar saw the truck\u2019s own antenna, 13 cm away' },
+      { src: 'assets/images/projects/autonomous-truck-4.png', caption: 'One trip to a dock on the real robot: 221 s on the first attempt, 17 s after the fixes' },
+    ],
+    links: [
+      { label: 'Pitch deck', href: 'assets/pitch/autonomous-challenge.html' },
+      { label: 'Event page', href: 'https://luma.com/q168dw2n' },
+      { label: 'Code is in Einride\u2019s private repository' },
+    ],
+  },
   'hackathon': {
     badge: 'Robotics Simulation, Award',
     title: 'Humanoid Skill Factory — Winner, Gothenburg Tech Week × Chalmers Hackathon 2026',

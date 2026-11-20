@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find the Dock, Park the Truck</title>
+<!--
+  Pitch film for the Einride x Chalmers AI Challenge 2026, Chalmers Team 1.
+  Style and page engine follow the Go Pikachu pitch (pitch/STYLE.md in that repo):
+  fixed 1920 x 1080 stage, one idea per scene, black with one accent, motion reveals.
+  Every number on screen was measured by us; see docs/autonomy.md.
+  Controls: right arrow / space / click = next, left arrow = back, N notes,
+  F fullscreen, R restart, ?p=5 opens page 5.
+-->
+<style>
+:root {
+  --bg: #000;
+  --text: #f5f5f7;
+  --grey: #86868b;
+  --dim: #48484a;
+  --amber: #ffb020;
+  --green: #30d158;
+  --red: #ff453a;
+  --font: "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; background: #000; color: var(--text); font-family: var(--font); overflow: hidden; cursor: none; }
+body.cursor { cursor: default; }
+#stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; background: var(--bg); overflow: hidden; }
+.scene { position: absolute; inset: 0; visibility: hidden; }
+.el { position: absolute; opacity: 0; will-change: opacity, transform, filter; }
+.full { left: 0; right: 0; text-align: center; }
+.xl { font-size: 190px; font-weight: 700; letter-spacing: -.05em; line-height: 1; }
+.l { font-size: 124px; font-weight: 700; letter-spacing: -.045em; line-height: 1.02; }
+.m { font-size: 84px; font-weight: 700; letter-spacing: -.035em; line-height: 1.06; }
+.s { font-size: 32px; font-weight: 500; color: var(--grey); letter-spacing: -.01em; line-height: 1.35; }
+.h { font-size: 44px; font-weight: 700; letter-spacing: -.02em; }
+.eyebrow { font-size: 30px; font-weight: 600; color: var(--grey); letter-spacing: .01em; }
+.row { display: grid; grid-template-columns: 410px 640px 570px; align-items: baseline; width: 1620px; padding-top: 28px; border-top: 1px solid rgba(245,245,247,.16); }
+.grad { background: linear-gradient(90deg, #ffd166 0%, #ff9f43 45%, #ff5e62 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .14em; }
+span.grad { display: inline-block; }
+.green { color: var(--green); }
+.red { color: var(--red); }
+.amber { color: var(--amber); }
+.muted { color: var(--grey); }
+.white { color: var(--text); }
+canvas { display: block; }
+#bar { position: fixed; left: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.35); width: 0; z-index: 5; }
+#notes { position: fixed; left: 0; right: 0; bottom: 0; display: none; padding: 16px 28px 20px; background: rgba(12,12,14,.95); border-top: 1px solid #333; font: 400 19px/1.5 var(--font); color: #ddd; z-index: 6; cursor: default; }
+#notes.on { display: block; }
+#notes b { color: var(--amber); font-weight: 600; font-size: 14px; letter-spacing: .1em; display: block; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1 · Hero -->
+<section class="scene" data-holds="3.6"
+  data-notes="This is our small self-driving truck. Its job is simple to say: find the right dock, park there, and do it again, without touching anything.">
+  <canvas class="el" data-draw="hero" data-w="1920" data-h="1080" data-in="0" data-fx="fade" data-din="1.6" style="left:0;top:0"></canvas>
+  <div class="el eyebrow" data-in="0.9" style="left:150px; top:360px">Einride × Chalmers AI Society · AI Challenge 2026</div>
+  <div class="el l" data-in="1.3" style="left:150px; top:420px">Find the dock.</div>
+  <div class="el l grad" data-in="1.8" style="left:150px; top:552px">Park the truck.</div>
+  <div class="el s" data-in="2.5" style="left:150px; top:730px">Chalmers Team 1 · a mini truck that drives itself</div>
+  <div class="el s" data-in="3.0" style="left:150px; top:800px; width:860px; font-size:28px; color:var(--text)">Tiam Khaniporshokouh · Josef Eidstedt · Nadia Farias<br>Emelie Skepö · Shuwen Gong</div>
+</section>
+
+<!-- 2 · The challenge -->
+<section class="scene"
+  data-notes="The challenge: a delivery platform called Saga AI gives the truck routes. Pick up at one dock, deliver to another. Every finished route is 200 points. Every collision costs 50 or 100. Four robots drive at the same time, and we only get five minutes to learn the arena.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:130px">The challenge</div>
+  <div class="el l" data-in="0.3" style="left:150px; top:190px">Deliver goods.</div>
+  <div class="el l grad" data-in="0.7" style="left:150px; top:322px">Touch nothing.</div>
+  <div class="el" data-in="1.4" style="left:150px; top:560px; width:500px">
+    <div class="m green">+200</div>
+    <div class="s" style="margin-top:18px">points for every finished route: pick up at one dock, deliver to another</div>
+  </div>
+  <div class="el" data-in="1.8" style="left:710px; top:560px; width:500px">
+    <div class="m red">−50 / −100</div>
+    <div class="s" style="margin-top:18px">points for every collision, small or large</div>
+  </div>
+  <div class="el" data-in="2.2" style="left:1270px; top:560px; width:500px">
+    <div class="m">8 docks</div>
+    <div class="s" style="margin-top:18px">four robots at the same time · five minutes to learn the arena</div>
+  </div>
+  <div class="el s" data-in="3.0" style="left:150px; top:920px; font-size:26px">So being careful is worth more than being fast.</div>
+</section>
+
+<!-- 3 · The robot -->
+<section class="scene" data-holds="4.6"
+  data-notes="The robot is a small six-wheel truck. It has four senses: a lidar that measures distance all around, a camera that reads the dock tags, a gyro that feels turning, and wheel counters that measure distance. A small Jetson computer on board runs everything.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:300px">Part 1 · How it works</div>
+  <div class="el l" data-in="0.3" style="left:150px; top:360px">Four senses.</div>
+  <div class="el l grad" data-in="0.7" style="left:150px; top:492px">One brain.</div>
+  <div class="el s" data-in="1.4" style="left:150px; top:680px; width:620px">Six wheels, four of them driven. About 25 cm long. Top speed 5 km/h; we drive much slower.</div>
+  <canvas class="el" data-draw="robot" data-w="1040" data-h="840" data-in="0.4" data-fx="fade" style="left:820px; top:120px"></canvas>
+</section>
+
+<!-- 4 · The pipeline -->
+<section class="scene" data-holds="5.6"
+  data-notes="The software answers five questions, always in this order. Where am I? Where are the docks? How do I get there? How do I park? And what is next? Then it starts again with the next dock.">
+  <div class="el eyebrow full" data-in="0.1" style="top:130px">Part 1 · How it works</div>
+  <div class="el m full" data-in="0.2" style="top:190px; font-size:76px">Five questions, <span class="grad">answered in order.</span></div>
+  <canvas class="el" data-draw="pipe" data-w="1920" data-h="700" data-in="0.3" data-fx="fade" style="left:0;top:370px"></canvas>
+</section>
+
+<!-- 5 · Odometry -->
+<section class="scene" data-holds="6.4"
+  data-notes="Question one: where am I? The wheels count how far we drive. But this robot has to skid sideways to turn, so the wheels cannot tell how much it turned. The gyro can. A filter blends the two, twenty times a second. Wheels alone get lost at the first corner.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:250px">1 · Where am I?</div>
+  <div class="el l" data-in="0.3" style="left:150px; top:310px">Wheels count.</div>
+  <div class="el l grad" data-in="0.7" style="left:150px; top:442px">The gyro turns.</div>
+  <div class="el s" data-in="1.4" style="left:150px; top:640px; width:700px">The wheels measure distance. They cannot measure turning: the truck skids sideways to turn. So turning comes from the gyro, and a filter blends both 20 times a second.</div>
+  <canvas class="el" data-draw="odo" data-w="900" data-h="800" data-in="0.5" data-fx="fade" style="left:940px; top:140px"></canvas>
+</section>
+
+<!-- 6 · SLAM -->
+<section class="scene" data-holds="11.0"
+  data-notes="The lidar spins ten times a second and measures 455 distances on every turn. As the truck drives, those points draw the map. Later it compares each new scan with that map, and corrects its own position.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:250px">1 · Where am I?</div>
+  <div class="el l" data-in="0.3" style="left:150px; top:310px">The lidar</div>
+  <div class="el l grad" data-in="0.7" style="left:150px; top:442px">draws the map.</div>
+  <div class="el s" data-in="1.4" style="left:150px; top:640px; width:640px">360° all around · 455 points per turn · 10 turns per second</div>
+  <div class="el s" data-in="1.9" style="left:150px; top:760px; width:640px">Later, every new scan is compared with this map to correct the position.</div>
+  <canvas class="el" data-draw="slam" data-w="1000" data-h="900" data-in="0.4" data-fx="fade" style="left:900px; top:90px"></canvas>
+</section>
+
+<!-- 7 · Tags -->
+<section class="scene" data-holds="10.8"
+  data-notes="Question two: where are the docks? To the lidar, all eight docks look the same. So every dock carries a printed tag, like a name tag. The camera reads it: A is tag zero, H is tag seven. We average many sightings and save where each dock is. In simulation we found all eight, each within three centimetres of its true place.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:210px">2 · Where are the docks?</div>
+  <div class="el l" data-in="0.3" style="left:150px; top:270px">Each dock has</div>
+  <div class="el l grad" data-in="0.7" style="left:150px; top:402px">a name tag.</div>
+  <div class="el s" data-in="1.4" style="left:150px; top:590px; width:640px">To the lidar all docks look the same. The camera reads the tag: A is 0, B is 1 … H is 7.</div>
+  <div class="el m green" data-in="1.8" data-count="0,8" data-cat="1.6" data-cdur="8.6" data-suffix=" / 8" style="left:146px; top:740px">0 / 8</div>
+  <div class="el s" data-in="2.2" style="left:150px; top:850px; width:640px">docks found in simulation · each within 3 cm of its true place</div>
+  <canvas class="el" data-draw="tags" data-w="1000" data-h="900" data-in="0.4" data-fx="fade" style="left:900px; top:90px"></canvas>
+</section>
+
+<!-- 8 · Navigation -->
+<section class="scene" data-holds="4.4,10.4"
+  data-notes="Question three: how do I get there? Every obstacle gets a safety margin, and the path stays outside it. || If something new is in the way, for example another robot, the truck stops and plans a new path.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:70px">3 · How do I get there?</div>
+  <div class="el m" data-in="0.2" style="left:150px; top:115px">Plan a path. <span class="grad">Keep your distance.</span></div>
+  <canvas class="el" data-draw="nav" data-w="1620" data-h="640" data-in="0.3" data-fx="fade" style="left:150px; top:270px"></canvas>
+  <div class="el s" data-in="1.0" data-out="4.8" style="left:150px; top:940px">Every obstacle gets a safety margin. The path stays outside it.</div>
+  <div class="el s" data-in="5.2" style="left:150px; top:940px">Something new in the way? <span class="white">Stop, then plan again.</span></div>
+</section>
+
+<!-- 9 · Docking -->
+<section class="scene" data-holds="2.8,5.4,9.6"
+  data-notes="Question four: how do I park? First, it stops 55 centimetres in front of the dock. || Second, it looks. It only drives in after the camera has seen this dock's tag. The tag gives the centre line. || Third, it drives in slowly, and the lidar measures the distance to the back wall. At 22 centimetres it stops. The front bumper is then about 9 centimetres from the wall.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:70px">4 · How do I park?</div>
+  <div class="el m" data-in="0.2" style="left:150px; top:115px">Stop. Look. <span class="grad">Drive in.</span></div>
+  <canvas class="el" data-draw="dock" data-w="1620" data-h="660" data-in="0.3" data-fx="fade" style="left:150px; top:260px"></canvas>
+  <div class="el s" data-in="8.6" style="left:150px; top:950px">The front bumper stops about 9 cm from the wall. The rule asks for 14 cm or less.</div>
+</section>
+
+<!-- 10 · Mission -->
+<section class="scene" data-holds="4.2"
+  data-notes="Question five: what next? Saga AI is Einride's delivery planner. The truck asks it once a second where to go. It drives there, parks, waits until loading is done, backs out, and asks again. One route is two docks, and 200 points.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:250px">5 · What next?</div>
+  <div class="el l" data-in="0.3" style="left:150px; top:310px">Ask. Drive.</div>
+  <div class="el l grad" data-in="0.7" style="left:150px; top:442px">Wait. Repeat.</div>
+  <div class="el s" data-in="1.4" style="left:150px; top:640px; width:680px">Saga AI is Einride's delivery planner. The truck asks it once a second where to go, and never tells it what to do.</div>
+  <canvas class="el" data-draw="loop" data-w="1000" data-h="800" data-in="0.5" data-fx="fade" style="left:900px; top:140px"></canvas>
+</section>
+
+<!-- ================= Part 2 · What makes it special ================= -->
+
+<!-- 11 · It learns the arena -->
+<section class="scene" data-holds="4.2"
+  data-notes="Part two: what makes it special. First: it needs no map in advance. The final arena is only shown on the day. No dock position is written in the code. The truck drives one round, the lidar draws the map, and the camera finds the docks. That is what the five practice minutes are for.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:130px">Part 2 · What makes it special</div>
+  <div class="el l" data-in="0.3" style="left:150px; top:190px">A new arena?</div>
+  <div class="el l grad" data-in="0.7" style="left:150px; top:322px">It learns it.</div>
+  <div class="el" data-in="1.4" style="left:150px; top:560px; width:500px">
+    <div class="m">0</div>
+    <div class="s" style="margin-top:18px">dock positions written in the code</div>
+  </div>
+  <div class="el" data-in="1.8" style="left:710px; top:560px; width:500px">
+    <div class="m amber">1 round</div>
+    <div class="s" style="margin-top:18px">of driving: the lidar draws the map, the camera finds the docks</div>
+  </div>
+  <div class="el" data-in="2.2" style="left:1270px; top:560px; width:500px">
+    <div class="m">5 min</div>
+    <div class="s" style="margin-top:18px">of practice before the match, made for exactly this</div>
+  </div>
+  <div class="el s" data-in="3.0" style="left:150px; top:920px; font-size:26px">The final arena is only shown on the day.</div>
+</section>
+
+<!-- 12 · Checked twice -->
+<section class="scene" data-holds="4.6"
+  data-notes="Second: every key step is checked twice. It finds a dock from its saved place on the map, but it only drives in after the camera has seen that dock's tag. It lines up on the tag, and gives up if it is too far off. It stops when the lidar measures the back wall, and backs out if the wall does not appear. And behind the obstacle map there is a last guard that slows down and brakes.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:110px">Part 2 · What makes it special</div>
+  <div class="el m" data-in="0.3" style="left:150px; top:165px">Every key step is <span class="grad">checked twice.</span></div>
+  <div class="el eyebrow" data-in="1.0" style="left:560px; top:360px">How it knows</div>
+  <div class="el eyebrow amber" data-in="1.0" style="left:1200px; top:360px">If that is wrong</div>
+  <div class="el row" data-in="1.3" style="left:150px; top:420px">
+    <div class="h">Find the dock</div><div class="s white">Its saved place on the map</div><div class="s">No tag seen at the door? It does not drive in.</div>
+  </div>
+  <div class="el row" data-in="1.7" style="left:150px; top:560px">
+    <div class="h">Line up</div><div class="s white">The tag, seen by the camera</div><div class="s">Too far off the centre line? Give up, try again.</div>
+  </div>
+  <div class="el row" data-in="2.1" style="left:150px; top:700px">
+    <div class="h">Stop</div><div class="s white">The lidar measures the back wall</div><div class="s">No wall 10 cm past the expected place? Back out.</div>
+  </div>
+  <div class="el row" data-in="2.5" style="left:150px; top:840px">
+    <div class="h">Avoid</div><div class="s white">The obstacle map used for planning</div><div class="s">A last guard slows down and brakes.</div>
+  </div>
+</section>
+
+<!-- 13 · Sim vs real -->
+<section class="scene" data-holds="3.0"
+  data-notes="Third: it is built for this real truck. All of this worked in simulation on the first evening. Then we put it on the real robot. The real robot was honest with us.">
+  <div class="el m full muted" data-in="0.2" style="top:380px">Simulation was kind.</div>
+  <div class="el l full" data-in="1.2" style="top:500px">The real robot was <span class="grad">honest.</span></div>
+</section>
+
+<!-- 14 · It saw itself -->
+<section class="scene" data-holds="4.2,8.0"
+  data-notes="Lesson one. The truck crawled and kept braking. The reason: the lidar could see the truck's own antenna, 13 centimetres away. To the software that was an obstacle that never went away. || The fix: ignore every point inside a box around the robot. The speed command went from 0.07 to 0.32 metres per second.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:210px">Built for the real truck · lesson 1</div>
+  <div class="el l" data-in="0.3" style="left:150px; top:270px">It saw <span class="grad">itself.</span></div>
+  <div class="el s" data-in="1.2" data-out="4.6" style="left:150px; top:470px; width:660px">The lidar saw the truck's own antenna, 13 cm away. An obstacle that never goes away: it kept braking.</div>
+  <div class="el s" data-in="5.0" style="left:150px; top:470px; width:660px">The fix: ignore every point inside a box around the robot.</div>
+  <div class="el m" data-in="5.6" style="left:146px; top:640px"><span class="muted">0.07 →</span> <span class="green">0.32</span></div>
+  <div class="el s" data-in="6.1" style="left:150px; top:750px; width:660px">m/s speed command while driving · before and after</div>
+  <canvas class="el" data-draw="self" data-w="900" data-h="800" data-in="0.5" data-fx="fade" style="left:940px; top:140px"></canvas>
+</section>
+
+<!-- 15 · Seven more surprises -->
+<section class="scene" data-holds="5.2,10.2"
+  data-notes="Seven more surprises, all found on the real robot. The wheel counter spoke centimetres while the driver expected metres. The camera clock was 17 minutes behind, so no dock was ever saved. The gyro drifts a little all the time. And when the truck turns on the spot, the wheels skid: it turned at one third of the speed we asked for. Now it measures that and adapts. || Three more. Seen from very close, a tag gives a wrong direction, so the truck does not learn up close, and saved docks are frozen when the mission starts. With its nose against an obstacle it could not turn or reverse; now the lidar checks behind and it backs out 25 centimetres. And the small computer is busy, so the camera sends 10 pictures a second and the obstacle map is coarser.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:110px">Built for the real truck · lessons 2 to 8</div>
+  <div class="el l" data-in="0.3" style="left:150px; top:170px">Seven more <span class="grad">surprises.</span></div>
+  <div class="el" data-in="1.2" data-out="5.6" style="left:150px; top:420px; width:760px">
+    <div class="h">Centimetres, not metres.</div>
+    <div class="s" style="margin-top:14px">The wheel counter was <span class="red">100×</span> off. The truck thought it stood still.</div>
+  </div>
+  <div class="el" data-in="1.7" data-out="5.6" style="left:1010px; top:420px; width:760px">
+    <div class="h">The clock jumped.</div>
+    <div class="s" style="margin-top:14px">Camera time was <span class="red">17 minutes</span> behind. No dock was ever saved.</div>
+  </div>
+  <div class="el" data-in="2.2" data-out="5.6" style="left:150px; top:680px; width:760px">
+    <div class="h">The gyro drifts.</div>
+    <div class="s" style="margin-top:14px">False turning in about 8 minutes: <span class="muted">175° →</span> <span class="green">15°</span></div>
+  </div>
+  <div class="el" data-in="2.7" data-out="5.6" style="left:1010px; top:680px; width:760px">
+    <div class="h">Turns at one third.</div>
+    <div class="s" style="margin-top:14px">The wheels skid: it turned at <span class="red">0.31</span> of the asked speed. Now it measures that and <span class="green">adapts</span>.</div>
+  </div>
+  <div class="el" data-in="6.2" style="left:150px; top:420px; width:760px">
+    <div class="h">Close-ups lie.</div>
+    <div class="s" style="margin-top:14px">Very close, a tag gives a wrong direction. So: no learning up close, and saved docks are <span class="green">frozen</span> when the mission starts.</div>
+  </div>
+  <div class="el" data-in="6.7" style="left:1010px; top:420px; width:760px">
+    <div class="h">Boxed in.</div>
+    <div class="s" style="margin-top:14px">Nose against an obstacle, it could not turn or reverse. Now the lidar checks behind and it backs out <span class="green">25 cm</span>.</div>
+  </div>
+  <div class="el" data-in="7.2" style="left:150px; top:680px; width:760px">
+    <div class="h">A small computer.</div>
+    <div class="s" style="margin-top:14px">The Jetson is busy. The camera sends <span class="green">10</span> pictures a second, and the obstacle map is coarser.</div>
+  </div>
+  <div class="el s" data-in="8.4" style="left:150px; top:940px; font-size:26px">None of these show up in simulation. Each one is now a check or a fix in the code.</div>
+</section>
+
+<!-- 16 · 221 -> 17 -->
+<section class="scene" data-holds="4.6"
+  data-notes="The result of that long night: the first docking on the real robot took 221 seconds. After the fixes, the same kind of trip takes 17.">
+  <div class="el eyebrow full" data-in="0.1" style="top:190px">One trip to a dock · real robot</div>
+  <div class="el xl full green" data-in="0.5" data-count="221,17" data-cat="1.4" data-cdur="2.2" data-suffix=" s" style="top:260px; font-size:300px">221 s</div>
+  <div class="el s full" data-in="1.2" style="top:600px; font-size:40px; color:var(--text)">from 221 seconds to 17</div>
+  <div class="el s full" data-in="3.8" style="top:690px">the first docking on the real robot · a clean trip after the fixes</div>
+</section>
+
+<!-- ================= Part 3 · Careful, and honest about limits ================= -->
+
+<!-- 17 · Careful on purpose -->
+<section class="scene" data-holds="4.4"
+  data-notes="Part three. We chose to be careful. One hit costs 50 or 100 points, and a whole route is only 200. So the top speed is 0.32 metres per second, about a quarter of what the truck can do. The last part into the dock is even slower. And when it is not sure, it stops, backs out and tries again. It does not push through.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:130px">Part 3 · Careful, and honest about limits</div>
+  <div class="el l" data-in="0.3" style="left:150px; top:190px">Careful <span class="grad">on purpose.</span></div>
+  <div class="el" data-in="1.0" style="left:150px; top:500px; width:500px">
+    <div class="m red">−50 / −100</div>
+    <div class="s" style="margin-top:18px">for one hit. A whole route is only +200.</div>
+  </div>
+  <div class="el" data-in="1.4" style="left:710px; top:500px; width:500px">
+    <div class="m">0.32 m/s</div>
+    <div class="s" style="margin-top:18px">top speed: about a quarter of what the truck can do</div>
+  </div>
+  <div class="el" data-in="1.8" style="left:1270px; top:500px; width:500px">
+    <div class="m">0.04–0.10</div>
+    <div class="s" style="margin-top:18px">m/s for the last part into the dock</div>
+  </div>
+  <div class="el h" data-in="2.8" style="left:150px; top:860px">Not sure? <span class="grad">Stop, back out, try again.</span></div>
+</section>
+
+<!-- 18 · Not solved yet -->
+<section class="scene" data-holds="5.4"
+  data-notes="And these are the things we have not solved. In narrow places it drives stop-and-go: two trips to dock C took 48 and 77 seconds, a clear trip takes 17. We never tested four trucks at once. If it loses its position, it cannot rescue itself: we restart and scan the docks again, about five minutes. The turn boost ran on the real truck only once. The map keeps growing during the whole match. And the small computer is near its limit.">
+  <div class="el eyebrow" data-in="0.1" style="left:150px; top:110px">Part 3 · Careful, and honest about limits</div>
+  <div class="el l" data-in="0.3" style="left:150px; top:170px">Not solved <span class="grad">yet.</span></div>
+  <div class="el" data-in="1.0" style="left:150px; top:410px; width:500px">
+    <div class="h">Slow in tight spots.</div>
+    <div class="s" style="margin-top:14px">Two trips to dock C took <span class="red">48 s</span> and <span class="red">77 s</span>. A clear trip takes 17 s.</div>
+  </div>
+  <div class="el" data-in="1.4" style="left:710px; top:410px; width:500px">
+    <div class="h">Four trucks: untested.</div>
+    <div class="s" style="margin-top:14px">Other trucks are just obstacles to it. They might block each other.</div>
+  </div>
+  <div class="el" data-in="1.8" style="left:1270px; top:410px; width:500px">
+    <div class="h">Lost means restart.</div>
+    <div class="s" style="margin-top:14px">If it loses its position, we restart and scan the docks again: about <span class="red">5 minutes</span>.</div>
+  </div>
+  <div class="el" data-in="2.4" style="left:150px; top:690px; width:500px">
+    <div class="h">Turn boost: one run.</div>
+    <div class="s" style="margin-top:14px">It ran on the real truck once. The value it learned is not confirmed yet.</div>
+  </div>
+  <div class="el" data-in="2.8" style="left:710px; top:690px; width:500px">
+    <div class="h">The map keeps growing.</div>
+    <div class="s" style="margin-top:14px">It maps during the whole match. Other trucks may leave marks. Long runs are untested.</div>
+  </div>
+  <div class="el" data-in="3.2" style="left:1270px; top:690px; width:500px">
+    <div class="h">A busy computer.</div>
+    <div class="s" style="margin-top:14px">The Jetson is near its limit. After scanning, the live viewer must be closed.</div>
+  </div>
+</section>
+
+<!-- 19 · Close -->
+<section class="scene" data-holds="3.4"
+  data-notes="Find the dock. Park the truck. Thank you.">
+  <canvas class="el" data-draw="heroEnd" data-w="1920" data-h="1080" data-in="0" data-fx="fade" data-din="1.6" style="left:0;top:0"></canvas>
+  <div class="el l" data-in="0.6" style="left:150px; top:380px">Find the dock.</div>
+  <div class="el l grad" data-in="1.1" style="left:150px; top:512px">Park the truck.</div>
+  <div class="el s" data-in="2.0" style="left:150px; top:700px">Chalmers Team 1 · thank you</div>
+  <div class="el s" data-in="2.6" style="left:150px; top:940px; font-size:22px; width:900px">Built on ROS 2 Jazzy, Nav2, slam_toolbox, robot_localization and apriltag_ros. Robot, simulator and Saga AI by Einride. 27 unit tests.</div>
+</section>
+
+</div>
+<div id="bar"></div>
+<div id="notes"><b>SPEAKER NOTES · N</b><span id="notes-body"></span></div>
+
+<script>
+(() => {
+"use strict";
+const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const ease = t => { t = clamp(t); return 1 - Math.pow(1 - t, 3); };
+const easeIO = t => { t = clamp(t); return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+const FONT = getComputedStyle(document.documentElement).getPropertyValue("--font");
+const COL = { text: "#f5f5f7", grey: "#86868b", dim: "#48484a", amber: "#ffb020", green: "#30d158", red: "#ff453a" };
+const HAIR = "rgba(245,245,247,0.22)";
+const TAU = Math.PI * 2;
+function rrect(ctx, x, y, w, h, r) {
+  ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+}
+function label(ctx, s, x, y, size, color, weight = 600, align = "center") {
+  ctx.font = `${weight} ${size}px ${FONT}`; ctx.fillStyle = color; ctx.textAlign = align; ctx.textBaseline = "alphabetic"; ctx.fillText(s, x, y);
+}
+function withAlpha(ctx, a, fn) { if (a <= 0.001) return; ctx.save(); ctx.globalAlpha *= clamp(a); fn(); ctx.restore(); }
+
+/* =================== the arena (metres, y up) =================== */
+// Same layout as the example arena in the simulator: 6 x 6 m, eight docks, a few obstacles.
+const DOCKS = { A: [2.99, -1.5, Math.PI], B: [2.99, 1.5, Math.PI], C: [1.5, 2.99, -Math.PI / 2], D: [-1.5, 2.99, -Math.PI / 2],
+                E: [-2.99, 1.5, 0], F: [-2.99, -1.5, 0], G: [-1.5, -2.99, Math.PI / 2], H: [1.5, -2.99, Math.PI / 2] };
+const ORDER = "ABCDEFGH".split("");
+const DOCK_SHAPE = [[0.1414, 0.3414], [0, 0.2], [0, -0.2], [0.1414, -0.3414]];   // wing tip, corner, corner, wing tip
+const OBST = [[2.25, 2.3], [2.65, 2.3], [2.45, 2.65], [-2.7, -2.3], [-2.45, -2.55], [2.45, -2.45], [-0.55, 0.4]];
+const BARRIERS = [[[-1.3, 1.05], [-0.4, 1.05]], [[-1.18, 1.05], [-1.18, 0.2]]];
+const rot = (x, y, a) => [x * Math.cos(a) - y * Math.sin(a), x * Math.sin(a) + y * Math.cos(a)];
+const dockWorld = (d, pts) => pts.map(([x, y]) => { const [rx, ry] = rot(x, y, d[2]); return [d[0] + rx, d[1] + ry]; });
+const P = (v, x, y) => [v.cx + x * v.s, v.cy - y * v.s];
+
+// Points a lidar could hit: walls, docks, obstacles.
+const WALLPTS = (() => {
+  const pts = [];
+  const seg = (a, b, step) => { const n = Math.max(1, Math.round(Math.hypot(b[0] - a[0], b[1] - a[1]) / step)); for (let i = 0; i <= n; i++) pts.push([lerp(a[0], b[0], i / n), lerp(a[1], b[1], i / n)]); };
+  const c = 3.02; seg([-c, -c], [c, -c], .07); seg([c, -c], [c, c], .07); seg([c, c], [-c, c], .07); seg([-c, c], [-c, -c], .07);
+  for (const k of ORDER) { const p = dockWorld(DOCKS[k], DOCK_SHAPE); for (let i = 0; i < 3; i++) seg(p[i], p[i + 1], .04); }
+  OBST.forEach(([x, y]) => { for (let i = 0; i < 14; i++) pts.push([x + .15 * Math.cos(i / 14 * TAU), y + .15 * Math.sin(i / 14 * TAU)]); });
+  BARRIERS.forEach(([a, b]) => seg(a, b, .05));
+  return pts;
+})();
+
+// A closed loop that passes 1.25 m in front of every dock, A to H.
+const TOUR = ORDER.map(k => { const d = DOCKS[k]; return [d[0] + 1.25 * Math.cos(d[2]), d[1] + 1.25 * Math.sin(d[2])]; });
+function tourPose(u) {
+  const n = TOUR.length; u = ((u % 1) + 1) % 1;
+  const f = u * n, i = Math.floor(f), t = f - i;
+  const p0 = TOUR[(i + n - 1) % n], p1 = TOUR[i], p2 = TOUR[(i + 1) % n], p3 = TOUR[(i + 2) % n];
+  const cr = (a, b, c, d) => .5 * (2 * b + (-a + c) * t + (2 * a - 5 * b + 4 * c - d) * t * t + (-a + 3 * b - 3 * c + d) * t * t * t);
+  const dcr = (a, b, c, d) => .5 * ((-a + c) + 2 * (2 * a - 5 * b + 4 * c - d) * t + 3 * (-a + 3 * b - 3 * c + d) * t * t);
+  return [cr(p0[0], p1[0], p2[0], p3[0]), cr(p0[1], p1[1], p2[1], p3[1]), Math.atan2(dcr(p0[1], p1[1], p2[1], p3[1]), dcr(p0[0], p1[0], p2[0], p3[0]))];
+}
+const LIDAR_R = 2.2;
+// When (as a fraction of one loop) each point first comes into lidar range.
+const REVEAL = WALLPTS.map(([x, y]) => { for (let i = 0; i <= 240; i++) { const [px, py] = tourPose(i / 240); if (Math.hypot(px - x, py - y) < LIDAR_R) return i / 240; } return 2; });
+
+// Open Catmull-Rom spline through pts; u in 0..1. Returns [x, y, heading].
+function spline(pts, u) {
+  const n = pts.length - 1; u = clamp(u);
+  const f = Math.min(u * n, n - 1e-6), i = Math.floor(f), t = f - i;
+  const g = j => pts[clamp(j, 0, n)];
+  const p0 = g(i - 1), p1 = g(i), p2 = g(i + 1), p3 = g(i + 2);
+  const cr = (a, b, c, d) => .5 * (2 * b + (-a + c) * t + (2 * a - 5 * b + 4 * c - d) * t * t + (-a + 3 * b - 3 * c + d) * t * t * t);
+  const dcr = (a, b, c, d) => .5 * ((-a + c) + 2 * (2 * a - 5 * b + 4 * c - d) * t + 3 * (-a + 3 * b - 3 * c + d) * t * t);
+  return [cr(p0[0], p1[0], p2[0], p3[0]), cr(p0[1], p1[1], p2[1], p3[1]), Math.atan2(dcr(p0[1], p1[1], p2[1], p3[1]), dcr(p0[0], p1[0], p2[0], p3[0]))];
+}
+
+function drawDockShape(ctx, v, d, color = COL.text, lw = 3) {
+  const pts = dockWorld(d, DOCK_SHAPE).map(p => P(v, p[0], p[1]));
+  ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.lineCap = "round"; ctx.lineJoin = "round";
+  ctx.beginPath(); pts.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])); ctx.stroke();
+}
+function drawArena(ctx, v, a = 1, docks = true) {
+  withAlpha(ctx, a, () => {
+    ctx.strokeStyle = HAIR; ctx.lineWidth = 2;
+    const [x0, y0] = P(v, -3.02, 3.02); ctx.strokeRect(x0, y0, 6.04 * v.s, 6.04 * v.s);
+    if (docks) for (const k of ORDER) drawDockShape(ctx, v, DOCKS[k]);
+    ctx.fillStyle = COL.dim;
+    OBST.forEach(([x, y]) => { const [X, Y] = P(v, x, y); ctx.beginPath(); ctx.arc(X, Y, .15 * v.s, 0, TAU); ctx.fill(); });
+    ctx.strokeStyle = COL.dim; ctx.lineWidth = .12 * v.s; ctx.lineCap = "butt";
+    BARRIERS.forEach(([p, q]) => { const a1 = P(v, p[0], p[1]), b1 = P(v, q[0], q[1]); ctx.beginPath(); ctx.moveTo(a1[0], a1[1]); ctx.lineTo(b1[0], b1[1]); ctx.stroke(); });
+  });
+}
+// The truck from above, drawn a little larger than life so it reads on a 6 m arena.
+function truck(ctx, v, x, y, ang, k = 1.7, line = COL.text, accent = COL.amber) {
+  const [X, Y] = P(v, x, y), L = .27 * v.s * k, Wd = .23 * v.s * k;
+  ctx.save(); ctx.translate(X, Y); ctx.rotate(-ang);
+  ctx.fillStyle = COL.grey;
+  for (const sx of [-.33, 0, .33]) for (const sy of [-1, 1]) { rrect(ctx, sx * L - L * .13, sy * Wd * .5 - Wd * .09, L * .26, Wd * .18, 3); ctx.fill(); }
+  rrect(ctx, -L / 2, -Wd * .42, L, Wd * .84, Math.min(12, L * .14)); ctx.fillStyle = "#1c1c1e"; ctx.fill(); ctx.strokeStyle = line; ctx.lineWidth = 2; ctx.stroke();
+  ctx.fillStyle = accent; rrect(ctx, L / 2 - L * .15, -Wd * .26, L * .08, Wd * .52, 2); ctx.fill();
+  ctx.strokeStyle = accent; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(L * .1, 0, L * .1, 0, TAU); ctx.stroke();
+  ctx.restore();
+}
+function scanDots(ctx, v, x, y, R) {
+  for (const [wx, wy] of WALLPTS) {
+    const d = Math.hypot(wx - x, wy - y); if (d > R) continue;
+    ctx.fillStyle = `rgba(255,176,32,${.15 + .75 * (1 - d / R)})`;
+    const [X, Y] = P(v, wx, wy); ctx.beginPath(); ctx.arc(X, Y, 2.4, 0, TAU); ctx.fill();
+  }
+}
+function sweep(ctx, v, x, y, ang, R) {
+  const [X, Y] = P(v, x, y), ex = X + Math.cos(ang) * R * v.s, ey = Y - Math.sin(ang) * R * v.s;
+  const g = ctx.createLinearGradient(X, Y, ex, ey); g.addColorStop(0, "rgba(255,176,32,.55)"); g.addColorStop(1, "rgba(255,176,32,0)");
+  ctx.strokeStyle = g; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(X, Y); ctx.lineTo(ex, ey); ctx.stroke();
+}
+function nearestDock(x, y) { let best = null, bd = 9; for (const k of ORDER) { const d = Math.hypot(DOCKS[k][0] - x, DOCKS[k][1] - y); if (d < bd) { bd = d; best = k; } } return [best, bd]; }
+function tagCone(ctx, v, x, y, d, a) {
+  const [X, Y] = P(v, x, y), e = dockWorld(d, [[0, .16], [0, -.16]]).map(p => P(v, p[0], p[1]));
+  withAlpha(ctx, a, () => {
+    ctx.fillStyle = "rgba(255,176,32,.14)"; ctx.beginPath(); ctx.moveTo(X, Y); ctx.lineTo(e[0][0], e[0][1]); ctx.lineTo(e[1][0], e[1][1]); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = COL.amber; ctx.lineWidth = 5; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(e[0][0], e[0][1]); ctx.lineTo(e[1][0], e[1][1]); ctx.stroke();
+  });
+}
+
+/* =================== drawings =================== */
+
+// 1 / 17 · the truck circling the arena, its lidar lighting up what is near.
+function drawHero(ctx, W, H, local, amb, cx = 1420) {
+  const v = { cx, cy: 540, s: 128 };
+  withAlpha(ctx, ease(local / 1.6), () => {
+    drawArena(ctx, v, .55);
+    for (const k of ORDER) { const d = DOCKS[k]; const [X, Y] = P(v, d[0] + .5 * Math.cos(d[2]), d[1] + .5 * Math.sin(d[2])); label(ctx, k, X, Y + 9, 26, COL.grey, 600); }
+    const [x, y, a] = tourPose(amb / 34);
+    scanDots(ctx, v, x, y, LIDAR_R);
+    sweep(ctx, v, x, y, amb * 5, LIDAR_R);
+    const [k, d] = nearestDock(x, y);
+    tagCone(ctx, v, x, y, DOCKS[k], clamp((1.55 - d) / .25));
+    truck(ctx, v, x, y, a);
+  });
+}
+
+// 3 · the truck from above, front up, with its senses called out one by one.
+function bigRobot(ctx, cx, cy, S, amb, lidarOn = true) {
+  ctx.lineJoin = "round"; ctx.lineCap = "round";
+  for (const xf of [.086, 0, -.085]) for (const side of [-1, 1]) {
+    rrect(ctx, cx + side * .11 * S - .021 * S, cy - xf * S - .04 * S, .042 * S, .08 * S, 6);
+    ctx.fillStyle = xf === 0 ? "#2c2c2e" : COL.grey; ctx.fill();
+  }
+  rrect(ctx, cx - .095 * S, cy - .125 * S, .19 * S, .25 * S, 20); ctx.fillStyle = "#151517"; ctx.fill(); ctx.strokeStyle = "rgba(245,245,247,.42)"; ctx.lineWidth = 2; ctx.stroke();
+  rrect(ctx, cx - .06 * S, cy + .02 * S, .12 * S, .085 * S, 10); ctx.strokeStyle = HAIR; ctx.stroke();           // computer
+  rrect(ctx, cx - .016 * S, cy - .012 * S, .032 * S, .024 * S, 4); ctx.strokeStyle = COL.grey; ctx.stroke();      // gyro chip
+  rrect(ctx, cx - .045 * S, cy - .125 * S - 6, .09 * S, 14, 5); ctx.fillStyle = COL.amber; ctx.fill();           // camera
+  const lx = cx, ly = cy - .04 * S;
+  ctx.fillStyle = "#0e0e10"; ctx.beginPath(); ctx.arc(lx, ly, .036 * S, 0, TAU); ctx.fill(); ctx.strokeStyle = COL.amber; ctx.lineWidth = 2.5; ctx.stroke();
+  if (lidarOn) { ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(lx + Math.cos(amb * 4) * .036 * S, ly + Math.sin(amb * 4) * .036 * S); ctx.stroke(); }
+  return [lx, ly];
+}
+function drawRobot(ctx, W, H, local, amb) {
+  const cx = 300, cy = 430, S = 1500;
+  withAlpha(ctx, ease(local / 1.0), () => {
+    // lidar rings and camera cone, slow ambient motion
+    const ly = cy - .04 * S;
+    for (let i = 0; i < 3; i++) { const r = ((amb * .22 + i / 3) % 1); ctx.strokeStyle = `rgba(255,176,32,${.22 * (1 - r)})`; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, ly, 60 + r * 230, 0, TAU); ctx.stroke(); }
+    ctx.fillStyle = "rgba(255,176,32,.10)"; ctx.beginPath(); ctx.moveTo(cx, cy - .125 * S); ctx.lineTo(cx - 150, cy - .125 * S - 200); ctx.lineTo(cx + 150, cy - .125 * S - 200); ctx.closePath(); ctx.fill();
+    bigRobot(ctx, cx, cy, S, amb);
+  });
+  const calls = [
+    ["Camera", "reads the dock tags", cx + 40, cy - .125 * S, 110],
+    ["Wheel counters", "measure distance", cx + .11 * S + 30, cy - .086 * S, 260],
+    ["Lidar", "360° · up to 12 m · 10 turns a second", cx + .036 * S, cy - .04 * S, 410],
+    ["Gyro", "feels every turn", cx + 24, cy, 560],
+    ["Jetson computer", "runs everything on board", cx + .06 * S, cy + .06 * S, 710],
+  ];
+  calls.forEach(([name, sub, ax, ay, y], i) => {
+    const k = ease((local - 1.2 - i * .55) / .8);
+    withAlpha(ctx, k, () => {
+      const tx = 600, off = (1 - k) * 22;
+      ctx.strokeStyle = HAIR; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(tx - 24, y - 12); ctx.stroke();
+      ctx.fillStyle = COL.amber; ctx.beginPath(); ctx.arc(ax, ay, 5, 0, TAU); ctx.fill();
+      label(ctx, name, tx, y + off, 38, COL.text, 700, "left");
+      label(ctx, sub, tx, y + 36 + off, 24, COL.grey, 500, "left");
+    });
+  });
+}
+
+// 4 · five stages in a row, then the loop back for the next dock.
+function drawPipe(ctx, W, H, local, amb) {
+  const names = ["Locate", "Find docks", "Navigate", "Dock", "Mission"];
+  const asks = ["Where am I?", "Where are the docks?", "How do I get there?", "How do I park?", "What next?"];
+  const subs = ["wheels + gyro + lidar", "printed tags, 0 to 7", "around every obstacle", "tag to aim · lidar to stop", "Saga AI · once a second"];
+  const cy = 190, r = 84, gap = 330, x0 = W / 2 - 2 * gap, cx = i => x0 + i * gap;
+  const kl = easeIO((local - .4) / 2.0);
+  ctx.strokeStyle = "rgba(245,245,247,.16)"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx(0), cy); ctx.lineTo(lerp(cx(0), cx(4), kl), cy); ctx.stroke();
+  names.forEach((n, i) => {
+    const k = ease((local - .5 - i * .32) / .8);
+    if (k <= 0) return;
+    ctx.save(); ctx.globalAlpha = k; ctx.translate(cx(i), cy + (1 - k) * 24);
+    ctx.fillStyle = "#0e0e10"; ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.fill();
+    ctx.strokeStyle = HAIR; ctx.lineWidth = 2; ctx.stroke();
+    glyph(ctx, i, amb);
+    label(ctx, asks[i], 0, -r - 28, 26, COL.amber, 600);
+    label(ctx, n, 0, r + 70, 44, COL.text, 700);
+    label(ctx, subs[i], 0, r + 112, 24, COL.grey, 500);
+    ctx.restore();
+  });
+  const kL = easeIO((local - 2.8) / 1.2);       // loop: mission -> navigate
+  if (kL > 0) {
+    const sx = cx(4), ex = cx(2), pts = [];
+    for (let i = 0; i <= 60; i++) { const u = i / 60; pts.push([lerp(sx, ex, u), (cy + r + 150) + Math.sin(Math.PI * u) * 110]); }
+    const n = Math.floor(pts.length * kL);
+    ctx.strokeStyle = COL.amber; ctx.lineWidth = 4; ctx.setLineDash([2, 12]); ctx.lineCap = "round"; ctx.lineDashOffset = -amb * 30;
+    ctx.beginPath(); ctx.moveTo(sx, cy + r + 130); ctx.lineTo(sx, pts[0][1]);
+    pts.slice(0, n).forEach(([x, y]) => ctx.lineTo(x, y));
+    if (kL >= 1) ctx.lineTo(ex, cy + r + 130);
+    ctx.stroke(); ctx.setLineDash([]);
+    if (kL >= 1) { ctx.fillStyle = COL.amber; ctx.beginPath(); ctx.moveTo(ex, cy + r + 124); ctx.lineTo(ex - 11, cy + r + 144); ctx.lineTo(ex + 11, cy + r + 144); ctx.fill(); }
+    withAlpha(ctx, ease((local - 3.6) / .8), () => label(ctx, "next dock", (sx + ex) / 2, cy + r + 316, 34, COL.amber, 700));
+  }
+}
+function glyph(ctx, i, t) {
+  ctx.strokeStyle = COL.text; ctx.fillStyle = COL.text; ctx.lineWidth = 3; ctx.lineJoin = "round"; ctx.lineCap = "round";
+  if (i === 0) {            // a position pin on a floor
+    ctx.beginPath(); ctx.arc(0, -12, 18, Math.PI * .85, Math.PI * .15); ctx.lineTo(0, 26); ctx.closePath(); ctx.stroke();
+    ctx.fillStyle = COL.amber; ctx.beginPath(); ctx.arc(0, -12, 6, 0, TAU); ctx.fill();
+    ctx.strokeStyle = COL.grey; ctx.beginPath(); ctx.ellipse(0, 30, 30, 8, 0, 0, TAU); ctx.stroke();
+  } else if (i === 1) {     // a tag
+    ctx.strokeRect(-28, -28, 56, 56);
+    ctx.fillStyle = COL.text; [[-18, -18], [2, -18], [-18, 2], [8, 8]].forEach(([x, y], j) => ctx.fillRect(x, y, j === 3 ? 12 : 16, j === 3 ? 12 : 16));
+    ctx.fillStyle = COL.amber; ctx.fillRect(2, 2, 6, 6);
+  } else if (i === 2) {     // a path around a block
+    ctx.fillStyle = COL.dim; ctx.beginPath(); ctx.arc(2, 4, 13, 0, TAU); ctx.fill();
+    ctx.strokeStyle = COL.amber; ctx.beginPath(); ctx.moveTo(-36, 26); ctx.bezierCurveTo(-30, -30, 20, -34, 34, -14); ctx.stroke();
+    ctx.fillStyle = COL.amber; ctx.beginPath(); ctx.moveTo(40, -6); ctx.lineTo(26, -10); ctx.lineTo(37, -22); ctx.fill();
+    ctx.fillStyle = COL.text; ctx.beginPath(); ctx.arc(-36, 26, 5, 0, TAU); ctx.fill();
+  } else if (i === 3) {     // a truck entering a dock
+    ctx.beginPath(); ctx.moveTo(14, -36); ctx.lineTo(34, -22); ctx.lineTo(34, 22); ctx.lineTo(14, 36); ctx.stroke();
+    const x = -34 + ((t * .5) % 1) * 12;
+    rrect(ctx, x, -13, 34, 26, 5); ctx.stroke();
+    ctx.fillStyle = COL.amber; ctx.fillRect(x + 26, -8, 4, 16);
+  } else {                  // two arrows going round
+    ctx.save(); ctx.rotate(t * .6);
+    for (const a of [0, Math.PI]) { ctx.save(); ctx.rotate(a); ctx.beginPath(); ctx.arc(0, 0, 26, -2.2, -.3); ctx.stroke(); ctx.beginPath(); ctx.moveTo(27, 0); ctx.lineTo(16, -9); ctx.lineTo(31, -15); ctx.fill(); ctx.restore(); }
+    ctx.restore();
+  }
+}
+
+// 5 · wheels + gyro follow the real path; wheels alone turn far too much.
+function drawOdo(ctx, W, H, local, amb) {
+  const x0 = 250, y0 = 700, a = 230, R = 120, arc = R * Math.PI / 2, tail = 300, total = a + arc + tail;
+  const pose = (s, f) => {        // f = how much turn the estimate believes (1 = truth)
+    if (s <= a) return [x0, y0 - s, 0];
+    const ang = Math.PI / 2 * f, r = arc / ang;
+    if (s <= a + arc) { const p = (s - a) / arc * ang; return [x0 + r - r * Math.cos(p), y0 - a - r * Math.sin(p), p]; }
+    const ex = x0 + r - r * Math.cos(ang), ey = y0 - a - r * Math.sin(ang), d = s - a - arc;
+    return [ex + Math.sin(ang) * d, ey - Math.cos(ang) * d, ang];
+  };
+  const s = total * easeIO((local - .8) / 4.6), F = 2.4;   // wheels believe 2.4x the real turn (measured: effective track 0.53 m vs 0.22 m)
+  const trail = (f, color, dash) => {
+    ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineCap = "round"; ctx.setLineDash(dash);
+    ctx.beginPath(); for (let d = 0; d <= s; d += 4) { const [x, y] = pose(d, f); d ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); ctx.setLineDash([]);
+  };
+  withAlpha(ctx, ease(local / .8), () => {
+    ctx.strokeStyle = COL.grey; ctx.lineWidth = 2;                       // wheel ticks along the real path
+    for (let d = 0; d <= s; d += 24) { const [x, y, p] = pose(d, 1); for (const side of [-1, 1]) { const nx = Math.cos(p) * side * 34, ny = Math.sin(p) * side * 34; ctx.beginPath(); ctx.moveTo(x + nx - Math.sin(p) * 5, y + ny + Math.cos(p) * 5); ctx.lineTo(x + nx + Math.sin(p) * 5, y + ny - Math.cos(p) * 5); ctx.stroke(); } }
+    trail(F, COL.grey, [3, 12]);
+    trail(1, COL.amber, []);
+    const ghost = pose(s, F), real = pose(s, 1);
+    const box = ([x, y, p], line, fill) => { ctx.save(); ctx.translate(x, y); ctx.rotate(p); rrect(ctx, -30, -36, 60, 72, 10); if (fill) { ctx.fillStyle = "#1c1c1e"; ctx.fill(); } ctx.strokeStyle = line; ctx.lineWidth = 2.5; ctx.stroke(); if (fill) { ctx.fillStyle = COL.amber; rrect(ctx, -18, -30, 36, 6, 2); ctx.fill(); } ctx.restore(); };
+    if (s > a) box(ghost, COL.grey, false);
+    box(real, COL.text, true);
+    if (s > a + 8 && s < a + arc) {                                        // gyro arc while turning
+      ctx.strokeStyle = COL.amber; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(real[0], real[1], 64, -Math.PI / 2, -Math.PI / 2 + real[2]); ctx.stroke();
+      label(ctx, Math.round(real[2] * 180 / Math.PI) + "°", real[0] + 86, real[1] - 60, 30, COL.amber, 700, "left");
+    }
+    withAlpha(ctx, ease((local - 2.2) / .8), () => label(ctx, "skids sideways to turn", x0 + 150, y0 - a + 30, 24, COL.grey, 500, "left"));
+    withAlpha(ctx, ease((local - 5.4) / .8), () => {
+      label(ctx, "wheels + gyro", real[0] - 8, real[1] - 62, 32, COL.amber, 700, "right");
+      label(ctx, "wheels only", ghost[0] + 50, ghost[1] + 14, 32, COL.grey, 700, "left");
+    });
+  });
+}
+
+// 6 · one lap; every point stays lit once the lidar has seen it.
+function drawSlam(ctx, W, H, local, amb) {
+  const v = { cx: 520, cy: 450, s: 132 }, u = clamp((local - .8) / 9.4);
+  withAlpha(ctx, ease(local / .8), () => {
+    const [x, y, a] = tourPose(u);
+    WALLPTS.forEach(([wx, wy], i) => {
+      if (REVEAL[i] > u) return;
+      const near = Math.hypot(wx - x, wy - y) < LIDAR_R && u < 1;
+      const k = clamp((u - REVEAL[i]) / .03);
+      ctx.fillStyle = near ? `rgba(255,176,32,${.9 * k})` : `rgba(245,245,247,${.85 * k})`;
+      const [X, Y] = P(v, wx, wy); ctx.beginPath(); ctx.arc(X, Y, near ? 2.8 : 2.2, 0, TAU); ctx.fill();
+    });
+    if (u < 1) {
+      ctx.strokeStyle = "rgba(255,176,32,.10)"; ctx.lineWidth = 1.5; const [X, Y] = P(v, x, y); ctx.beginPath(); ctx.arc(X, Y, LIDAR_R * v.s, 0, TAU); ctx.stroke();
+      sweep(ctx, v, x, y, amb * 6, LIDAR_R);
+    }
+    truck(ctx, v, x, y, a);
+    label(ctx, Math.round(u * 100) + "% of the arena mapped", 520, 880, 28, u >= 1 ? COL.green : COL.grey, 600);
+  });
+}
+
+// 7 · the same lap; each tag is read, sightings settle, the dock gets its letter.
+function drawTags(ctx, W, H, local, amb) {
+  const v = { cx: 520, cy: 450, s: 132 }, T0 = 1.6, DUR = 8.6, u = clamp((local - T0) / DUR);
+  withAlpha(ctx, ease(local / .8), () => {
+    drawArena(ctx, v, .5, false);
+    const [x, y, a] = tourPose(u * .999);
+    ORDER.forEach((k, i) => {
+      const d = DOCKS[k], seenAt = Math.max(0, i / 8 - .035), since = (u - seenAt) * DUR;
+      const got = clamp((since - .9) / .5);
+      drawDockShape(ctx, v, d, since > 0 ? COL.text : COL.dim, 3);
+      if (since <= 0) return;
+      if (since < 1.1) tagCone(ctx, v, x, y, d, clamp(1 - Math.abs(since - .55) / .55) * 1.4);
+      for (let j = 0; j < 7; j++) {                      // sightings scatter, then settle on the dock
+        const sp = .34 * (1 - ease(since / .9));
+        const ox = Math.sin(i * 12.99 + j * 78.2) * sp, oy = Math.cos(i * 4.1 + j * 37.7) * sp;
+        const [X, Y] = P(v, d[0] + .12 * Math.cos(d[2]) + ox, d[1] + .12 * Math.sin(d[2]) + oy);
+        ctx.fillStyle = `rgba(255,176,32,${.8 * (1 - got)})`; ctx.beginPath(); ctx.arc(X, Y, 3.2, 0, TAU); ctx.fill();
+      }
+      withAlpha(ctx, got, () => {
+        const [X, Y] = P(v, d[0] + .62 * Math.cos(d[2]), d[1] + .62 * Math.sin(d[2]));
+        label(ctx, k, X, Y + 14 + (1 - got) * 10, 40, COL.text, 700);
+        const [gx, gy] = P(v, d[0] + .02 * Math.cos(d[2]), d[1] + .02 * Math.sin(d[2]));
+        ctx.fillStyle = COL.green; ctx.beginPath(); ctx.arc(gx, gy, 6, 0, TAU); ctx.fill();
+      });
+    });
+    truck(ctx, v, x, y, a);
+  });
+}
+
+// 8 · a path outside every safety margin; a second robot appears, the path changes.
+function drawNav(ctx, W, H, local, amb) {
+  const v = { cx: 810, cy: 320, s: 200 };
+  const obs = [[-1.2, -.2], [.4, .6]], barrier = [[-.2, -1.15], [.95, -1.15]], goal = [2.85, .3], dock = [3.4, .3, Math.PI];
+  const A = [[-3.6, -.6], [-2.4, -.75], [-1.3, -.82], [-.35, -.45], [.5, -.22], [1.6, .05], goal];
+  const split = .5, other = [1.25, -.05];
+  const B = [spline(A, split).slice(0, 2), [-.05, .1], [-.1, .8], [.45, 1.22], [1.5, .95], [2.3, .5], goal];
+  const halo = (x, y, r) => { const [X, Y] = P(v, x, y); ctx.fillStyle = "rgba(255,176,32,.07)"; ctx.strokeStyle = "rgba(255,176,32,.28)"; ctx.lineWidth = 1.5; ctx.setLineDash([4, 8]); ctx.beginPath(); ctx.arc(X, Y, r * v.s, 0, TAU); ctx.fill(); ctx.stroke(); ctx.setLineDash([]); };
+  const pathLine = (pts, k, color, lw, from = 0) => { if (k <= from) return; ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.lineCap = "round"; ctx.beginPath(); for (let i = 0; i <= 80; i++) { const uu = lerp(from, k, i / 80), q = spline(pts, uu), c = P(v, q[0], q[1]); i ? ctx.lineTo(c[0], c[1]) : ctx.moveTo(c[0], c[1]); } ctx.stroke(); };
+  withAlpha(ctx, ease(local / .8), () => {
+    // obstacles and their margins
+    obs.forEach(([x, y]) => halo(x, y, .46));
+    { const a1 = P(v, barrier[0][0], barrier[0][1]), b1 = P(v, barrier[1][0], barrier[1][1]); ctx.fillStyle = "rgba(255,176,32,.07)"; rrect(ctx, a1[0] - .4 * v.s, a1[1] - .4 * v.s, b1[0] - a1[0] + .8 * v.s, .8 * v.s, .4 * v.s); ctx.fill(); ctx.strokeStyle = "rgba(255,176,32,.28)"; ctx.lineWidth = 1.5; ctx.setLineDash([4, 8]); ctx.stroke(); ctx.setLineDash([]);
+      ctx.strokeStyle = COL.dim; ctx.lineWidth = .14 * v.s; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(a1[0], a1[1]); ctx.lineTo(b1[0], b1[1]); ctx.stroke(); }
+    ctx.fillStyle = COL.dim; obs.forEach(([x, y]) => { const [X, Y] = P(v, x, y); ctx.beginPath(); ctx.arc(X, Y, .17 * v.s, 0, TAU); ctx.fill(); });
+    drawDockShape(ctx, v, dock, COL.text, 4);
+    { const [X, Y] = P(v, goal[0], goal[1]); ctx.strokeStyle = COL.green; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(X, Y, 13 + Math.sin(amb * 3) * 2, 0, TAU); ctx.stroke(); label(ctx, "stop here first", X, Y - 34, 24, COL.green, 600); }
+    // plan A
+    const second = local > 4.4, kA = easeIO((local - .9) / 1.4);
+    const uA = Math.min(split, split * easeIO((local - 1.7) / 2.4));
+    pathLine(A, kA, second ? COL.dim : COL.amber, 4, 0);
+    // the other robot and plan B
+    const kO = ease((local - 4.6) / .7);
+    withAlpha(ctx, kO, () => { halo(other[0], other[1], .5); truck(ctx, v, other[0], other[1], 2.4, 1, COL.grey, COL.grey); label(ctx, "another robot", P(v, other[0], other[1])[0] + 70, P(v, other[0], other[1])[1] + 100, 24, COL.grey, 600); });
+    const kB = easeIO((local - 5.6) / 1.2), uB = easeIO((local - 6.4) / 3.6);
+    if (second) pathLine(B, kB, COL.amber, 4, 0);
+    const pose = second && uB > 0 ? spline(B, uB) : spline(A, uA);
+    truck(ctx, v, pose[0], pose[1], pose[2], 1);
+    if (second && kB < 1 && local > 5.0) label(ctx, "planning again…", P(v, pose[0], pose[1])[0], P(v, pose[0], pose[1])[1] - 60, 24, COL.amber, 600);
+  });
+}
+
+// 9 · stop in front, see the tag, drive in until the lidar reads 22 cm.
+function drawDock(ctx, W, H, local, amb) {
+  const s = 640, cy = 350, xw = 1400;                         // px per metre, dock axis, inner face of the back wall
+  const xStage = xw - .55 * s, xDock = xw - .22 * s;
+  const kArrive = easeIO((local - .4) / 1.8), kIn = easeIO((local - 5.9) / 2.6);
+  const x = local < 5.5 ? lerp(210, xStage, kArrive) : lerp(xStage, xDock, kIn);
+  const y = cy + (1 - kArrive) * 150, ang = (1 - kArrive) * -.5;
+  const stepA = i => clamp((local - [.3, 2.9, 5.5][i]) / .6);
+  withAlpha(ctx, ease(local / .8), () => {
+    // the dock
+    ctx.strokeStyle = COL.text; ctx.lineWidth = 6; ctx.lineCap = "round"; ctx.lineJoin = "round";
+    ctx.beginPath(); ctx.moveTo(xw - .1414 * s, cy - .3414 * s); ctx.lineTo(xw, cy - .2 * s); ctx.lineTo(xw, cy + .2 * s); ctx.lineTo(xw - .1414 * s, cy + .3414 * s); ctx.stroke();
+    const seen = clamp((local - 3.1) / .6);
+    ctx.fillStyle = seen > 0 ? COL.amber : COL.grey; ctx.fillRect(xw - 9, cy - .05 * s, 9, .1 * s);
+    label(ctx, "tag", xw + 18, cy + 8, 24, seen > 0 ? COL.amber : COL.grey, 600, "left");
+    // centre line, once the tag has been seen
+    withAlpha(ctx, seen, () => { ctx.strokeStyle = HAIR; ctx.lineWidth = 2; ctx.setLineDash([10, 12]); ctx.beginPath(); ctx.moveTo(xw - 8, cy); ctx.lineTo(lerp(xw, 330, easeIO(seen)), cy); ctx.stroke(); ctx.setLineDash([]); });
+    // camera cone
+    const L = .27 * s, front = x + L / 2;
+    withAlpha(ctx, seen * (1 - clamp((local - 7.6) / .8) * .7), () => {
+      ctx.fillStyle = "rgba(255,176,32,.13)"; ctx.beginPath(); ctx.moveTo(front, y); ctx.lineTo(xw - 9, cy - .05 * s); ctx.lineTo(xw - 9, cy + .05 * s); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = "rgba(255,176,32,.5)"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(front, y); ctx.lineTo(xw - 9, cy - .05 * s); ctx.moveTo(front, y); ctx.lineTo(xw - 9, cy + .05 * s); ctx.stroke();
+    });
+    // the truck (true size at this scale)
+    const done = local > 8.5;
+    const v = { cx: 0, cy: 0, s };
+    truck(ctx, v, x / s, -y / s, -ang, 1, done ? COL.green : COL.text);
+    // distance: staging dimension, then the live lidar reading
+    const dist = Math.round((xw - x) / s * 100);
+    if (local > 1.9 && local < 5.6) withAlpha(ctx, clamp((local - 2.0) / .5) * (1 - clamp((local - 5.3) / .3)), () => {
+      const yy = cy + 150; ctx.strokeStyle = COL.grey; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, yy); ctx.lineTo(xw, yy); ctx.moveTo(x, yy - 12); ctx.lineTo(x, yy + 12); ctx.moveTo(xw, yy - 12); ctx.lineTo(xw, yy + 12); ctx.stroke();
+      label(ctx, "55 cm", (x + xw) / 2, yy + 44, 32, COL.text, 700);
+    });
+    if (local > 5.7) {
+      const lx = x + .04 * s; ctx.strokeStyle = done ? COL.green : COL.amber; ctx.lineWidth = 3; ctx.setLineDash(done ? [] : [3, 9]); ctx.lineDashOffset = -amb * 40;
+      ctx.beginPath(); ctx.moveTo(lx, y - 96); ctx.lineTo(xw, y - 96); ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.moveTo(lx, y - 108); ctx.lineTo(lx, y - 84); ctx.moveTo(xw, y - 108); ctx.lineTo(xw, y - 84); ctx.stroke();
+      label(ctx, dist + " cm", (x + xw) / 2 + 10, y - 116, 44, done ? COL.green : COL.amber, 700);
+    }
+    // the three steps
+    [["1", "Stop in front", "55 cm from the wall, facing the dock"], ["2", "See the tag", "no tag, no entry · the tag gives the centre line"], ["3", "The lidar says stop", "drive in slowly, stop at 22 cm"]].forEach(([n, t, sub], i) => {
+      const k = stepA(i), cur = (i === 2 ? true : stepA(i + 1) < .5);
+      withAlpha(ctx, k, () => {
+        const yy = 60 + i * 96 + (1 - ease(k)) * 16;
+        label(ctx, n, 0, yy, 40, cur ? COL.amber : COL.dim, 700, "left");
+        label(ctx, t, 44, yy, 40, cur ? COL.text : COL.grey, 700, "left");
+        label(ctx, sub, 44, yy + 34, 24, COL.grey, 500, "left");
+      });
+    });
+  });
+}
+
+// 11 · the mission loop.
+function drawLoop(ctx, W, H, local, amb) {
+  const cx = 430, cy = 400, R = 215, names = ["Ask Saga AI", "Drive to the dock", "Park and wait", "Back out"];
+  const pos = i => [cx + R * Math.cos(-Math.PI / 2 + i * Math.PI / 2), cy + R * Math.sin(-Math.PI / 2 + i * Math.PI / 2)];
+  withAlpha(ctx, ease(local / .9), () => {
+    const kr = easeIO((local - .4) / 1.6);
+    ctx.strokeStyle = HAIR; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, R, -Math.PI / 2, -Math.PI / 2 + TAU * kr); ctx.stroke();
+    const turn = (amb * .16) % 1, da = -Math.PI / 2 + turn * TAU;
+    names.forEach((n, i) => {
+      const k = ease((local - .8 - i * .4) / .7); if (k <= 0) return;
+      const [x, y] = pos(i), hot = Math.abs(((turn * 4 - i + 6) % 4) - 2) > 1.72;
+      withAlpha(ctx, k, () => {
+        ctx.fillStyle = "#0e0e10"; ctx.beginPath(); ctx.arc(x, y, 20, 0, TAU); ctx.fill(); ctx.strokeStyle = hot ? COL.amber : COL.text; ctx.lineWidth = 2.5; ctx.stroke();
+        const lx = i === 1 ? x + 38 : i === 3 ? x - 38 : x, ly = i === 0 ? y - 40 : i === 2 ? y + 62 : y + 12;
+        label(ctx, n, lx, ly, 34, hot ? COL.amber : COL.text, 700, i === 1 ? "left" : i === 3 ? "right" : "center");
+      });
+    });
+    if (local > 2.2) { ctx.fillStyle = COL.amber; ctx.beginPath(); ctx.arc(cx + R * Math.cos(da), cy + R * Math.sin(da), 9, 0, TAU); ctx.fill(); }
+    withAlpha(ctx, ease((local - 2.6) / .8), () => {
+      label(ctx, "one route", cx, cy - 46, 26, COL.grey, 600);
+      label(ctx, "two docks", cx, cy + 6, 44, COL.text, 700);
+      label(ctx, "+200", cx, cy + 86, 72, COL.green, 700);
+    });
+  });
+}
+
+// 15 · the lidar hits the robot's own antenna; a box around the robot removes it.
+function drawSelf(ctx, W, H, local, amb) {
+  const cx = 420, cy = 400, S = 1500, fixed = clamp((local - 4.6) / .9);
+  const ax = cx + .087 * S, ay = cy + .063 * S;                  // antenna: 6 cm behind the centre, 9 cm to the right
+  withAlpha(ctx, ease(local / .9), () => {
+    const [lx, ly] = bigRobot(ctx, cx, cy, S, amb, false);
+    const sw = amb * 2.6, hitAng = Math.atan2(ay - ly, ax - lx);
+    const d = Math.abs(((sw - hitAng + Math.PI) % TAU + TAU) % TAU - Math.PI), flash = clamp(1 - d / .5);
+    ctx.strokeStyle = "rgba(255,176,32,.5)"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(lx + Math.cos(sw) * 330, ly + Math.sin(sw) * 330); ctx.stroke();
+    // the hit
+    withAlpha(ctx, 1 - fixed, () => {
+      ctx.strokeStyle = COL.red; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(ax, ay); ctx.stroke();
+      ctx.strokeStyle = `rgba(255,69,58,${.35 + .65 * flash})`; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(ax, ay, 20 + flash * 14, 0, TAU); ctx.stroke();
+    });
+    ctx.fillStyle = fixed > .5 ? COL.grey : COL.red; ctx.beginPath(); ctx.arc(ax, ay, 9, 0, TAU); ctx.fill();
+    withAlpha(ctx, ease((local - 1.0) / .7), () => {
+      const tx = cx + .131 * S + 46;                               // clear of the right wheels
+      ctx.strokeStyle = HAIR; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(ax + 40, ay); ctx.lineTo(tx - 14, ay); ctx.stroke();
+      label(ctx, "antenna", tx, ay + 4, 32, fixed > .5 ? COL.grey : COL.red, 700, "left");
+      label(ctx, "13 cm from the lidar", tx, ay + 38, 24, COL.grey, 500, "left");
+    });
+    // the filter box
+    withAlpha(ctx, fixed, () => {
+      const bx = cx - .15 * S, by = cy - .14 * S, bw = .30 * S, bh = .31 * S;
+      ctx.strokeStyle = COL.amber; ctx.lineWidth = 3; ctx.setLineDash([10, 10]); ctx.lineDashOffset = -amb * 16; rrect(ctx, bx, by, bw, bh, 26); ctx.stroke(); ctx.setLineDash([]);
+      label(ctx, "ignore what is inside", cx, by - 22 - (1 - ease(fixed)) * 10, 30, COL.amber, 700);
+    });
+  });
+}
+
+const DRAW = { hero: drawHero, heroEnd: (c, W, H, l, a) => drawHero(c, W, H, l, a, 1450), robot: drawRobot, pipe: drawPipe,
+               odo: drawOdo, slam: drawSlam, tags: drawTags, nav: drawNav, dock: drawDock, loop: drawLoop, self: drawSelf };
+
+/* =================== page engine (from the Go Pikachu pitch) =================== */
+// Each .scene is one page, played in HTML order. Click / right arrow = next beat or next page.
+// Each page has its own clock from 0; data-in / data-out are seconds on that clock.
+// data-holds (optional) = where the page pauses; several values = several beats.
+const stage = document.getElementById("stage");
+let scale = 1;
+const scenes = [...document.querySelectorAll(".scene")].map(el => {
+  const items = [...el.querySelectorAll("[data-in]")].map(e => ({
+    el: e, tin: +e.dataset.in, tout: e.dataset.out ? +e.dataset.out : Infinity, fx: e.dataset.fx || "up",
+    din: +(e.dataset.din || 0.9), dout: +(e.dataset.dout || 0.7), vis: false, since: 0,
+    draw: e.dataset.draw ? DRAW[e.dataset.draw] : null,
+    ctx: e.tagName === "CANVAS" ? e.getContext("2d") : null, w: +e.dataset.w, h: +e.dataset.h,
+    count: e.dataset.count ? e.dataset.count.split(",").map(Number) : null,
+  }));
+  let steps = (el.dataset.holds || "").split(",").filter(Boolean).map(Number);
+  if (!steps.length) steps = [0];
+  const k = steps.length - 1;
+  steps[k] = Math.max(steps[k], ...items.filter(i => i.tout > steps[k]).map(i => i.tin + i.din));
+  const notes = (el.dataset.notes || "").split("||").map(s => s.trim());
+  return { el, items, steps, notes };
+});
+const N = scenes.length;
+
+function sizeCanvases() {
+  const k = Math.max(1, scale * (devicePixelRatio || 1));
+  for (const s of scenes) for (const it of s.items) if (it.ctx) {
+    it.el.width = Math.round(it.w * k); it.el.height = Math.round(it.h * k);
+    it.el.style.width = it.w + "px"; it.el.style.height = it.h + "px"; it.k = k;
+  }
+}
+function fit() {
+  scale = Math.min(innerWidth / 1920, innerHeight / 1080);
+  stage.style.transform = `translate(${(innerWidth - 1920 * scale) / 2}px, ${(innerHeight - 1080 * scale) / 2}px) scale(${scale})`;
+  sizeCanvases();
+}
+
+let page = 0, step = 0, L = 0, playing = false, last = performance.now(), started = false;
+const target = () => scenes[page].steps[step];
+function start() { started = true; playing = true; }
+function goPage(p) { page = p; step = 0; L = 0; playing = true; }
+function next() {
+  if (!started) return start();
+  if (playing) { L = target(); playing = false; return; }
+  if (step < scenes[page].steps.length - 1) { step++; playing = true; }
+  else if (page < N - 1) goPage(page + 1);
+}
+function prev() {
+  if (!started) return;
+  playing = false;
+  if (step > 0) { step--; L = target(); }
+  else if (page > 0) { page--; step = scenes[page].steps.length - 1; L = target(); }
+  else L = 0;
+}
+
+function render(now) {
+  const dt = Math.min(0.1, (now - last) / 1000); last = now;
+  if (playing) { L += dt; if (L >= target()) { L = target(); playing = false; } }
+  for (let i = 0; i < N; i++) {
+    const s = scenes[i], on = started && i === page;
+    s.el.style.visibility = on ? "visible" : "hidden";
+    for (const it of s.items) {
+      const ai = on ? ease((L - it.tin) / it.din) : 0;
+      const ao = on ? ease((L - it.tout) / it.dout) : 0;
+      const a = ai * (1 - ao), vis = a > 0.001;
+      if (vis !== it.vis) { it.vis = vis; it.since = now; }
+      if (!vis) { if (it.el.style.opacity !== "0") it.el.style.opacity = 0; continue; }
+      it.el.style.opacity = a;
+      if (it.fx === "up") {
+        it.el.style.transform = `translateY(${(1 - ai) * 36 - ao * 18}px)`;
+        const blur = (1 - ai) * 12 + ao * 8;
+        it.el.style.filter = blur > 0.2 ? `blur(${blur}px)` : "none";
+      }
+      if (it.count) {
+        const v = lerp(it.count[0], it.count[1], easeIO((L - +it.el.dataset.cat) / +it.el.dataset.cdur));
+        it.el.textContent = Math.round(v) + (it.el.dataset.suffix || "");
+      }
+      if (it.ctx) {
+        it.ctx.setTransform(it.k, 0, 0, it.k, 0, 0); it.ctx.clearRect(0, 0, it.w, it.h);
+        it.draw(it.ctx, it.w, it.h, L - it.tin, (now - it.since) / 1000);
+      }
+    }
+  }
+  const sc = scenes[page];
+  document.getElementById("bar").style.width = (started ? (page + (step + 1) / sc.steps.length) / N * 100 : 0) + "%";
+  document.getElementById("notes-body").textContent = ` [${page + 1}/${N}] ` + (sc.notes[step] || sc.notes[0]);
+  requestAnimationFrame(render);
+}
+
+addEventListener("keydown", e => {
+  const k = e.key;
+  if (["ArrowRight", "PageDown", " ", "Enter"].includes(k)) { e.preventDefault(); next(); }
+  else if (["ArrowLeft", "PageUp", "Backspace"].includes(k)) { e.preventDefault(); prev(); }
+  else if (k === "f" || k === "F") document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {});
+  else if (k === "n" || k === "N") document.getElementById("notes").classList.toggle("on");
+  else if (k === "r" || k === "R") { goPage(0); start(); }
+});
+addEventListener("click", e => { if (e.target.closest("#notes")) return; e.clientX < innerWidth * 0.2 ? prev() : next(); });
+let mouseTimer = 0;
+addEventListener("mousemove", () => { document.body.classList.add("cursor"); clearTimeout(mouseTimer); mouseTimer = setTimeout(() => document.body.classList.remove("cursor"), 1500); });
+addEventListener("resize", fit);
+fit();
+const jump = parseInt(new URLSearchParams(location.search).get("p"));   // ?p=5 opens page 5
+start();
+if (jump >= 1) goPage(Math.min(jump, N) - 1);
+requestAnimationFrame(render);
+})();
+</script>
+</body>
+</html>
