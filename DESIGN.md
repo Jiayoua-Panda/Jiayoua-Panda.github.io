@@ -165,7 +165,7 @@ Sections are separated by generous but uneven vertical space (around {spacing.se
 - **Hero:** two columns, text left (1fr) and a 188px avatar column right; height is set by its content, not the viewport. Padding is bottom-heavy (80px above, 108px below) so the hero settles into the page instead of floating.
 - **About:** four capability cards in one row (two per row under 900px, one per row under 580px).
 - **Awards** (night section): two equal award cards, thumbnail bleeding to the card's top edge, a mono "First place, month year" line above the title. Only competition wins go here.
-- **Projects:** every project in one grid, nine cards, three per row, no thumbnails. There is no "featured" tier — awards carry the emphasis.
+- **Projects:** every project in one grid, six cards, three per row, no thumbnails. There is no "featured" tier — awards carry the emphasis.
 - **Engineering Experience:** three stacked company panels; the games panel holds a left-to-right career timeline with company above, dated year chip on the line, titles below; the far-right stop is 1.5× wide to hold two titles side by side.
 - **Spacing scale:** {spacing.xs} {spacing.sm} {spacing.md} {spacing.lg} {spacing.xl} {spacing.2xl}; grid gutter {spacing.gutter}; card padding 24px.
 
@@ -189,7 +189,7 @@ Rounded, but with a hierarchy. Outer containers (project cards, company panels, 
 - **Year chip** — Fira Code pill on the timeline line: on paper, stamp-red text and border on paper fill; on night, solid stamp fill with white text.
 - **Ink-rule** — the 110px red brush stroke under each section heading; static.
 - **Entry marker** — a 10px stamp-red square before each experience and education heading; it replaces the older accent side-rail.
-- **Status badge** — pill with a red dot: "Open to thesis roles in vehicle modelling, control & V&V".
+- **Status badge** — pill with a red dot: "Open to work".
 
 ## Motion
 
@@ -213,4 +213,6 @@ One orchestrated entrance, then everything is just there.
 - **Don't** introduce gradients, glows, coloured shadows, glass panels as decoration, or a second typeface family.
 - **Do** give outer and inner containers different radii; **don't** nest a bordered card inside a bordered card without a reason a reader can see.
 - **Do** ship every interactive element with a visible `:focus-visible` ring in the stamp colour.
+- **Do** show the hero complete on the first frame — only the tagline is typed; nothing a recruiter needs may wait on an animation.
+- **Don't** set any text below 12px, and don't tilt or rotate cards on hover.
 - **Don't** give hover lift, glow or a zoom cursor to anything that is not clickable — About cards, hero tags, the avatar and the game/company logos stay still; only project cards, buttons, links and lightbox images respond.

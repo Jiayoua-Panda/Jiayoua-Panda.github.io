@@ -36,19 +36,20 @@ nav.scrolled .nb-c{grid-template-columns:0fr;opacity:0}
 .nl a:hover::after{width:100%}
 
 /* ── ALL SECTIONS share a transparent background; body #F9F9F9 shows through ── */
+img{max-width:100%;height:auto}
 section{position:relative;z-index:1;padding:130px 0}
 
 /* LAYOUT */
 .wrap{max-width:1280px;margin:0 auto;padding:0 2rem}
 .lbl{font-size:.78rem;font-weight:500;color:var(--text);opacity:.55;margin-bottom:.5rem;font-family:var(--mono)}
-h2.sh{font-size:4.8rem;font-weight:700;margin-bottom:.75rem}
+h2.sh{font-size:clamp(2.6rem,5.2vw,4.8rem);font-weight:700;margin-bottom:.75rem}
 .ssub{font-size:1.05rem;color:var(--muted);max-width:600px;margin-bottom:3rem;line-height:1.7}
 
 /* HERO */
 #hero{border-bottom:1px solid var(--border);padding:80px 0 108px;overflow:hidden}
 #hero .hg{position:relative;z-index:1}
 .hg{max-width:1280px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:minmax(0,1fr) 188px;gap:3rem;align-items:center}
-.hbadge{display:inline-flex;align-items:center;gap:.45rem;background:var(--bg3);color:var(--text2);font-size:.72rem;font-weight:600;letter-spacing:.06em;padding:.3rem .85rem;border-radius:99px;margin-bottom:1.25rem;font-family:var(--mono)}
+.hbadge{display:inline-flex;align-items:center;gap:.45rem;background:var(--bg3);color:var(--text2);font-size:.75rem;font-weight:600;letter-spacing:.06em;padding:.3rem .85rem;border-radius:99px;margin-bottom:1.25rem;font-family:var(--mono)}
 .hdot{width:7px;height:7px;background:var(--accent);border-radius:50%;flex-shrink:0}
 .hname{font-size:clamp(3.4rem,6vw,5rem);font-weight:700;line-height:1.05;margin-bottom:.5rem}
 .hname em{font-style:normal;color:var(--accent)}
@@ -127,7 +128,7 @@ footer a:hover{color:var(--footer-link-hover)}
 .pm-overlay.active{opacity:1;visibility:visible;pointer-events:all}
 .pm-card{background:var(--bg);border-radius:var(--r);max-width:740px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:var(--sh-modal);display:flex;flex-direction:column}
 .pm-header{position:sticky;top:0;z-index:1;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:.875rem 1.25rem;border-bottom:1px solid var(--border)}
-.pm-badge{display:inline-flex;background:var(--bg3);color:var(--text2);font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:99px;font-family:var(--mono)}
+.pm-badge{display:inline-flex;background:var(--bg3);color:var(--text2);font-size:.75rem;font-weight:500;padding:.2rem .6rem;border-radius:99px;font-family:var(--mono)}
 .pm-close{background:var(--bg3);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.25rem;line-height:1;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:background .15s;font-family:inherit}
 .pm-close:hover{background:var(--border);color:var(--text)}
 .pm-main{aspect-ratio:16/9;position:relative;background:var(--bg3);overflow:hidden;display:flex;align-items:center;justify-content:center}
@@ -225,7 +226,7 @@ footer a:hover{color:var(--footer-link-hover)}
 .wc-title{font-size:.95rem;font-weight:700;margin-bottom:7px}
 .wc-desc{font-size:.875rem;color:var(--muted);line-height:1.6;margin:0}
 .wc-tools{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:12px}
-.wc-tools .tag{font-size:.72rem;padding:.14rem .45rem}
+.wc-tools .tag{font-size:.75rem;padding:.14rem .45rem}
 
 /* ── ENGINEERING EXPERIENCE · COMPANY BLOCKS ────────────── */
 .ind-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px}
@@ -275,7 +276,7 @@ footer a:hover{color:var(--footer-link-hover)}
 .gtl-game-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .gtl-game-logo{width:44px;height:44px;object-fit:cover;border-radius:10px;border:1px solid var(--border);display:block;flex-shrink:0}
 .gtl-game-name{font-size:.95rem;font-weight:700;line-height:1.3}
-.gtl-game-name em{display:block;font-style:normal;font-weight:400;font-size:.74rem;color:var(--muted);font-family:var(--mono);margin-top:2px}
+.gtl-game-name em{display:block;font-style:normal;font-weight:400;font-size:.75rem;color:var(--muted);font-family:var(--mono);margin-top:2px}
 .gtl-shots{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-top:auto}
 .gtl-shots img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;border:1px solid var(--border);filter:grayscale(100%);transition:filter .35s;cursor:zoom-in;display:block}
 .gtl-shots img:hover{filter:grayscale(0%)}
@@ -286,7 +287,7 @@ footer a:hover{color:var(--footer-link-hover)}
 .gtl-games-row .gtl-game-top{gap:8px;margin-bottom:8px}
 .gtl-games-row .gtl-game-logo{width:36px;height:36px;border-radius:8px}
 .gtl-games-row .gtl-game-name{font-size:.8rem}
-.gtl-games-row .gtl-game-name em{font-size:.62rem}
+.gtl-games-row .gtl-game-name em{font-size:.75rem}
 
 /* ── DARK SECTIONS (interspersed for contrast) ──────────── */
 /* dark bg lives on ::before so it can expand from an inset rounded block
@@ -343,7 +344,8 @@ footer a:hover{color:var(--footer-link-hover)}
   .nl{gap:.6rem}
   .nl a{font-size:.8rem}
   section{padding:100px 0}
-  h2.sh{font-size:3rem}
+  h2.sh{font-size:2.6rem}
+  .pd,.fd{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden;flex:none}
   .hname{font-size:clamp(2.8rem,10vw,4.5rem)}
   .htitle{font-size:1.35rem}
   #hero{padding:56px 0 76px}
@@ -368,4 +370,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .caret::after{animation:none}
+}
+
+/* touch: links and buttons get a finger-sized hit area */
+@media (pointer:coarse){
+  .pl,.pm-trigger{min-height:40px}
+  .nl a{display:inline-flex;align-items:center;min-height:44px}
 }

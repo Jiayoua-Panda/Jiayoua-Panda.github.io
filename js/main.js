@@ -25,9 +25,9 @@ const PROJECTS = {
     desc: 'Gothenburg Tech Week × Chalmers Hackathon 2026, 25–26 September, team Go Pikachu — overall winner, entered through SKF\u2019s challenge \u201cAnalyze and compare learning methods suitable for industrial humanoids\u201d.\n\nTeam approach, the Humanoid Skill Factory: instead of training one giant policy per task and site, compose pretrained skills, let a height scan and a factory map decide which skill runs where, wrap everything in a rule-based safety layer (ISO/TS 15066 speed and separation monitoring), and pass every skill through the same test gates so that training effort goes only to the failures the gates find. All results are MuJoCo simulation of a Unitree G1 (29 DoF): 99 % on a 220-run terrain matrix and 88 % on a 19.9 m factory route with stairs up and down, without training a new model. The stair policy itself is a third-party pretrained model (G1-DWAQ); the team\u2019s work is the switching, safety, test and fine-tuning pipeline around it.\n\nMy part: (1) the V0 baseline \u2014 replaying Unitree\u2019s pretrained G1 velocity policy in MuJoCo with the exact deployment interface (480-dim observation with 5-frame history, 50 Hz policy / 200 Hz PD loop) and measuring step length against commanded speed; (2) the parametric test-course generator (slopes, steps, stairs, cross slopes, rough floor) and the per-segment evaluation with randomised starts, co-developed with a teammate; (3) the four-stage comparison with fault injection \u2014 an unmapped pallet and a reflective plate blinding the height scan \u2014 showing why neither on-board perception nor an external map alone is enough; (4) the camera-plus-odometry localisation error model used to specify how accurate factory cameras need to be.',
     tags: ['MuJoCo', 'Python', 'Humanoid Locomotion', 'Policy Replay', 'Test Matrix', 'Fault Injection', 'Safety Layer'],
     images: [
-      { src: 'assets/images/projects/hackathon-1.png', caption: 'Height scan ahead of the feet picks the stair skill \u2014 MuJoCo, Unitree G1' },
+      { src: 'assets/images/projects/hackathon-1.webp', caption: 'Height scan ahead of the feet picks the stair skill \u2014 MuJoCo, Unitree G1' },
       { src: 'assets/images/projects/hackathon-2.png', caption: 'Four-stage comparison with fault injection: pass rate per course segment' },
-      { src: 'assets/images/projects/hackathon-3.png', caption: 'Safety layer: ISO/TS 15066 protective distance and position hold on the test course' },
+      { src: 'assets/images/projects/hackathon-3.webp', caption: 'Safety layer: ISO/TS 15066 protective distance and position hold on the test course' },
       { src: 'assets/images/projects/hackathon-4.png', caption: 'Parametric demo course profile with unmapped pallet and glare step, plus the height-scan view' },
     ],
     links: [
@@ -45,7 +45,7 @@ const PROJECTS = {
       { src: 'assets/images/projects/truck-reversing-2.png', caption: 'Nonlinear model in Simulink' },
       { src: 'assets/images/projects/truck-reversing-3.png', caption: 'State feedback controller' },
       { src: 'assets/images/projects/truck-reversing-4.png', caption: 'State estimator (observer)' },
-      { src: 'assets/images/projects/truck-reversing-5.png', caption: 'Closed-loop response — trailer length L2 = 15 m' },
+      { src: 'assets/images/projects/truck-reversing-5.webp', caption: 'Closed-loop response — trailer length L2 = 15 m' },
       { src: 'assets/images/projects/truck-reversing-6.png', caption: 'Closed-loop response — trailer length L2 = 4 m' },
     ],
     links: [{ label: 'Full report available on request' }],
@@ -57,7 +57,7 @@ const PROJECTS = {
     tags: ['Systems Design', 'Game Economy', 'Live Ops', 'Data-Driven Iteration', 'Feature Planning', 'Cross-functional Delivery'],
     images: [
       { src: 'assets/images/projects/game-htz-1.jpg', caption: '幻唐志 (Fantasy Tang Chronicles) — Duoyi Network, 2020' },
-      { src: 'assets/images/projects/game-htz-2.jpg', caption: '幻唐志 — live-ops content' },
+      { src: 'assets/images/projects/game-htz-2.webp', caption: '幻唐志 — live-ops content' },
       { src: 'assets/images/projects/game-lzg-1.jpg', caption: '龙之国物语 (Dragon Kingdom Story) — Zlong Games, 2021' },
       { src: 'assets/images/projects/game-lzg-2.jpg', caption: '龙之国物语 — economy design' },
       { src: 'assets/images/projects/game-gcld-1.jpg', caption: '攻城掠地 (Conquer the Castle) — Aoshitang, 2023' },
@@ -73,20 +73,20 @@ const PROJECTS = {
     desc: 'A 2D Structure-from-Motion pipeline that reconstructs planar scenes from multiple images, built from scratch in Python and evaluated on four standard datasets (graf, wall, bark, boat).\n\nPipeline stages: SIFT feature extraction and brute-force matching with Lowe\'s ratio test, homography estimation with normalized DLT inside a RANSAC loop, and incremental registration of images into a global frame starting from the pair with most inliers. An advanced stage builds multi-image feature tracks and refines the reconstruction with Gauss-Newton bundle adjustment. The basic pipeline achieved 2.13 px reprojection error on the wall dataset — these estimation techniques (robust fitting, incremental mapping, BA) are foundational to visual SLAM and AV perception.',
     tags: ['Python', 'OpenCV', 'SIFT', 'RANSAC', 'Homography', 'Bundle Adjustment', 'Computer Vision'],
     images: [
-      { src: 'assets/images/projects/sfm-1.png', caption: 'Graf dataset — reconstruction vs ground truth' },
-      { src: 'assets/images/projects/sfm-2.png', caption: 'Wall dataset — best result (2.13 px error)' },
-      { src: 'assets/images/projects/sfm-3.png', caption: 'Bark dataset — zoom and rotation changes' },
-      { src: 'assets/images/projects/sfm-4.png', caption: 'Boat dataset — large camera motion' },
+      { src: 'assets/images/projects/sfm-1.webp', caption: 'Graf dataset — reconstruction vs ground truth' },
+      { src: 'assets/images/projects/sfm-2.webp', caption: 'Wall dataset — best result (2.13 px error)' },
+      { src: 'assets/images/projects/sfm-3.webp', caption: 'Bark dataset — zoom and rotation changes' },
+      { src: 'assets/images/projects/sfm-4.webp', caption: 'Boat dataset — large camera motion' },
     ],
     links: [{ label: 'GitHub', href: 'https://github.com/Jiayoua-Panda/SSY098-Image-analysis/tree/main/Project', icon: 'github' }],
   },
   'ride-comfort': {
     badge: 'Data-Driven, Vehicle Dynamics',
     title: 'Ride Comfort Analysis — Volvo 7900 Electric Bus',
-    desc: 'Data-driven suspension analysis of the Volvo 7900 Electric city bus (MMS210, Connected Fleets in Data-Driven Engineering). Real vertical-acceleration data was collected with an IMU mounted inside a bus on its regular route in Gothenburg during normal daily operation.\n\nThe pipeline: signal filtering of the raw IMU data, estimation of the road excitation power spectral density (PSD), then feeding the extracted road profile into a quarter-car suspension model. Suspension stiffness and damping were optimized to reduce body-acceleration RMS while keeping suspension deflection and dynamic tire force within acceptable bounds — a direct link from real fleet measurement to chassis parameter tuning.',
+    desc: 'Group project of four: data-driven suspension analysis of the Volvo 7900 Electric city bus (MMS210, Connected Fleets in Data-Driven Engineering). Real vertical-acceleration data was collected with an IMU mounted inside a bus on its regular route in Gothenburg during normal daily operation.\n\nThe pipeline: signal filtering of the raw IMU data, estimation of the road excitation power spectral density (PSD), then feeding the extracted road profile into a quarter-car suspension model. Suspension stiffness and damping were optimized to reduce body-acceleration RMS while keeping suspension deflection and dynamic tire force within acceptable bounds — a direct link from real fleet measurement to chassis parameter tuning.',
     tags: ['Python', 'Signal Processing', 'PSD Estimation', 'Quarter-Car Model', 'Suspension Optimization', 'IMU', 'Volvo'],
     images: [
-      { src: 'assets/images/projects/ride-comfort-1.png', caption: 'Measured IMU data from the bus route' },
+      { src: 'assets/images/projects/ride-comfort-1.webp', caption: 'Measured IMU data from the bus route' },
       { src: 'assets/images/projects/ride-comfort-2.png', caption: 'IMU accelerometer signal' },
       { src: 'assets/images/projects/ride-comfort-3.png', caption: 'Quarter-car suspension model' },
       { src: 'assets/images/projects/ride-comfort-4.png', caption: 'Suspension performance comparison after optimization' },
@@ -96,12 +96,12 @@ const PROJECTS = {
   'bicycle-safety': {
     badge: 'Active Safety, Field Experiment',
     title: 'Cyclist Overtaking — Active Safety Field Study',
-    desc: 'Field study of driver behaviour when overtaking cyclists (TME202 Active Safety). A pilot experiment used an instrumented bicycle equipped with LIDAR sensors (tested in side and rear mounting configurations), IMU, GPS, and front/rear cameras to measure the minimum lateral clearance drivers leave when passing.\n\nThe analysis decomposed the overtaking manoeuvre into approach, steer-away, pass, and return phases, and quantified how the presence of oncoming traffic compresses lateral safety margins — the driver comfort-zone boundaries that active safety systems must respect. Findings inform ADAS intervention logic for protecting cyclists, a primary vulnerable road user group in urban traffic.',
+    desc: 'Two-person analysis of pilot field data on driver behaviour when overtaking cyclists (TME202 Vehicle and Traffic Safety). A pilot experiment used an instrumented bicycle equipped with LIDAR sensors (tested in side and rear mounting configurations), IMU, GPS, and front/rear cameras to measure the minimum lateral clearance drivers leave when passing.\n\nThe analysis decomposed the overtaking manoeuvre into approach, steer-away, pass, and return phases, and quantified how the presence of oncoming traffic compresses lateral safety margins — the driver comfort-zone boundaries that active safety systems must respect. Findings inform ADAS intervention logic for protecting cyclists, a primary vulnerable road user group in urban traffic.',
     tags: ['Active Safety', 'LIDAR', 'Field Experiment', 'Driver Behaviour', 'ADAS', 'Vulnerable Road Users'],
     images: [
       { src: 'assets/images/projects/bicycle-safety-1.png', caption: 'Overtaking manoeuvre analysis' },
       { src: 'assets/images/projects/bicycle-safety-2.png', caption: 'Instrumented bicycle measurement setup' },
-      { src: 'assets/images/projects/bicycle-safety-3.png', caption: 'Lateral clearance results' },
+      { src: 'assets/images/projects/bicycle-safety-3.webp', caption: 'Lateral clearance results' },
     ],
     links: [{ label: 'Full report available on request' }],
   },
@@ -112,7 +112,7 @@ const PROJECTS = {
     tags: ['Passive Safety', 'Crash Pulse', 'Restraint Systems', 'Energy Analysis', 'Biomechanics', 'Injury Risk'],
     images: [
       { src: 'assets/images/projects/crash-pulse-1.png', caption: 'Crash pulse parameter study' },
-      { src: 'assets/images/projects/crash-pulse-2.png', caption: 'Structural deformation comparison' },
+      { src: 'assets/images/projects/crash-pulse-2.webp', caption: 'Structural deformation comparison' },
       { src: 'assets/images/projects/crash-pulse-3.png', caption: 'Occupant response with restraint systems' },
     ],
     links: [{ label: 'Full report available on request' }],
@@ -120,12 +120,12 @@ const PROJECTS = {
   'hybrid-model': {
     badge: 'Powertrain, Electrification',
     title: 'Series & Parallel HEV Powertrain Design',
-    desc: 'Designed and simulated complete series and parallel hybrid powertrains in MATLAB/QSS for a Class M reference vehicle (Ford S-MAX 2.0L, 240 PS) across four lab projects (TME095 Electric & Hybrid Vehicles).\n\nWork covered component sizing from first principles (180 kW motor/generator sized against top-speed and 0-100 km/h requirements), battery SoC management, engine operating-point placement on the efficiency map, and energy-flow analysis over both the NEDC cycle and a custom-designed driving cycle. The series architecture decouples the engine from the wheels for sweet-spot operation; the parallel architecture trades that for direct mechanical drive — the comparison quantifies fuel-consumption and sizing trade-offs between the two.',
+    desc: 'Group project of three. Designed and simulated complete series and parallel hybrid powertrains in MATLAB/QSS for a Class M reference vehicle (Ford S-MAX 2.0L, 240 PS) across four lab projects (TME095 Electric & Hybrid Vehicles).\n\nWork covered component sizing from first principles (180 kW motor/generator sized against top-speed and 0-100 km/h requirements), battery SoC management, engine operating-point placement on the efficiency map, and energy-flow analysis over both the NEDC cycle and a custom driving cycle that I defined. The series architecture decouples the engine from the wheels for sweet-spot operation; the parallel architecture trades that for direct mechanical drive — the comparison quantifies fuel-consumption and sizing trade-offs between the two.',
     tags: ['MATLAB', 'QSS', 'Hybrid Powertrain', 'Component Sizing', 'Energy Management', 'NEDC', 'Driving Cycles'],
     images: [
       { src: 'assets/images/projects/hybrid-1.png', caption: 'Series HEV power flow' },
-      { src: 'assets/images/projects/hybrid-2.png', caption: 'Parallel HEV torque flow' },
-      { src: 'assets/images/projects/hybrid-3.png', caption: 'ICE operating points on the efficiency map' },
+      { src: 'assets/images/projects/hybrid-2.webp', caption: 'Parallel HEV torque flow' },
+      { src: 'assets/images/projects/hybrid-3.webp', caption: 'ICE operating points on the efficiency map' },
       { src: 'assets/images/projects/hybrid-4.png', caption: 'Battery SoC over the custom driving cycle' },
       { src: 'assets/images/projects/hybrid-5.png', caption: 'Custom driving cycle design' },
       { src: 'assets/images/projects/hybrid-6.png', caption: 'NEDC driving cycle' },
@@ -138,7 +138,7 @@ const PROJECTS = {
     desc: 'Python application with a graphical interface for computing and visualising shortest paths on a map graph, built for the Chalmers object-oriented programming in Python course.\n\nImplements Dijkstra\'s algorithm over a custom graph data structure with an interactive UI: users pick source and destination nodes and the computed route is highlighted on the map in real time. A compact exercise in object-oriented design, algorithm implementation, and UI integration — the same route-optimisation problem at the core of logistics and fleet routing.',
     tags: ['Python', 'OOP', 'Graph Algorithms', 'Dijkstra', 'GUI', 'Jupyter'],
     images: [
-      { src: 'assets/images/projects/shortest-path-1.png', caption: 'Shortest path computed and highlighted in the GUI' },
+      { src: 'assets/images/projects/shortest-path-1.webp', caption: 'Shortest path computed and highlighted in the GUI' },
     ],
     links: [{ label: 'Notebook available on request' }],
   },
@@ -148,9 +148,9 @@ const PROJECTS = {
     desc: 'BSc thesis at NUAA (Aircraft Manufacturing Engineering): structural design and physical implementation of an aerostatic air-bearing platform using ring-orifice (annular throttling) air bearings — the friction-free platform type used for spacecraft ground simulation.\n\nThe work spans the full design chain: working principle of the annular-orifice aerostatic bearing, theoretical analysis and numerical calculation of load capacity and stiffness, structural design of the platform body in CAD, and fabrication of a physical model with experimental verification. A complete mechanical engineering exercise from theory to working hardware.',
     tags: ['Mechanical Design', 'Aerostatic Bearings', 'CAD', 'Numerical Analysis', 'NUAA', 'Prototype'],
     images: [
-      { src: 'assets/images/projects/bsc-thesis-1.png', caption: 'Main structure of the air-bearing platform' },
+      { src: 'assets/images/projects/bsc-thesis-1.webp', caption: 'Main structure of the air-bearing platform' },
       { src: 'assets/images/projects/bsc-thesis-2.png', caption: 'CAD model of the platform' },
-      { src: 'assets/images/projects/bsc-thesis-3.png', caption: 'Fabricated physical platform' },
+      { src: 'assets/images/projects/bsc-thesis-3.webp', caption: 'Fabricated physical platform' },
     ],
     links: [{ label: 'Thesis & defence slides available on request' }],
   },
@@ -203,51 +203,25 @@ if (avatarPhoto) {
   const reveal = () => hero.classList.add('hero-go');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // name preserves the <em> on "Gong"
-  const nameSegs = [{ t: 'Shuwen ', em: false }, { t: 'Gong', em: true }];
   const titleText = titleEl.textContent.trim();
-  const nameChars = [];
-  nameSegs.forEach(s => [...s.t].forEach(ch => nameChars.push({ ch, em: s.em })));
 
-  function renderName(n) {
-    let html = '', i = 0;
-    while (i < n) {
-      const em = nameChars[i].em; let run = '';
-      while (i < n && nameChars[i].em === em) { run += nameChars[i].ch; i++; }
-      run = run.replace(/ /g, '&nbsp;');
-      html += em ? `<em>${run}</em>` : run;
-    }
-    return html;
-  }
+  // The name, badge, tags, CTAs and avatar are there from the first frame;
+  // only the tagline is typed, and it reserves its final size so nothing shifts.
+  nameEl.style.visibility = titleEl.style.visibility = 'visible';
+  reveal();
+  if (reduce) { titleEl.classList.add('caret'); return; }
 
-  // reduced motion: skip the animation, show everything at once
-  if (reduce) {
-    nameEl.style.visibility = titleEl.style.visibility = 'visible';
-    titleEl.classList.add('caret');
-    reveal();
-    return;
-  }
+  const typed = document.createElement('span'); typed.className = 'caret';
+  const rest = document.createElement('span'); rest.style.visibility = 'hidden'; rest.setAttribute('aria-hidden', 'true');
+  titleEl.setAttribute('aria-label', titleText);
+  titleEl.textContent = ''; titleEl.append(typed, rest); rest.textContent = titleText;
 
-  nameEl.innerHTML = ''; titleEl.textContent = '';
-  nameEl.style.visibility = 'visible';
-
-  let i = 0;
-  (function typeName() {
-    i++;
-    nameEl.innerHTML = renderName(i);
-    nameEl.classList.add('caret');
-    if (i < nameChars.length) setTimeout(typeName, 72);
-    else { nameEl.classList.remove('caret'); titleEl.style.visibility = 'visible'; setTimeout(typeTitle, 260); }
+  let k = 0;
+  (function typeTitle() {
+    k++;
+    typed.textContent = titleText.slice(0, k); rest.textContent = titleText.slice(k);
+    if (k < titleText.length) setTimeout(typeTitle, 22);   // caret keeps blinking at the end
   })();
-
-  let j = 0;
-  function typeTitle() {
-    j++;
-    titleEl.textContent = titleText.slice(0, j);
-    titleEl.classList.add('caret');
-    if (j < titleText.length) setTimeout(typeTitle, 34);
-    else setTimeout(reveal, 220);   // caret keeps blinking at the end of the tagline
-  }
 })();
 
 // ── Lightbox (for standalone image zoom, kept for future use) ──
@@ -614,6 +588,7 @@ if (avatarPhoto) {
     }
 
     function frame() {
+      if (!onScreen) { requestAnimationFrame(frame); return; }   // section canvas out of view: skip the draw
       ctx.clearRect(0, 0, W, H);
       const SPD = opts.speed || 1;
       ctx.lineJoin = 'round'; ctx.lineCap = 'round';
@@ -689,6 +664,10 @@ if (avatarPhoto) {
       t++;
       if (!reduce) requestAnimationFrame(frame);
     }
+
+    let onScreen = true;
+    if (!opts.viewport && !reduce && 'IntersectionObserver' in window)
+      new IntersectionObserver(es => { onScreen = es[es.length - 1].isIntersecting; }, { rootMargin: '120px' }).observe(cvs);
 
     size();
     window.addEventListener('resize', () => { clearTimeout(cvs._rt); cvs._rt = setTimeout(size, 150); }, { passive: true });
@@ -815,35 +794,6 @@ if (avatarPhoto) {
         `radial-gradient(circle 220px at ${x}px ${y}px, ${glow}, transparent 65%), ${base}`;
     });
     card.addEventListener('mouseleave', () => { card.style.background = ''; });
-  });
-})();
-
-// ── Featured card: 3D tilt on hover ───────────────────────────────────────
-(function () {
-  if (window.matchMedia('(hover:none)').matches) return; // skip touch devices
-
-  document.querySelectorAll('.fc').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      card.style.willChange = 'transform';
-      card.style.transition = 'box-shadow .25s, border-color .2s'; // suppress transform transition
-    });
-
-    card.addEventListener('mousemove', e => {
-      const r  = card.getBoundingClientRect();
-      const rx = ((e.clientY - r.top  - r.height / 2) / r.height) * -6; // ±3°
-      const ry = ((e.clientX - r.left - r.width  / 2) / r.width )  *  6;
-      card.style.transform  = `translateY(-5px) perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transition = 'transform .5s cubic-bezier(.25,.46,.45,.94), box-shadow .4s, border-color .2s';
-      card.style.transform  = '';
-      card.style.boxShadow  = '';
-      setTimeout(() => {
-        card.style.transition  = '';
-        card.style.willChange  = '';
-      }, 520);
-    });
   });
 })();
 

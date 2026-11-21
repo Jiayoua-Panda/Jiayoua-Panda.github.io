@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=20261121">
 <script>document.documentElement.classList.add('hero-js')</script>
 </head>
 <body>
@@ -41,6 +41,7 @@
 </div>
 </nav>
 
+<main>
 <!-- HERO -->
 <section id="hero">
 <svg class="hero-flow" viewBox="0 0 1440 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -54,7 +55,7 @@
 </svg>
 <div class="hg">
   <div>
-    <div class="hbadge"><div class="hdot"></div>Open to thesis roles in vehicle modelling, control &amp; V&amp;V</div>
+    <div class="hbadge"><div class="hdot"></div>Open to work</div>
     <h1 class="hname">Shuwen <em>Gong</em></h1>
     <p class="htitle">Modelling, controlling and validating vehicle systems</p>
     <div class="disc-tags">
@@ -64,8 +65,9 @@
     </div>
     <ul class="ident-list">
       <li>Chalmers University of Technology</li>
+      <li>Winner of two engineering competitions, 2026</li>
       <li>Former Aircraft Assembly Engineer</li>
-      <li>Former Systems Designer</li>
+      <li>Former Game Systems Designer</li>
     </ul>
     <div class="ctas">
       <a class="btn btn-p" href="assets/images/ShuwenGong_CV.pdf" target="_blank" rel="noopener">
@@ -83,7 +85,7 @@
     </div>
   </div>
   <div class="avatar-wrap">
-    <img class="avatar-photo" src="assets/images/profile.jpg" alt="Shuwen Gong">
+    <img class="avatar-photo" src="assets/images/profile.jpg" alt="Shuwen Gong" width="450" height="600">
     <div class="avatar">SG</div>
   </div>
 </div>
@@ -100,32 +102,49 @@
         <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
       </div>
       <div class="wc-title">System Modelling &amp; Control</div>
-      <p class="wc-desc">Vehicle dynamics and powertrain modelling, control design with state feedback and observers, and data-driven analysis of real measurement data</p>
+      <p class="wc-desc">Vehicle dynamics and powertrain models built from first principles and measured data; state-feedback control, observers and estimation in MATLAB and Simulink.</p>
       <div class="wc-tools"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">QSS</span><span class="tag">Control Design</span><span class="tag">Signal Processing</span></div>
     </div>
     <div class="wc">
       <div class="wc-icon">
-        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
       </div>
-      <div class="wc-title">Software &amp; Perception</div>
-      <p class="wc-desc">Computer vision and algorithm development — SfM pipelines, graph search, and interactive tooling in Python</p>
-      <div class="wc-tools"><span class="tag">Python</span><span class="tag">OpenCV / NumPy</span><span class="tag">Git</span><span class="tag">Jupyter</span></div>
+      <div class="wc-title">Verification &amp; Validation</div>
+      <p class="wc-desc">Test matrices and pass gates, fault injection, closed-loop validation across operating conditions, and the checks that catch what simulation hides on real hardware.</p>
+      <div class="wc-tools"><span class="tag">Test Matrices</span><span class="tag">Fault Injection</span><span class="tag">KPI Design</span><span class="tag">Closed-Loop Validation</span><span class="tag">Sim-to-Real</span></div>
     </div>
     <div class="wc">
       <div class="wc-icon">
-        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
       </div>
-      <div class="wc-title">Active Safety &amp; ADAS</div>
-      <p class="wc-desc">Active and passive vehicle safety, driver-behaviour field studies with instrumented vehicles, and intervention logic for vulnerable road users</p>
-      <div class="wc-tools"><span class="tag">Active Safety</span><span class="tag">ADAS</span><span class="tag">Crash Analysis</span><span class="tag">LIDAR Field Testing</span></div>
+      <div class="wc-title">Autonomy Software</div>
+      <p class="wc-desc">ROS 2 autonomy stacks taken from simulation to a real robot: sensor fusion, lidar SLAM, navigation and docking, with Gazebo and MuJoCo as test beds.</p>
+      <div class="wc-tools"><span class="tag">ROS 2</span><span class="tag">Nav2</span><span class="tag">SLAM</span><span class="tag">Sensor Fusion</span><span class="tag">Gazebo / MuJoCo</span><span class="tag">Python</span></div>
     </div>
     <div class="wc">
       <div class="wc-icon">
         <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       </div>
-      <div class="wc-title">Systems Engineering</div>
-      <p class="wc-desc">Complex systems integration and process engineering, from aircraft final assembly to live-service products</p>
-      <div class="wc-tools"><span class="tag">Process Planning</span><span class="tag">PFMEA</span><span class="tag">PDM / ERP / CAPP</span><span class="tag">Quality Eng</span></div>
+      <div class="wc-title">Safety &amp; Systems Engineering</div>
+      <p class="wc-desc">Active and passive vehicle safety and driver-behaviour data, on top of three years of process planning, PFMEA and quality work in aircraft final assembly.</p>
+      <div class="wc-tools"><span class="tag">Active Safety</span><span class="tag">ADAS</span><span class="tag">PFMEA</span><span class="tag">Process Planning</span><span class="tag">Quality Eng</span></div>
+    </div>
+  </div>
+
+  <!-- ─ EDUCATION ─ -->
+  <div class="eng-co">
+    <div class="eng-pane-label">Education</div>
+    <div class="eng-edu-grid">
+      <div class="eng-edu-item">
+        <div class="lbl" style="margin:0 0 4px">BSc, Sep 2013 – Jun 2017</div>
+        <h3 class="eng-co-name">Aerospace Engineering, NUAA</h3>
+        <p class="eng-pane-desc" style="margin:6px 0 0">Aircraft Manufacturing Engineering, Nanjing University of Aeronautics and Astronautics.</p>
+      </div>
+      <div class="eng-edu-item">
+        <div class="lbl" style="margin:0 0 4px">MEng, Sep 2025 – Jun 2027</div>
+        <h3 class="eng-co-name">Mobility Engineering, Chalmers University of Technology</h3>
+        <p class="eng-pane-desc" style="margin:6px 0 0">System modelling and control, vehicle dynamics, and active safety and ADAS — Gothenburg, Sweden.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -141,7 +160,7 @@
 
     <div class="fc">
       <div class="fc-thumb">
-        <img src="assets/images/projects/award-autonomous-truck.png" alt="Planned path of the mini-truck around obstacles to a dock" loading="lazy" onerror="this.style.display='none'">
+        <img src="assets/images/projects/award-autonomous-truck.png" alt="Planned path of the mini-truck around obstacles to a dock" loading="lazy" onerror="this.style.display='none'" width="1200" height="461">
       </div>
       <div class="lbl">First place, November 2026</div>
       <h3 class="ft">The AI-Powered Autonomous Challenge 2026</h3>
@@ -155,7 +174,7 @@
 
     <div class="fc">
       <div class="fc-thumb">
-        <img src="assets/images/projects/award-hackathon.png" alt="Unitree G1 approaching stairs in MuJoCo with its height scan" loading="lazy" onerror="this.style.display='none'">
+        <img src="assets/images/projects/award-hackathon.webp" alt="Unitree G1 approaching stairs in MuJoCo with its height scan" loading="lazy" onerror="this.style.display='none'" width="1200" height="461">
       </div>
       <div class="lbl">First place, September 2026</div>
       <h3 class="ft">Gothenburg Tech Week × Chalmers Hackathon 2026</h3>
@@ -176,13 +195,13 @@
 <div class="wrap">
   <h2 class="sh">Projects</h2>
   <span class="ink-rule" aria-hidden="true"></span>
-  <p class="ssub">Course and personal work in vehicle control, powertrain modelling, data-driven vehicle dynamics, safety, and software.</p>
+  <p class="ssub">Course and thesis work in vehicle control, powertrain modelling, data-driven vehicle dynamics, perception and safety.</p>
   <div class="pg">
 
     <div class="pc">
       <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="11" width="22" height="7" rx="2"/><path d="M5 11V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
       <div class="pt">Reversing Aid for a Tractor-Semitrailer Truck</div>
-      <p class="pd">Automatic path-following control for reversing an articulated truck, built in MATLAB/Simulink. State-feedback controller designed via pole placement with a discretized observer, validated on the full nonlinear model across trailer lengths and reversing speeds — the low-speed manoeuvre automation at the heart of ADAS for heavy vehicles.</p>
+      <p class="pd">Automatic path-following control for reversing an articulated truck, built in MATLAB/Simulink. State-feedback controller designed via pole placement with a discretised observer, validated on the full nonlinear model across trailer lengths and reversing speeds.</p>
       <div class="tags"><span class="tag">Control Systems</span><span class="tag">Vehicle Dynamics</span><span class="tag">Simulink</span><span class="tag">Observer Design</span></div>
       <div class="pc-foot"><button class="pm-trigger" data-project="truck-reversing">View details</button><span class="pl" style="color:var(--muted);cursor:default">Report on request</span></div>
     </div>
@@ -190,7 +209,7 @@
     <div class="pc">
       <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
       <div class="pt">Series &amp; Parallel HEV Powertrain Design</div>
-      <p class="pd">Complete series and parallel hybrid powertrains modelled in MATLAB/QSS for a Class M reference vehicle: component sizing from top-speed and 0–100 km/h requirements, battery state-of-charge management, and engine operating-point placement over NEDC and a custom driving cycle — system modelling from first principles to energy flow.</p>
+      <p class="pd">Group project of three. Series and parallel hybrid powertrains modelled in MATLAB/QSS for a Class M reference vehicle: component sizing from top-speed and 0–100 km/h requirements, battery state-of-charge management, and engine operating-point placement over NEDC and a custom driving cycle I defined.</p>
       <div class="tags"><span class="tag">System Modelling</span><span class="tag">MATLAB/QSS</span><span class="tag">Hybrid Powertrain</span><span class="tag">Energy Management</span></div>
       <div class="pc-foot"><button class="pm-trigger" data-project="hybrid-model">View details</button><span class="pl" style="color:var(--muted);cursor:default">Lab reports on request</span></div>
     </div>
@@ -198,7 +217,7 @@
     <div class="pc">
       <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
       <div class="pt">Data-Driven Ride Comfort Analysis</div>
-      <p class="pd">Real IMU data collected on a Volvo 7900 Electric bus in Gothenburg, filtered and converted to a road-excitation PSD, then fed into a quarter-car model. Suspension stiffness and damping optimized to cut body-acceleration RMS while keeping deflection and tire force in bounds — fleet data to chassis tuning, end to end.</p>
+      <p class="pd">Group project of four. Cabin IMU data from a Volvo 7900 Electric bus in Gothenburg, converted to a road-excitation PSD and used as the input to a quarter-car model. Suspension stiffness and damping optimised to cut body-acceleration RMS while keeping deflection and tyre force in bounds.</p>
       <div class="tags"><span class="tag">System Modelling</span><span class="tag">Signal Processing</span><span class="tag">Quarter-Car Model</span><span class="tag">Suspension Optimization</span></div>
       <div class="pc-foot"><button class="pm-trigger" data-project="ride-comfort">View details</button><a class="pl" href="https://github.com/Jiayoua-Panda/Data-Driven-Ride-Comfort-Analysis-of-Volvo-7900-Electric-City-Buses" target="_blank" rel="noopener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a></div>
     </div>
@@ -206,49 +225,25 @@
     <div class="pc">
       <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
       <div class="pt">2D Structure from Motion</div>
-      <p class="pd">SfM pipeline built from scratch in Python: SIFT features, normalized-DLT homography estimation inside RANSAC, incremental multi-image registration, and Gauss-Newton bundle adjustment over feature tracks — 2.13 px reprojection error on the wall benchmark. Foundations of visual SLAM in AV perception stacks.</p>
+      <p class="pd">SfM pipeline built from scratch in Python: SIFT features, normalized-DLT homography estimation inside RANSAC, incremental multi-image registration, and Gauss-Newton bundle adjustment over feature tracks — 2.13 px reprojection error on the wall benchmark.</p>
       <div class="tags"><span class="tag">Computer Vision</span><span class="tag">Python</span><span class="tag">RANSAC</span><span class="tag">Bundle Adjustment</span></div>
       <div class="pc-foot"><button class="pm-trigger" data-project="sfm">View details</button><a class="pl" href="https://github.com/Jiayoua-Panda/SSY098-Image-analysis/tree/main/Project" target="_blank" rel="noopener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a></div>
     </div>
 
     <div class="pc">
-      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="5" cy="6" r="3"/><circle cx="19" cy="18" r="3"/><path d="M8 6h8a3 3 0 0 1 3 3v1M16 18H8a3 3 0 0 1-3-3v-1"/></svg></div>
-      <div class="pt">Shortest-Path Navigation with GUI</div>
-      <p class="pd">Python application implementing Dijkstra’s algorithm over a custom graph structure, with an interactive GUI that highlights the computed route on a map. Object-oriented design from the Chalmers Python OOP course — the core routing problem behind logistics and fleet optimisation.</p>
-      <div class="tags"><span class="tag">Python</span><span class="tag">OOP</span><span class="tag">Dijkstra</span><span class="tag">GUI</span></div>
-      <div class="pc-foot"><button class="pm-trigger" data-project="shortest-path">View details</button></div>
-    </div>
-
-    <div class="pc">
       <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg></div>
       <div class="pt">Cyclist Overtaking — Active Safety Field Study</div>
-      <p class="pd">Field experiment with a LIDAR-instrumented bicycle (plus IMU, GPS, and cameras) measuring the minimum lateral clearance drivers leave when overtaking cyclists, and how oncoming traffic compresses it. Driver comfort-zone boundaries that ADAS intervention logic for vulnerable road users must respect.</p>
+      <p class="pd">Analysis of pilot data from a LIDAR-instrumented bicycle (plus IMU, GPS, and cameras): the minimum lateral clearance drivers leave when overtaking cyclists, and how oncoming traffic compresses it. Driver comfort-zone boundaries that ADAS intervention logic for vulnerable road users must respect.</p>
       <div class="tags"><span class="tag">Active Safety</span><span class="tag">ADAS</span><span class="tag">LIDAR</span><span class="tag">Driver Behaviour</span></div>
       <div class="pc-foot"><button class="pm-trigger" data-project="bicycle-safety">View details</button></div>
     </div>
 
     <div class="pc">
-      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <div class="pt">Crash Pulse &amp; Restraint Systems</div>
-      <p class="pd">Passive safety simulation study: how front-structure stiffness, impact speed, and vehicle mass shape the crash pulse, structural deformation, and energy conversion — and how restraint systems work within that envelope to limit occupant injury risk.</p>
-      <div class="tags"><span class="tag">Passive Safety</span><span class="tag">Crash Analysis</span><span class="tag">Biomechanics</span></div>
-      <div class="pc-foot"><button class="pm-trigger" data-project="crash-pulse">View details</button></div>
-    </div>
-
-    <div class="pc">
       <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
       <div class="pt">Air-Bearing Platform — Design &amp; Build</div>
-      <p class="pd">BSc thesis at NUAA: structural design and implementation of a ring-orifice aerostatic air-bearing platform for spacecraft ground simulation. Theoretical load-capacity and stiffness analysis, CAD design, and a fabricated physical model with experiments — theory to working hardware.</p>
+      <p class="pd">BSc thesis at NUAA: structural design and implementation of a ring-orifice aerostatic air-bearing platform for spacecraft ground simulation. Theoretical load-capacity and stiffness analysis, CAD design, and a fabricated physical model with experiments.</p>
       <div class="tags"><span class="tag">Mechanical Design</span><span class="tag">Aerostatic Bearings</span><span class="tag">CAD</span></div>
       <div class="pc-foot"><button class="pm-trigger" data-project="bsc-thesis">View details</button></div>
-    </div>
-
-    <div class="pc">
-      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-      <div class="pt">Student Grade Management System</div>
-      <p class="pd">Console-based grade management system in C++ from undergraduate course design: student records, file persistence, queries, sorting, and statistics behind a menu-driven interface — the starting point of a programming foundation later extended through Python and MATLAB.</p>
-      <div class="tags"><span class="tag">C++</span><span class="tag">Data Structures</span><span class="tag">File I/O</span></div>
-      <div class="pc-foot"><button class="pm-trigger" data-project="cpp-grades">View details</button><a class="pl" href="https://github.com/Jiayoua-Panda/Cpp_Course_DesignStudent_Grade_Management" target="_blank" rel="noopener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a></div>
     </div>
 
   </div>
@@ -265,7 +260,7 @@
   <!-- ─ AEROSPACE · AVIC CHENGDU AIRCRAFT ─ -->
   <div class="eng-co">
     <div class="eng-co-head">
-      <img class="eng-co-logo" src="assets/images/projects/avic-logo.png" alt="AVIC — Aviation Industry Corporation of China">
+      <img class="eng-co-logo" src="assets/images/projects/avic-logo.png" alt="AVIC — Aviation Industry Corporation of China" width="225" height="225">
       <div>
         <div class="lbl" style="margin:0 0 4px">Aircraft Final Assembly, Jul 2017 – May 2020</div>
         <h3 class="eng-co-name">AVIC Chengdu Aircraft, Production Engineer</h3>
@@ -277,11 +272,11 @@
         <div class="eng-pane-label">The Work</div>
         <div class="eng-photos">
           <figure class="eng-photo">
-            <img class="lb-trigger" data-group="avic" src="assets/images/projects/avic-j10.jpg" alt="Chengdu J-10 fighter" data-caption="Chengdu J-10 — built at AVIC Chengdu Aircraft" loading="lazy">
+            <img class="lb-trigger" data-group="avic" src="assets/images/projects/avic-j10.jpg" alt="Chengdu J-10 fighter" data-caption="Chengdu J-10 — built at AVIC Chengdu Aircraft" loading="lazy" width="1024" height="654">
             <figcaption>Chengdu J-10</figcaption>
           </figure>
           <figure class="eng-photo">
-            <img class="lb-trigger" data-group="avic" src="assets/images/projects/avic-j20.jpg" alt="Chengdu J-20 fighter" data-caption="Chengdu J-20 — built at AVIC Chengdu Aircraft" loading="lazy">
+            <img class="lb-trigger" data-group="avic" src="assets/images/projects/avic-j20.jpg" alt="Chengdu J-20 fighter" data-caption="Chengdu J-20 — built at AVIC Chengdu Aircraft" loading="lazy" width="1400" height="983">
             <figcaption>Chengdu J-20</figcaption>
           </figure>
         </div>
@@ -296,7 +291,7 @@
       <div class="eng-pane">
         <div class="eng-pane-label">Patents, first inventor</div>
         <figure class="eng-photo eng-photo-patent">
-          <img class="lb-trigger" data-group="avic" src="assets/images/projects/patent-wow-switch.png" alt="Weight-on-wheels switch inspection device — patent schematic" data-caption="Portable weight-on-wheels switch inspection device — patent schematic" loading="lazy">
+          <img class="lb-trigger" data-group="avic" src="assets/images/projects/patent-wow-switch.png" alt="Weight-on-wheels switch inspection device — patent schematic" data-caption="Portable weight-on-wheels switch inspection device — patent schematic" loading="lazy" width="600" height="600">
           <figcaption>Patent schematic — WOW switch inspection device</figcaption>
         </figure>
         <strong class="eng-patent-no">CN 210090631 U</strong>
@@ -321,19 +316,19 @@
     <div class="gtl">
       <div class="gtl-stop">
         <div class="gtl-co">
-          <img src="assets/images/projects/logo-duoyi.jpg" alt="Duoyi Network" loading="lazy">
+          <img src="assets/images/projects/logo-duoyi.jpg" alt="Duoyi Network" loading="lazy" width="400" height="300">
           <span>Duoyi Network</span>
         </div>
         <div class="gtl-node"><span class="gtl-year">Aug – Dec 2020</span></div>
         <div class="gtl-games">
           <div class="gtl-game">
             <div class="gtl-game-top">
-              <img class="gtl-game-logo" src="assets/images/projects/game-htz-logo.png" alt="幻唐志 logo" loading="lazy">
+              <img class="gtl-game-logo" src="assets/images/projects/game-htz-logo.png" alt="幻唐志 logo" loading="lazy" width="132" height="132">
               <div class="gtl-game-name">幻唐志<em>Fantasy Tang Chronicles</em></div>
             </div>
             <div class="gtl-shots">
-              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-htz-1.jpg" alt="幻唐志 in-game" data-caption="幻唐志 — in-game systems" loading="lazy">
-              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-htz-2.jpg" alt="幻唐志 in-game" data-caption="幻唐志 — live-ops content" loading="lazy">
+              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-htz-1.jpg" alt="幻唐志 in-game" data-caption="幻唐志 — in-game systems" loading="lazy" width="900" height="500">
+              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-htz-2.webp" alt="幻唐志 in-game" data-caption="幻唐志 — live-ops content" loading="lazy" width="1400" height="789">
             </div>
           </div>
         </div>
@@ -341,19 +336,19 @@
 
       <div class="gtl-stop">
         <div class="gtl-co">
-          <img src="assets/images/projects/logo-zlong.png" alt="Zlong Games" loading="lazy">
+          <img src="assets/images/projects/logo-zlong.png" alt="Zlong Games" loading="lazy" width="400" height="207">
           <span>Zlong Games</span>
         </div>
         <div class="gtl-node"><span class="gtl-year">Jan 2021 – May 2023</span></div>
         <div class="gtl-games">
           <div class="gtl-game">
             <div class="gtl-game-top">
-              <img class="gtl-game-logo" src="assets/images/projects/game-lzg-logo.jpg" alt="龙之国物语 logo" loading="lazy">
+              <img class="gtl-game-logo" src="assets/images/projects/game-lzg-logo.jpg" alt="龙之国物语 logo" loading="lazy" width="128" height="128">
               <div class="gtl-game-name">龙之国物语<em>Dragon Kingdom Story</em></div>
             </div>
             <div class="gtl-shots">
-              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-lzg-1.jpg" alt="龙之国物语 in-game" data-caption="龙之国物语 — world &amp; progression systems" loading="lazy">
-              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-lzg-2.jpg" alt="龙之国物语 in-game" data-caption="龙之国物语 — economy design" loading="lazy">
+              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-lzg-1.jpg" alt="龙之国物语 in-game" data-caption="龙之国物语 — world &amp; progression systems" loading="lazy" width="1265" height="712">
+              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-lzg-2.jpg" alt="龙之国物语 in-game" data-caption="龙之国物语 — economy design" loading="lazy" width="1265" height="712">
             </div>
           </div>
         </div>
@@ -361,27 +356,27 @@
 
       <div class="gtl-stop">
         <div class="gtl-co">
-          <img src="assets/images/projects/logo-aoshitang.png" alt="Aoshitang" loading="lazy">
+          <img src="assets/images/projects/logo-aoshitang.png" alt="Aoshitang" loading="lazy" width="400" height="397">
           <span>Aoshitang</span>
         </div>
         <div class="gtl-node"><span class="gtl-year">Jun 2023 – Feb 2025</span></div>
         <div class="gtl-games gtl-games-row">
           <div class="gtl-game">
             <div class="gtl-game-top">
-              <img class="gtl-game-logo" src="assets/images/projects/game-gcld-logo.png" alt="攻城掠地 logo" loading="lazy">
+              <img class="gtl-game-logo" src="assets/images/projects/game-gcld-logo.png" alt="攻城掠地 logo" loading="lazy" width="243" height="243">
               <div class="gtl-game-name">攻城掠地<em>Conquer the Castle</em></div>
             </div>
             <div class="gtl-shots">
-              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-gcld-1.jpg" alt="攻城掠地 in-game" data-caption="攻城掠地 — large-scale strategy systems" loading="lazy">
+              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-gcld-1.jpg" alt="攻城掠地 in-game" data-caption="攻城掠地 — large-scale strategy systems" loading="lazy" width="1400" height="631">
             </div>
           </div>
           <div class="gtl-game">
             <div class="gtl-game-top">
-              <img class="gtl-game-logo" src="assets/images/projects/game-hlw-logo.png" alt="葫芦娃 logo" loading="lazy">
+              <img class="gtl-game-logo" src="assets/images/projects/game-hlw-logo.png" alt="葫芦娃 logo" loading="lazy" width="132" height="132">
               <div class="gtl-game-name">葫芦娃<em>Calabash Brothers</em></div>
             </div>
             <div class="gtl-shots">
-              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-hlw-2.jpg" alt="葫芦娃 in-game" data-caption="葫芦娃 — live-ops events" loading="lazy">
+              <img class="lb-trigger" data-group="games" src="assets/images/projects/game-hlw-2.jpg" alt="葫芦娃 in-game" data-caption="葫芦娃 — live-ops events" loading="lazy" width="1217" height="700">
             </div>
           </div>
         </div>
@@ -391,23 +386,6 @@
     <div class="pls" style="margin-top:1.75rem">
       <button class="pl pm-trigger" data-project="game-systems">View details</button>
       <span class="pl" style="color:var(--muted);cursor:default">Design docs on request</span>
-    </div>
-  </div>
-
-  <!-- ─ EDUCATION ─ -->
-  <div class="eng-co">
-    <div class="eng-pane-label">Education</div>
-    <div class="eng-edu-grid">
-      <div class="eng-edu-item">
-        <div class="lbl" style="margin:0 0 4px">BSc, Sep 2013 – Jun 2017</div>
-        <h3 class="eng-co-name">Aerospace Engineering, NUAA</h3>
-        <p class="eng-pane-desc" style="margin:6px 0 0">Aircraft Manufacturing Engineering, Nanjing University of Aeronautics and Astronautics.</p>
-      </div>
-      <div class="eng-edu-item">
-        <div class="lbl" style="margin:0 0 4px">MEng, Sep 2025 – Jun 2027</div>
-        <h3 class="eng-co-name">Mobility Engineering, Chalmers University of Technology</h3>
-        <p class="eng-pane-desc" style="margin:6px 0 0">Active safety and ADAS, vehicle dynamics, and system modelling and control — Gothenburg, Sweden. Project work shown in Projects above.</p>
-      </div>
     </div>
   </div>
 
@@ -437,6 +415,7 @@
   </div>
 </div>
 </section>
+</main>
 
 <footer>
   <p>Shuwen Gong, vehicle systems modelling &amp; control engineer. <a href="mailto:gswzds@gmail.com">gswzds@gmail.com</a></p>
@@ -476,6 +455,6 @@
   </div>
 </div>
 
-<script src="js/main.js" defer></script>
+<script src="js/main.js?v=20261121" defer></script>
 </body>
 </html>
