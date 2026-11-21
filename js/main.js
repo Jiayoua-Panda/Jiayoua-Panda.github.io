@@ -2,6 +2,18 @@
 // images[]: put your screenshots in assets/images/projects/
 // Use descriptive filenames, e.g. truck-reversing-1.jpg
 const PROJECTS = {
+  'fcw': {
+    badge: 'Active Safety, ROS 2',
+    title: 'Forward Collision Warning on the µlab Robot Car',
+    desc: 'Project in TME192 Active Safety at Chalmers: build a forward collision warning for the µlab robot car, from the choice of threshold to a ROS 2 node running on the car. Group of five; the collision-warning part described here is my work, and the lane-departure half of the project was done by teammates.\n\nThreshold. A warning that comes too early is ignored and one that comes too late is useless, so the threshold was taken from how drivers actually brake. In 89 recorded runs, eight drivers approached a stationary balloon car and braked as late as they dared. After automatic cleaning (empty radar tracks, runs that were too short, runs with no stop) 79 runs remained. The braking manoeuvre is found from the speed signal: locate the stop in front of the target, find the strongest deceleration before it, and walk back to where deceleration crosses −1 m/s². A 0.2 s radar delay was identified and corrected. Time-to-collision at brake onset has a median of 1.6 s and a 75th percentile of 2.15 s; the 75th percentile became the warning threshold. A worked kinematic case (90 km/h, 1.5 s reaction time, −5 m/s²) shows why time-to-collision, not distance, is the quantity to threshold.\n\nNode. The ROS 2 node subscribes to the LiDAR scan and the odometry. It takes the closest valid return inside a ±15° cone ahead, subtracts the 0.12 m offset from the sensor to the front of the car, divides by the current speed to get time-to-collision, and raises a critical warning when it stays under 2.2 s for two consecutive scans, which removes single-scan false alarms. Developed on recorded bag files, then deployed and tested on the robot car.',
+    tags: ['Active Safety', 'ROS 2', 'Python', 'Time-to-Collision', 'LiDAR', 'Radar Data', 'Threat Assessment'],
+    images: [
+      { src: 'assets/images/projects/fcw-1.webp', caption: 'One braking run: speed, radar range and the detected brake onset (TTC 1.78 s)' },
+      { src: 'assets/images/projects/fcw-2.webp', caption: 'Time-to-collision at brake onset over the selected runs, with the chosen threshold' },
+      { src: 'assets/images/projects/fcw-3.webp', caption: 'Kinematics of the reference rear-end conflict: 90 km/h, 1.5 s reaction time, −5 m/s²' },
+    ],
+    links: [{ label: 'Code on Chalmers GitLab (private)' }],
+  },
   'autonomous-truck': {
     badge: 'Autonomous Driving, Award',
     title: 'Autonomous Mini-Truck — Winner, The AI-Powered Autonomous Challenge 2026',
@@ -120,9 +132,7 @@ const PROJECTS = {
   'hybrid-model': {
     badge: 'Powertrain, Electrification',
     title: 'Series & Parallel HEV Powertrain Design',
-    desc: 'Group project of three. Designed and simulated complete series and parallel hybrid powertrains in MATLAB/QSS for a Class M reference vehicle (Ford S-MAX 2.0L, 240 PS) across four lab projects (TME095 Electric & Hybrid Vehicles).\n\nWork covered component sizing from first principles (180 kW motor/generator sized against top-speed and 0-100 km/h requirements), battery SoC management, engine operating-point placement on the efficiency map, and energy-flow analysis over both the NEDC cycle and a custom driving cycle.
-
-My part: the rule-based energy-management controllers and the custom driving cycle. The series controller is a thermostat (engine on/off) strategy with power-following that holds the battery inside a 0.35–0.65 state-of-charge window; the parallel controller switches between EV, hybrid boost, load-point shifting, regenerative braking and stop/start, with state-of-charge feedback deciding the torque split. Both stay charge-sustaining within 1 % over the cycle, which is what makes the fuel-consumption comparison fair. The series architecture decouples the engine from the wheels for sweet-spot operation; the parallel architecture trades that for direct mechanical drive — the comparison quantifies fuel-consumption and sizing trade-offs between the two.',
+    desc: 'Group project of three. Designed and simulated complete series and parallel hybrid powertrains in MATLAB/QSS for a Class M reference vehicle (Ford S-MAX 2.0L, 240 PS) across four lab projects (TME095 Electric & Hybrid Vehicles).\n\nWork covered component sizing from first principles (180 kW motor/generator sized against top-speed and 0-100 km/h requirements), battery SoC management, engine operating-point placement on the efficiency map, and energy-flow analysis over both the NEDC cycle and a custom driving cycle.\n\nMy part: the rule-based energy-management controllers and the custom driving cycle. The series controller is a thermostat (engine on/off) strategy with power-following that holds the battery inside a 0.35–0.65 state-of-charge window; the parallel controller switches between EV, hybrid boost, load-point shifting, regenerative braking and stop/start, with state-of-charge feedback deciding the torque split. Both stay charge-sustaining within 1 % over the cycle, which is what makes the fuel-consumption comparison fair. The series architecture decouples the engine from the wheels for sweet-spot operation; the parallel architecture trades that for direct mechanical drive — the comparison quantifies fuel-consumption and sizing trade-offs between the two.',
     tags: ['MATLAB', 'QSS', 'Hybrid Powertrain', 'Component Sizing', 'Energy Management', 'NEDC', 'Driving Cycles'],
     images: [
       { src: 'assets/images/projects/hybrid-1.png', caption: 'Series HEV power flow' },
@@ -836,3 +846,18 @@ if (avatarPhoto) {
   update();
 })();
 
+// ── Award clips: loop only while on screen; stay on the poster for reduced motion ──
+(function () {
+  const vids = [...document.querySelectorAll('.fc-thumb video')];
+  if (!vids.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    vids.forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
+    return;
+  }
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { const p = e.target.play(); if (p && p.catch) p.catch(() => {}); }
+    else e.target.pause();
+  }), { rootMargin: '80px' });
+  vids.forEach(v => io.observe(v));
+})();

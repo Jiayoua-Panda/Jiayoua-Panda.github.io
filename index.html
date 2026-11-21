@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261121b">
+<link rel="stylesheet" href="css/style.css?v=20261121c">
 <script>document.documentElement.classList.add('hero-js')</script>
 </head>
 <body>
@@ -160,7 +160,7 @@
 
     <div class="fc">
       <div class="fc-thumb">
-        <img src="assets/images/projects/award-autonomous-truck.png" alt="Planned path of the mini-truck around obstacles to a dock" loading="lazy" onerror="this.style.display='none'" width="1200" height="461">
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/images/projects/award-autonomous-truck.webp" width="800" height="316" aria-label="Animation: the mini-truck plans a path around obstacles, meets another robot, re-plans and reaches the dock"><source src="assets/video/award-autonomous-truck.mp4" type="video/mp4"></video>
       </div>
       <div class="lbl">First place, November 2026</div>
       <h3 class="ft">The AI-Powered Autonomous Challenge 2026</h3>
@@ -174,7 +174,7 @@
 
     <div class="fc">
       <div class="fc-thumb">
-        <img src="assets/images/projects/award-hackathon.webp" alt="Unitree G1 approaching stairs in MuJoCo with its height scan" loading="lazy" onerror="this.style.display='none'" width="1200" height="461">
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/images/projects/award-hackathon.webp" width="696" height="268" aria-label="Simulation clip: a Unitree G1 humanoid walks up stairs in MuJoCo with its height scan shown"><source src="assets/video/award-hackathon.mp4" type="video/mp4"></video>
       </div>
       <div class="lbl">First place, September 2026</div>
       <h3 class="ft">Gothenburg Tech Week × Chalmers Hackathon 2026</h3>
@@ -223,11 +223,11 @@
     </div>
 
     <div class="pc">
-      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
-      <div class="pt">2D Structure from Motion</div>
-      <p class="pd">SfM pipeline built from scratch in Python: SIFT features, normalized-DLT homography estimation inside RANSAC, incremental multi-image registration, and Gauss-Newton bundle adjustment over feature tracks — 2.13 px reprojection error on the wall benchmark.</p>
-      <div class="tags"><span class="tag">Computer Vision</span><span class="tag">Python</span><span class="tag">RANSAC</span><span class="tag">Bundle Adjustment</span></div>
-      <div class="pc-foot"><button class="pm-trigger" data-project="sfm">View details</button><a class="pl" href="https://github.com/Jiayoua-Panda/SSY098-Image-analysis/tree/main/Project" target="_blank" rel="noopener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a></div>
+      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <div class="pt">Forward Collision Warning on a Robot Car</div>
+      <p class="pd">Active Safety course project, group of five; the collision-warning part is my work. Warning threshold taken from 79 real braking runs by eight drivers: time-to-collision at brake onset, median 1.6 s, 75th percentile 2.15 s. Implemented as a ROS 2 node on LiDAR and odometry with a front cone, sensor offset and two-scan confirmation, then tested on the µlab robot car.</p>
+      <div class="tags"><span class="tag">Active Safety</span><span class="tag">ROS 2</span><span class="tag">Time-to-Collision</span><span class="tag">LiDAR</span><span class="tag">Python</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="fcw">View details</button></div>
     </div>
 
     <div class="pc">
@@ -236,6 +236,30 @@
       <p class="pd">Analysis of pilot data from a LIDAR-instrumented bicycle (plus IMU, GPS, and cameras): the minimum lateral clearance drivers leave when overtaking cyclists, and how oncoming traffic compresses it. Driver comfort-zone boundaries that ADAS intervention logic for vulnerable road users must respect.</p>
       <div class="tags"><span class="tag">Active Safety</span><span class="tag">ADAS</span><span class="tag">LIDAR</span><span class="tag">Driver Behaviour</span></div>
       <div class="pc-foot"><button class="pm-trigger" data-project="bicycle-safety">View details</button></div>
+    </div>
+
+    <div class="pc">
+      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="pt">Crash Pulse &amp; Restraint Systems</div>
+      <p class="pd">Passive safety simulation study: how front-structure stiffness, impact speed, and vehicle mass shape the crash pulse, structural deformation, and energy conversion — and how restraint systems work within that envelope to limit occupant injury risk.</p>
+      <div class="tags"><span class="tag">Passive Safety</span><span class="tag">Crash Analysis</span><span class="tag">Biomechanics</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="crash-pulse">View details</button></div>
+    </div>
+
+    <div class="pc">
+      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+      <div class="pt">2D Structure from Motion</div>
+      <p class="pd">SfM pipeline built from scratch in Python: SIFT features, normalized-DLT homography estimation inside RANSAC, incremental multi-image registration, and Gauss-Newton bundle adjustment over feature tracks — 2.13 px reprojection error on the wall benchmark.</p>
+      <div class="tags"><span class="tag">Computer Vision</span><span class="tag">Python</span><span class="tag">RANSAC</span><span class="tag">Bundle Adjustment</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="sfm">View details</button><a class="pl" href="https://github.com/Jiayoua-Panda/SSY098-Image-analysis/tree/main/Project" target="_blank" rel="noopener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a></div>
+    </div>
+
+    <div class="pc">
+      <div class="pi"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="5" cy="6" r="3"/><circle cx="19" cy="18" r="3"/><path d="M8 6h8a3 3 0 0 1 3 3v1M16 18H8a3 3 0 0 1-3-3v-1"/></svg></div>
+      <div class="pt">Shortest-Path Navigation with GUI</div>
+      <p class="pd">Python application implementing Dijkstra’s algorithm over a custom graph structure, with an interactive GUI that highlights the computed route on a map. Object-oriented design from the Chalmers Python OOP course.</p>
+      <div class="tags"><span class="tag">Python</span><span class="tag">OOP</span><span class="tag">Dijkstra</span><span class="tag">GUI</span></div>
+      <div class="pc-foot"><button class="pm-trigger" data-project="shortest-path">View details</button></div>
     </div>
 
     <div class="pc">
@@ -455,6 +479,6 @@
   </div>
 </div>
 
-<script src="js/main.js?v=20261121b" defer></script>
+<script src="js/main.js?v=20261121c" defer></script>
 </body>
 </html>
