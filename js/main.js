@@ -43,6 +43,7 @@ const PROJECTS = {
       { src: 'assets/images/projects/hackathon-4.png', caption: 'Parametric demo course profile with unmapped pallet and glare step, plus the height-scan view' },
     ],
     links: [
+      { label: 'Pitch deck', href: 'https://jiayoua-panda.github.io/Gothenburg_Tech_Week_Chalmers_Hackathon_Go_Pikachu/pitch/' },
       { label: 'GitHub', href: 'https://github.com/Jiayoua-Panda/Gothenburg_Tech_Week_Chalmers_Hackathon_Go_Pikachu', icon: 'github' },
       { label: 'Gothenburg Tech Week', href: 'https://gbgtechweek-com.confetti.events/tech-blueprint/' },
     ],
